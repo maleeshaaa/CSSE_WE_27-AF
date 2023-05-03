@@ -1,9 +1,11 @@
 import React from "react";
+import Navbar from "../../components/navbar.jsx";
 
 export default function LoyaltyDB() {
   return (
     <div>
-      <h1>loyaltydb</h1>
+      <Navbar />
+
     </div>
   );
 }
