@@ -54,7 +54,7 @@ const Footer = () => (
           <h5 className="text-uppercase">Contact</h5>
           <ul className="list-unstyled">
             <li>
-              <p><UilHome size="25" style={{marginRight: "0.3rem", marginBottom: "0.1rem"}}/>100, Colombo Sri Lanka</p>
+              <p><UilHome size="25" style={{marginRight: "0.3rem", marginBottom: "0.1rem"}}/>100/5, Colombo Sri Lanka</p>
             </li>
             <li>
               <p><UilEnvelope size="25" style={{marginRight: "0.3rem", marginBottom: "0.1rem"}} />info@mail.com</p>
