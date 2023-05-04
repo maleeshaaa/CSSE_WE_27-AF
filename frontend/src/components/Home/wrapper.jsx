@@ -36,8 +36,8 @@ function wrapper() {
 
             {/* <Card.Text></Card.Text> */}
             <Card.Subtitle className="mb-2 text-muted">
-              Safe and secure - we're committed to getting your
-              order to you as quickly as possible!
+              Safe and secure - Travel safe and enjoy your life with
+              unforgetable memories!
             </Card.Subtitle>
             {/* <Card.Link href="#">Card Link</Card.Link>
         <Card.Link href="#">Another Link</Card.Link> */}
@@ -101,13 +101,13 @@ function wrapper() {
             <Card.Title
               style={{ fontSize: 18, fontWeight: "600", marginBottom: "2rem" }}
             >
-              Shop with confidence
+              Earn Points
             </Card.Title>
 
             {/* <Card.Text></Card.Text> */}
             <Card.Subtitle className="mb-2 text-muted">
-              Satisfaction guaranteed - shop with confidence knowing that we
-              stand behind our products!
+              Satisfaction guaranteed - Earn points and get discounts!
+             
             </Card.Subtitle>
             {/* <Card.Link href="#">Card Link</Card.Link>
         <Card.Link href="#">Another Link</Card.Link> */}
@@ -141,7 +141,7 @@ function wrapper() {
 
             {/* <Card.Text></Card.Text> */}
             <Card.Subtitle className="mb-2 text-muted">
-              Shop anytime, anywhere - our online store is always open!
+              Travel anytime, anywhere - our online customer service is always waiting for your need!
             </Card.Subtitle>
             {/* <Card.Link href="#">Card Link</Card.Link>
         <Card.Link href="#">Another Link</Card.Link> */}

@@ -26,10 +26,9 @@ const Footer = () => (
             {/* HerbMart */}
           </h5>
           <p className="text-start">
-            Experience the power of nature with our hand-selected herbs and
-            botanicals. Shop our online store and discover the benefits of
-            natural remedies. Join our community and embrace a healthier, more
-            vibrant life!
+          Plannify offers a comprehensive guide to the top destinations, tours in Sri Lanka.
+            We provide secure online payment options, expert travel advice, and trusted local partners to ensure your safety and enjoyment. 
+          Whether you're a first-time visitor or a seasoned explorer, we have everything you need to create your dream trip to Sri Lanka.
           </p>
         </div>
 
@@ -39,10 +38,10 @@ const Footer = () => (
           <h5 className="text-uppercase ">Services</h5>
           <ul className="list-unstyled">
             <li>
-              <a href="/herbal-beauty" style={{textDecoration: "none", color: "black"}}>Herbal Beauty Products</a>
+              <a href="/herbal-beauty" style={{textDecoration: "none", color: "black"}}>Customized Packages</a>
             </li>
             <li>
-              <a href="/herbal-hair" style={{textDecoration: "none", color: "black"}}>Herbal Hair Products</a>
+              <a href="/herbal-hair" style={{textDecoration: "none", color: "black"}}>Earn Points</a>
             </li>
             <li>
               <a href="/other" style={{textDecoration: "none", color: "black"}}>Other</a>
