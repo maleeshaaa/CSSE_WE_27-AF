@@ -4,6 +4,11 @@ import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
 import Tab from "react-bootstrap/Tab";
+import Inquaries from "../../components/Admin/Inquaries.jsx"
+import Packages from "../../components/Admin/Packages.jsx"
+import Requests from "../../components/Admin/Requests.jsx"
+import Vouchers from "../../components/Admin/Vouchers.jsx"
+import Footer from "../../components/Home/footer.jsx"
 import "./travel-style.css"
 
 export default function TravelPlan() {
@@ -45,15 +50,24 @@ export default function TravelPlan() {
             </Col>
             <Col sm={9}>
               <Tab.Content className="tab-content">
-                <Tab.Pane eventKey="first">AMAL</Tab.Pane>
-                <Tab.Pane eventKey="second">MY MAN</Tab.Pane>
-                <Tab.Pane eventKey="third">HELLO</Tab.Pane>
-                <Tab.Pane eventKey="fourth">HI</Tab.Pane>
+                <Tab.Pane eventKey="first">
+                  <Requests />
+                </Tab.Pane>
+                <Tab.Pane eventKey="second">
+                  <Packages />
+                </Tab.Pane>
+                <Tab.Pane eventKey="third">
+                  <Inquaries />
+                </Tab.Pane>
+                <Tab.Pane eventKey="fourth">
+                  <Vouchers />
+                </Tab.Pane>
               </Tab.Content>
             </Col>
           </Row>
         </Tab.Container>
       </div>
+      <Footer />
     </div>
   );
 }

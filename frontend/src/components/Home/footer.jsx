@@ -18,12 +18,13 @@ const Footer = () => (
               src={Logo}
               alt="Logo"
               style={{
-                width: "3rem",
+                width: "5rem",
                 marginRight: "0.6rem",
                 marginBottom: "0.2rem",
+                marginLeft: "-0.2rem"
               }}
             />
-            {/* HerbMart */}
+            {/* Plannify */}
           </h5>
           <p className="text-start">
             Experience the power of nature with our hand-selected herbs and
@@ -54,13 +55,13 @@ const Footer = () => (
           <h5 className="text-uppercase">Contact</h5>
           <ul className="list-unstyled">
             <li>
-              <p><UilHome size="25" style={{marginRight: "0.3rem", marginBottom: "0.1rem"}}/>100/5, Colombo Sri Lanka</p>
+              <p><UilHome size="25" style={{marginRight: "0.3rem", marginBottom: "0.1rem"}}/>100/5, Colombo, Sri Lanka</p>
             </li>
             <li>
-              <p><UilEnvelope size="25" style={{marginRight: "0.3rem", marginBottom: "0.1rem"}} />info@mail.com</p>
+              <p><UilEnvelope size="25" style={{marginRight: "0.5rem", marginBottom: "0.1rem"}} />info@gmail.com</p>
             </li>
             <li>
-              <p><UilPhone size="25" style={{marginRight: "0.3rem", marginBottom: "0.1rem"}}/>011 2 345 679</p>
+              <p><UilPhone size="25" style={{marginRight: "0.4rem", marginBottom: "0.1rem"}}/>0112 345 679</p>
             </li>
           </ul>
         </div>
@@ -72,7 +73,7 @@ const Footer = () => (
       style={{ backgroundColor: "#c9cfc8" }}
     >
       © 2023 Copyright:
-      <a href="/" style={{textDecoration: "none", color: "black"}}> Plennify</a>
+      <a href="/" style={{textDecoration: "none", color: "black"}}> Plannify</a>
     </div>
   </footer>
 );
