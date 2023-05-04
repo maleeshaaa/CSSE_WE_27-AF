@@ -4,6 +4,7 @@ import Reward from "../../images/reward.gif";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Redeem from "../../components/loyaltydbComp/redeem"
+import Earn from "../../components/loyaltydbComp/earn"
 import "./styles.css";
 
 export default function LoyaltyDB() {
@@ -27,7 +28,9 @@ export default function LoyaltyDB() {
           className="mb-3 tab_div"
           fill
         >
-          <Tab eventKey="earn" title="Earn"></Tab>
+          <Tab eventKey="earn" title="Earn">
+            <Earn/>
+          </Tab>
           <Tab eventKey="redeem" title="Redeem">
             <Redeem/>
           </Tab>
