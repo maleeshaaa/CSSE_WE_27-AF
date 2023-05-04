@@ -60,7 +60,7 @@ const Footer = () => (
               <p><UilEnvelope size="25" style={{marginRight: "0.3rem", marginBottom: "0.1rem"}} />info@mail.com</p>
             </li>
             <li>
-              <p><UilPhone size="25" style={{marginRight: "0.3rem", marginBottom: "0.1rem"}}/>011 2 345 678</p>
+              <p><UilPhone size="25" style={{marginRight: "0.3rem", marginBottom: "0.1rem"}}/>011 2 345 679</p>
             </li>
           </ul>
         </div>
