@@ -36,7 +36,7 @@ const Footer = () => (
         <hr className="clearfix w-100 d-md-none pb-0" />
 
         <div className="col-md-3 mb-md-0 mb-3 text-start">
-          <h5 className="text-uppercase ">Products</h5>
+          <h5 className="text-uppercase ">Services</h5>
           <ul className="list-unstyled">
             <li>
               <a href="/herbal-beauty" style={{textDecoration: "none", color: "black"}}>Herbal Beauty Products</a>
