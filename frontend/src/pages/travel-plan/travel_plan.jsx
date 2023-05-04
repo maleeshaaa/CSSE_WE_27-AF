@@ -5,6 +5,9 @@ export default function TravelPlan() {
   return (
     <div>
       <Navbar />
+      <div>
+        hello world
+      </div>
     </div>
   );
 }
