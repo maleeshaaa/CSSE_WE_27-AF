@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import ProgressBar from "react-bootstrap/ProgressBar";
-
+import "./styles.css"
 export default function Redeem() {
   
     const [progress, setProgress] = useState(100);
@@ -20,7 +20,7 @@ export default function Redeem() {
       };
 
   return (
-    <div className="redeemPage" style={{margin: "4rem 4rem"}}>
+    <div className="card_styles">
     <Card style={{ width: "18rem" }}>
       {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
       <Card.Body>
