@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/esm/Button";
@@ -31,7 +32,7 @@ export default function earn() {
             Your blog is vital in shaping unforgettable experiences for
             future travelers. Share your valuable insights and help us create
             enchanting adventures that exceed expectations!<br /><br />
-            <Button>Post a Blog</Button>
+            <Button><Link className="link_path" to="/blogs">Post a Blog</Link></Button>
           </ListGroup.Item>
         </ListGroup>
       </Card>

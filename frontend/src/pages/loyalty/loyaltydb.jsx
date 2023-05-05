@@ -10,6 +10,7 @@ import Reward from "../../images/reward.gif";
 import "./styles.css";
 
 export default function LoyaltyDB() {
+
   return (
     <div>
       <Navbar />
@@ -26,7 +27,7 @@ export default function LoyaltyDB() {
       </div>
       <div className="tab_div">
         <Tabs
-          defaultActiveKey="profile"
+          defaultActiveKey="redeem"
           id="fill-tab-example"
           className="mb-3 tab_div"
           fill
@@ -38,7 +39,7 @@ export default function LoyaltyDB() {
             <Redeem />
           </Tab>
         </Tabs>
-        <h5 className="instruct">CLICK ON A TAB</h5>
+        {/* <h5 className="instruct">CLICK ON A TAB</h5> */}
       </div>
       <Footer />
     </div>
