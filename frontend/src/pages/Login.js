@@ -73,7 +73,7 @@ const Login = () => {
     <section class="vh-100">
       <div class="container-fluid h-custom h-100">
         <div class="" style={{display: "flex", justifyContent: "space-between"}}>
-          <div class="" style={{height: "1fr", width: "40%"}}>
+          <div className="d-flex justify-content-center align-items-center" style={{height: "1fr", width: "100%"}}>
             <img src={Welcome} class="img-fluid" alt="Sample" />
           </div>
           <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1" style={{margin: "10rem 10rem"}}>

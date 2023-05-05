@@ -1,6 +1,5 @@
 import React from "react";
 import Accordion from "react-bootstrap/Accordion";
-import Navbar from "../../components/navbar";
 import Form from "../../components/Blogs/form";
 import Banner from "../../components/Blogs/banner";
 import "./styles.css";
@@ -8,7 +7,6 @@ import BlogCard from "../../components/Blogs/BlogCard";
 export default function blogmain() {
   return (
     <div>
-      <Navbar />
       <div className="banner">
         <Banner />
       </div>

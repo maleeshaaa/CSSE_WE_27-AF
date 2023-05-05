@@ -10,6 +10,7 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import Logo from "./images/LOGO.png";
 const { Link } = require("react-router-dom");
 
+
 const API_BASE = "http://localhost:8080";
 
 const NavBar = ({ setStatus, status, logOut }) => {
@@ -19,22 +20,8 @@ const NavBar = ({ setStatus, status, logOut }) => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand
-          href="/"
-          style={{ color: "#25D828", fontWeight: 600 }}
-        >
-          <img
-            src={Logo}
-            alt="Logo"
-            style={{
-              width: "3rem",
-              marginRight: "0.6rem",
-              marginBottom: "0.2rem",
-            }}
-          />
-          HerbMart
-        </Navbar.Brand>
-        <nav style={{ textAlign: "center", marginTop: "20px", display: "flex"}}>
+        <Navbar.Brand href="#"> <img className='navlogo' src={Logo} alt="logo" /> </Navbar.Brand>
+        <nav style={{ textAlign: "center", marginTop: "20px", display: "flex" }}>
           <Link
             to="/"
             style={{ padding: "10px", textDecoration: "none", color: "#000" }}
@@ -69,6 +56,20 @@ const NavBar = ({ setStatus, status, logOut }) => {
           ) : null} */}
 
           <Link
+            to="/loyalty-program"
+            style={{ padding: "10px", textDecoration: "none", color: "#000" }}
+          >
+            Loyalty Program
+          </Link>
+
+          <Link
+            to="/blogs"
+            style={{ padding: "10px", textDecoration: "none", color: "#000" }}
+          >
+            Blogs
+          </Link>
+
+          <Link
             to="/register"
             style={{ padding: "10px", textDecoration: "none", color: "#000" }}
           >
@@ -94,12 +95,12 @@ const NavBar = ({ setStatus, status, logOut }) => {
               >
                 Logout
               </Link>
-              
-              
+
+
             </span>
           )}
 
-          
+
         </nav>
 
 

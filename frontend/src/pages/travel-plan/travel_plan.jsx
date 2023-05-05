@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "../../components/navbar.jsx";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
@@ -14,7 +13,6 @@ import "./travel-style.css"
 export default function TravelPlan() {
   return (
     <div>
-      <Navbar />
       <div className="background">
         <div className="heading">
           <h2>Hello Admin</h2>

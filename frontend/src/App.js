@@ -103,7 +103,11 @@ function App() {
     <div className="App">
       <BrowserRouter>
       <div>
-      <Navbar/>
+      <Navbar
+      setStatus={setStatus}
+      status={status}
+      logOut={logOut}
+      />
       <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/loyalty-reward" element={<LoyaltyDB />} />
@@ -112,7 +116,8 @@ function App() {
           <Route path="/profile" element={<MyProfile />} />
           <Route path="/package/:id" element={<SinglePackage />} />
           <Route path="/blogs" element={<Blog />} />
-          
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </div>
         
