@@ -26,7 +26,7 @@ const Footer = () => (
             />
             {/* Plannify */}
           </h5>
-          <p className="text-start">
+          <p className="text-start" >
           Plannify offers a comprehensive guide to the top destinations, tours in Sri Lanka.
             We provide secure online payment options, expert travel advice, and trusted local partners to ensure your safety and enjoyment. 
           Whether you're a first-time visitor or a seasoned explorer, we have everything you need to create your dream trip to Sri Lanka.
@@ -36,7 +36,7 @@ const Footer = () => (
         <hr className="clearfix w-100 d-md-none pb-0" />
 
         <div className="col-md-3 mb-md-0 mb-3 text-start">
-          <h5 className="text-uppercase ">Services</h5>
+          <h6 className="text-uppercase ">Services</h6>
           <ul className="list-unstyled">
             <li>
               <a href="/herbal-beauty" style={{textDecoration: "none", color: "black"}}>Customized Packages</a>
@@ -51,7 +51,7 @@ const Footer = () => (
         </div>
 
         <div className="col-md-3 mb-md-0 mb-3 text-start">
-          <h5 className="text-uppercase">Contact</h5>
+          <h6 className="text-uppercase">Contact</h6>
           <ul className="list-unstyled">
             <li>
               <p><UilHome size="25" style={{marginRight: "0.3rem", marginBottom: "0.1rem"}}/>100/5, Colombo, Sri Lanka</p>
