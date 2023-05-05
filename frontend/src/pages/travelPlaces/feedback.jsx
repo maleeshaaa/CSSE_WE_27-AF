@@ -28,7 +28,7 @@ export default function Feedback() {
 
       <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
         <Form.Label>Your Feedback</Form.Label>
-        <Form.Control as="textarea" rows={3} />
+        <Form.Control as="textarea" rows={4} />
       </Form.Group>
       <Button type = "submit">Submit</Button>
     </Form>
