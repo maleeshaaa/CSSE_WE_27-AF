@@ -20,7 +20,7 @@ export default function Redeem() {
       };
 
   return (
-    <div className="card_styles">
+    <div className="cards_styles card_flex">
     <Card style={{ width: "18rem" }}>
       {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
       <Card.Body>

@@ -7,7 +7,7 @@ export default function earn() {
     
 
   return (
-    <div className="card_styles card_flex" styel={{display: "flex"}}>
+    <div className="cards_styles card_flex" styel={{display: "flex"}}>
       <div>
       <Card style={{ width: "18rem" }}>
         <Card.Header>Feedback</Card.Header>
