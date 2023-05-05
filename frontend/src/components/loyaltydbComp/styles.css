@@ -1,10 +1,18 @@
+.color_div{
+    background-color: #f5f5f5;
+    padding: 1rem 0 1rem 0;
+    margin: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
 .cards_styles{
     margin: 4rem 10rem;
 }
 
 .card_flex{
     display: flex;
-    margin: 4rem 12rem;
+    margin: 4rem 2rem;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 5rem;
@@ -24,4 +32,15 @@
     position: relative;
     text-align: center;
     color: white;
+}
+
+.link_path{
+    text-decoration: none;
+    color: #fff;
+    padding: 0.5rem;
+}
+
+.link_path:hover{
+    color: #fff;
+    font-weight: bold;
 }
