@@ -25,3 +25,14 @@
     text-align: center;
     color: white;
 }
+
+.link_path{
+    text-decoration: none;
+    color: #fff;
+    padding: 0.5rem;
+}
+
+.link_path:hover{
+    color: #fff;
+    font-weight: bold;
+}

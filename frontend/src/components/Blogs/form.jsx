@@ -55,6 +55,7 @@ export default function blogform() {
             />
           </Col>
         </Form.Group>
+        
         <Row>
           <Col>
             <Button
