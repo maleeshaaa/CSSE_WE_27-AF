@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import Welcome from "../images/loginbanner.jpg";
+import Welcome from "../images/registerbanner.jpg";
 const API_BASE = "http://localhost:8080";
 
 const Register = () => {
@@ -63,7 +63,7 @@ const Register = () => {
     <section class="vh-100">
       <div class="container-fluid h-custom h-100">
         <div class="" style={{display: "flex", justifyContent: "space-between"}}>
-          <div class="" style={{height: "1fr", width: "40%"}}>
+          <div className="d-flex justify-content-center align-items-center" style={{height: "1fr", width: "100%"}}>
             <img src={Welcome} class="img-fluid" alt="Sample image" />
           </div>
           <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1" style={{margin: "5rem 10rem"}}>
