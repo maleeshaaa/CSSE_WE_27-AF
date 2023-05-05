@@ -116,7 +116,7 @@ const Settings = () => {
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
-            <button type="submit" class="btn btn-light">
+            <button type="submit" class="btn2 btn-light">
               PAY NOW
             </button>
           </Form>
