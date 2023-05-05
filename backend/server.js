@@ -1,7 +1,15 @@
-require("dotenv").config();
+
+const dotenv = require("dotenv");
+dotenv.config();
+
 const express = require("express");
 
-const connectDB = require("./config/db");
+
+const authRoutes = require("./routes/auth.js");
+const refreshTokenRoutes = require("./routes/refreshToken.js");
+const userRoutes = require("./routes/users.js");
+const connectDB = require("./config/db.js");
+
 
 const app = express();
 
@@ -13,6 +21,10 @@ app.use(cors())
 
 // connect database
 connectDB();
+
+app.use("/api", authRoutes);
+app.use("/api/refreshToken", refreshTokenRoutes);
+app.use("/api/users", userRoutes);
 
 // initialize middleware
 app.use(express.json({ extended: false }));
