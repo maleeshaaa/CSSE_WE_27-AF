@@ -7,20 +7,13 @@
 }
 
 .person_name{
-    padding: 2rem ;
-}
-
-.rewardtext{
-    text-align: center;
-    margin-top: 3rem;
+    padding: 2rem 0 0 2rem;
 }
 
 .rewardgif{
-    position:absolute;
     width: 10rem;
     background-color: transparent;
-    left: 45%;
-    bottom: 75%;
+    margin-left: 45%;
 }
 
 .tab_div{
@@ -30,5 +23,10 @@
 
 .instruct{
     text-align: center;
-    margin-top: 5rem;
+    margin: 5rem 0 10rem 0;
+}
+
+.rewardtext{
+    text-align: center;
+    margin-top: 1rem;
 }
