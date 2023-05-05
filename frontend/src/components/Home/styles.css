@@ -13,4 +13,22 @@
     justify-content: space-around;
   }
   
-  
+  .text-uppercase {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 1000;
+  }
+
+  .text-start {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 100;
+  }
+
+  .footer-copyright {
+    align-items: center;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+
+  .col-md-3 {
+    margin-left: 10px;
+    margin-right: -80px;
+  }

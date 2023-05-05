@@ -9,7 +9,7 @@
 
 .heading h2{
   font-size: 48px;
-  font-family: 'Roboto', sans-serif;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: 700;
   text-align: center;
   color: lightcyan;
@@ -17,7 +17,7 @@
 }
 
 .heading p{
-  font-family: 'Roboto', sans-serif;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 20px;
   font-weight: 300;
   text-align: center;
@@ -39,7 +39,7 @@
 .nav-item{
   color: rgb(229, 238, 244);
   font-size: 16px;
-  font-family: 'Roboto', sans-serif;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   width: 180px;
 }
 
@@ -53,4 +53,5 @@
 
 .tab-content {
   margin-left: -130px;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
