@@ -3,12 +3,11 @@ import Navbar from "../../components/navbar.jsx";
 import Reward from "../../images/reward.gif";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import Redeem from "../../components/loyaltydbComp/redeem"
-import Earn from "../../components/loyaltydbComp/earn"
+import Redeem from "../../components/loyaltydbComp/redeem";
+import Earn from "../../components/loyaltydbComp/earn";
 import "./styles.css";
 
 export default function LoyaltyDB() {
- 
   return (
     <div>
       <Navbar />
@@ -21,7 +20,7 @@ export default function LoyaltyDB() {
           <h5 className="rewardtext">Available Points: 100</h5>
         </div>
       </div>
-      <div className="tab_div" >
+      <div className="tab_div">
         <Tabs
           defaultActiveKey="profile"
           id="fill-tab-example"
@@ -29,13 +28,13 @@ export default function LoyaltyDB() {
           fill
         >
           <Tab eventKey="earn" title="Earn">
-            <Earn/>
+            <Earn />
           </Tab>
           <Tab eventKey="redeem" title="Redeem">
-            <Redeem/>
+            <Redeem />
           </Tab>
-          <Tab eventKey="status" title="Status"></Tab>
         </Tabs>
+        <h5 className="instruct">CLICK ON A TAB</h5>
       </div>
     </div>
   );

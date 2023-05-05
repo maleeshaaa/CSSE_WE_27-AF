@@ -1,11 +1,11 @@
-.card_styles{
-    margin: 4rem 4rem;
+.cards_styles{
+    margin: 4rem 10rem;
 }
 
 .card_flex{
     display: flex;
-    margin: 2rem 3rem;
+    margin: 4rem 12rem;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 30px;
+    grid-gap: 5rem;
 }
