@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css";
 import Logo from "../../images/LOGO.png";
-import { UilHome, UilPhone, UilEnvelope } from '@iconscout/react-unicons'
+import { UilHome, UilPhone, UilEnvelope } from "@iconscout/react-unicons";
 
 const Footer = () => (
   <footer
@@ -42,6 +42,14 @@ const Footer = () => (
         <div className="col-md-3 mb-md-0 mb-3 text-start">
           <h6 className="text-uppercase ">Services</h6>
           <ul className="list-unstyled">
+            <li>
+              <a
+                href="/herbal-beauty"
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                Self Guidance
+              </a>
+            </li>
             <li>
               <a
                 href="/herbal-beauty"
