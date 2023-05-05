@@ -8,7 +8,8 @@ export default function earn() {
     
 
   return (
-    <div className="cards_styles card_flex" styel={{display: "flex"}}>
+    <div className="cards_styles color_div" styel={{display: "flex"}}>
+      <div className="card_flex">
       <div>
       <Card style={{ width: "18rem" }}>
         <Card.Header>Feedback</Card.Header>
@@ -36,6 +37,10 @@ export default function earn() {
           </ListGroup.Item>
         </ListGroup>
       </Card>
+      </div>
+      {/* Blog */}
+      
+      
       </div>
     </div>
   );
