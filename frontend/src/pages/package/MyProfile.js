@@ -3,6 +3,7 @@ import PackageCard from './PackageCard'
 
 const MyProfile = () => {
 
+    //added when admin added
     const [packages, setPackages] = useState([
         {
             "id": 1,
