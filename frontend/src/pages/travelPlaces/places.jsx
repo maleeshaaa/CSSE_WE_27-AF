@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../../components/navbar.jsx";
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import Button from "react-bootstrap/Button";
 
 
 export default function TravelPlace() {
@@ -85,6 +86,10 @@ export default function TravelPlace() {
                 </Form.Group>
                 </div>
                 </Form>
+            </div>
+
+            <div class="text-center text-lg-start mt-4 pt-2">
+            <Button type = "submit">Submit</Button>
             </div>
                 
             </div>
