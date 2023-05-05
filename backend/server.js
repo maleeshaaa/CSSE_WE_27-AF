@@ -3,6 +3,7 @@ import {config} from "dotenv";
 import authRoutes from "./routes/auth.js";
 import dbConnect from "./dbConnect.js";
 import refreshTokenRoutes from "./routes/refreshToken.js"
+import transactionRoutes from "./routes/transaction.js"
 import userRoutes from "./routes/users.js";
 
 import cors from "cors";
@@ -28,7 +29,7 @@ app.use(cors());
 app.use("/api", authRoutes);
 app.use("/api/refreshToken", refreshTokenRoutes);
 app.use("/api/users", userRoutes);
-
+app.use("/api/transaction", transactionRoutes);
 
 
 

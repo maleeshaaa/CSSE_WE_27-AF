@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 
@@ -33,7 +34,24 @@ const SinglePackage = () => {
 
   useEffect(() => {
     // check the whether the user have access to the particular package
-    setShowPackage(false);
+    const fetchData = async () => {
+      try {
+        const userId = "gssh";
+        const packageId = id;
+        const response = await axios.get(`http://localhost:8080/api/transaction/${userId}/${packageId}`, {
+          params: {
+            userId: userId,
+            packageId: packageId,
+          },
+        });
+        
+        setShowPackage(response.data.success);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+    
   },);
 
   const fetchPackage = () => {
@@ -93,7 +111,7 @@ const SinglePackage = () => {
       ) :
         <div>
           <h1>You don't have access to view this package unless you purchase it</h1>
-          <button type="submit">Pay</button>
+          <button type="submit" class="btn btn-dark" style={{ width:'200px' }}>Pay</button>
         </div>
       }
     </div>
