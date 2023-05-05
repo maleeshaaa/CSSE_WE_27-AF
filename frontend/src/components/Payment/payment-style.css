@@ -3,12 +3,11 @@
   font-weight: 200;
 }
 
-.btn2 {
+.btn {
   background: #043f56;
   color: aliceblue;
   outline: #043f56;
   margin-top: 8px;
   width: 150px;
   height: 45px;
-  border-radius: 5px;
 }

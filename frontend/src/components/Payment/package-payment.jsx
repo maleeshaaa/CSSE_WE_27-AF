@@ -57,6 +57,7 @@ const Settings = () => {
                   value={values.CardName}
                   onChange={handleChange}
                   isInvalid={!!errors.CardName}
+                  required
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.CardName}
@@ -73,6 +74,7 @@ const Settings = () => {
                   value={values.CardNumber}
                   onChange={handleChange}
                   isInvalid={!!errors.CardNumber}
+                  required
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.CardNumber}
@@ -89,6 +91,7 @@ const Settings = () => {
                   value={values.ExpiryDate}
                   onChange={handleChange}
                   isInvalid={!!errors.ExpiryDate}
+                  required
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.ExpiryDate}
@@ -105,6 +108,7 @@ const Settings = () => {
                   value={values.CVV}
                   onChange={handleChange}
                   isInvalid={!!errors.CVV}
+                  required
                 />
 
                 <Form.Control.Feedback type="invalid">
@@ -112,7 +116,7 @@ const Settings = () => {
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
-            <button type="submit" class="btn2 btn-light">
+            <button type="submit" class="btn btn-light">
               PAY NOW
             </button>
           </Form>
