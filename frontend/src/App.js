@@ -6,6 +6,7 @@ import MyProfile from './pages/package/MyProfile';
 import SinglePackage from './pages/package/SinglePackage';
 import Home from './pages/home.jsx';
 import TravelPlace from './pages/travelPlaces/places';
+import Feedback from './pages/travelPlaces/feedback';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/travel-places" element={<TravelPlace />} />
+        <Route path="/feedback" element={<Feedback />} />
 
           <Route path="/loyalty-reward" element={<LoyaltyDB />} />
           <Route path="/travel-plan" element={<TravelPlan />} />

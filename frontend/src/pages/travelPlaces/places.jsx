@@ -84,12 +84,9 @@ export default function TravelPlace() {
                     <Form.Label>Enter number of dates</Form.Label>
                     <Form.Control type="email" placeholder="Enter Number of dates that you wish to travel" />
                 </Form.Group>
+                <Button type = "submit">Submit</Button>
                 </div>
                 </Form>
-            </div>
-
-            <div class="text-center text-lg-start mt-4 pt-2">
-            <Button type = "submit">Submit</Button>
             </div>
                 
             </div>
