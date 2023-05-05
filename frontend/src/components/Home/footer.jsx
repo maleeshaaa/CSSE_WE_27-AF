@@ -68,18 +68,10 @@ const Footer = () => (
             </li>
             <li>
               <a
-                href="/herbal-hair"
+                href="/loyalty-reward"
                 style={{ textDecoration: "none", color: "black" }}
               >
-                Earn Points
-              </a>
-            </li>
-            <li>
-              <a
-                href="/other"
-                style={{ textDecoration: "none", color: "black" }}
-              >
-                Other
+                Loyalty Program
               </a>
             </li>
           </ul>

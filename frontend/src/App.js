@@ -4,9 +4,8 @@ import LoyaltyDB from './pages/loyalty/loyaltydb'
 import TravelPlan from './pages/travel-plan/travel_plan';
 import MyProfile from './pages/package/MyProfile';
 import SinglePackage from './pages/package/SinglePackage';
-import Home from './pages/home.jsx';
-import Payment from './pages/payment/payment'
-
+import Blog from './pages/blogs/blogmain';
+import Home from './pages/home';
 function App() {
   return (
     <div className="App">
@@ -17,7 +16,8 @@ function App() {
           <Route path="/travel-plan" element={<TravelPlan />} />
           <Route path="/profile" element={<MyProfile />} />
           <Route path="/package/:id" element={<SinglePackage />} />
-          <Route path="/payment" element={<Payment />} />
+          <Route path="/blogs" element={<Blog />} />
+
         </Routes>
       </BrowserRouter>
     </div>

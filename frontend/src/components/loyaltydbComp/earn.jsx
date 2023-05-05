@@ -2,12 +2,12 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/esm/Button";
-
+import "./styles.css"
 export default function earn() {
     
 
   return (
-    <div styel={{display: "flex"}}>
+    <div className="cards_styles card_flex" styel={{display: "flex"}}>
       <div>
       <Card style={{ width: "18rem" }}>
         <Card.Header>Feedback</Card.Header>

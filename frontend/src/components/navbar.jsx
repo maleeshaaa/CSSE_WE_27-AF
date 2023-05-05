@@ -28,6 +28,7 @@ function Navigationbar() {
                 <Nav className="justify-content-end flex-grow-1 pe-3">
                   <Nav.Link href="#action1">Home</Nav.Link>
                   <Nav.Link href="/loyalty-reward">Loyalty Program</Nav.Link>
+                  <Nav.Link href="/blogs">Blogs</Nav.Link>
                   <NavDropdown
                     title="Dropdown"
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
