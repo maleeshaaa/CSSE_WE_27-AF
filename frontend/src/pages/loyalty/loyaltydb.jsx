@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "../../components/navbar.jsx";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Redeem from "../../components/loyaltydbComp/redeem";
@@ -13,7 +12,6 @@ export default function LoyaltyDB() {
 
   return (
     <div>
-      <Navbar />
 
       <div className="banner">
         <LoyaltyBanner />

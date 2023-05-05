@@ -1,7 +1,6 @@
 import React from 'react'
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
-import Navbar from "../../components/navbar.jsx";
 import Footer from "../../components/Home/footer.jsx";
 import Payment from "../../components/Payment/package-payment.jsx"
 import "./payment.css"
@@ -10,7 +9,7 @@ const payment = () => {
   return (
     <div>
       <div>
-        <Navbar />
+
         <div className="container-payment">
           {/* Payment Form */}
           <Row>
