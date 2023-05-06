@@ -58,6 +58,10 @@ const Settings = () => {
                   onChange={handleChange}
                   isInvalid={!!errors.CardName}
                   required
+                  style={{
+                    fontSize: "1rem",
+                    fontFamily: "Lucida Sans",
+                  }}
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.CardName}
@@ -75,6 +79,10 @@ const Settings = () => {
                   onChange={handleChange}
                   isInvalid={!!errors.CardNumber}
                   required
+                  style={{
+                    fontSize: "1rem",
+                    fontFamily: "Lucida Sans",
+                  }}
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.CardNumber}
@@ -92,6 +100,10 @@ const Settings = () => {
                   onChange={handleChange}
                   isInvalid={!!errors.ExpiryDate}
                   required
+                  style={{
+                    fontSize: "1rem",
+                    fontFamily: "Lucida Sans",
+                  }}
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.ExpiryDate}
@@ -109,6 +121,10 @@ const Settings = () => {
                   onChange={handleChange}
                   isInvalid={!!errors.CVV}
                   required
+                  style={{
+                    fontSize: "1rem",
+                    fontFamily: "Lucida Sans",
+                  }}
                 />
 
                 <Form.Control.Feedback type="invalid">
@@ -116,7 +132,14 @@ const Settings = () => {
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
-            <button type="submit" class="btn2 btn-light">
+            <button
+              type="submit"
+              class="btn2 btn-light"
+              style={{
+                fontSize: "1rem",
+                fontFamily: "Lucida Sans",
+              }}
+            >
               PAY NOW
             </button>
           </Form>

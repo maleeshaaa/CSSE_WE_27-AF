@@ -9,7 +9,6 @@ const payment = () => {
   return (
     <div>
       <div>
-
         <div className="container-payment">
           {/* Payment Form */}
           <Row>
@@ -18,22 +17,49 @@ const payment = () => {
             </div>
             <div className="package-card">
               <Card style={{ width: "35rem", height: "31rem" }}>
-                <Card.Header style={{ fontSize: "1.5rem", fontWeight: "700" }}>
+                <Card.Header
+                  style={{
+                    fontSize: "2rem",
+                    fontWeight: "700",
+                    fontFamily: "monospace",
+                  }}
+                >
                   TRAVEL PACKAGE
                 </Card.Header>
                 <Card.Body>
-                  <Card.Title style={{ marginBottom: "1.5rem" }}>
+                  <Card.Title
+                    style={{
+                      marginBottom: "1.5rem",
+                      fontWeight: "600",
+                      fontFamily: "monospace",
+                    }}
+                  >
                     Package Number : 01
                   </Card.Title>
-                  <Card.Title style={{ marginBottom: "1.5rem" }}>
+                  <Card.Title
+                    style={{
+                      marginBottom: "1.5rem",
+                      fontWeight: "600",
+                      fontFamily: "monospace",
+                    }}
+                  >
                     Package Price : Rs.2500.00
                   </Card.Title>
                   <Card.Subtitle
-                    style={{ marginBottom: "0.5rem", fontSize: "1rem" }}
+                    style={{
+                      marginBottom: "0.5rem",
+                      fontSize: "1rem",
+                      fontFamily: "monospace",
+                    }}
                   >
                     Details of the Package
                   </Card.Subtitle>
-                  <p>
+                  <p
+                    style={{
+                      fontSize: "0.9rem",
+                      fontFamily: "Lucida Sans",
+                    }}
+                  >
                     Some quick example text to build on the card title and make
                     up the bulk of the card's content. Some quick example text
                     to build on the card title and make up the bulk of the
