@@ -45,7 +45,7 @@ const Footer = () => (
             <li>
               <a
                 href="/herbal-beauty"
-                style={{ textDecoration: "none", color: "black" }}
+                style={{ textDecoration: "none", color: "black"}}
               >
                 Self Guidance
               </a>
@@ -60,18 +60,18 @@ const Footer = () => (
             </li>
             <li>
               <a
-                href="/herbal-beauty"
-                style={{ textDecoration: "none", color: "black" }}
-              >
-                Inquire
-              </a>
-            </li>
-            <li>
-              <a
                 href="/loyalty-reward"
                 style={{ textDecoration: "none", color: "black" }}
               >
                 Loyalty Program
+              </a>
+            </li>
+            <li>
+              <a
+                href="/herbal-beauty"
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                Inquire
               </a>
             </li>
           </ul>

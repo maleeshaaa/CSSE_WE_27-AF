@@ -41,7 +41,7 @@ const Vouchers = () => {
 
         <div className="admin_form_button_div">
           <Button variant="primary" type="submit" className="admin_form_button">
-            Submit
+            Add Vouchers
           </Button>
           </div>
       </Form>
