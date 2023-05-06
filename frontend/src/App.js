@@ -8,6 +8,8 @@ import Blog from './pages/blogs/blogmain';
 import Home from './pages/home';
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Feedback from './pages/travelPlaces/feedback';
+import TravelPlace from './pages/travelPlaces/places';
 import { Context } from "./Context";
 import Navbar from "./Navbar";
 import Payment from './pages/payment/payment'
@@ -118,6 +120,8 @@ function App() {
           <Route path="/blogs" element={<Blog />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/feedback" element={<Feedback />} />
+          <Route path="/travel-places" element={<TravelPlace />} />
         </Routes>
       </div>
         
