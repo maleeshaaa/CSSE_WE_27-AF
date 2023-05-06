@@ -18,6 +18,10 @@
     color: white;
 }
 
+.blog_card{
+    margin-bottom: 5rem;
+}
+
 .blockquote-footer{
     text-align: right;
 }

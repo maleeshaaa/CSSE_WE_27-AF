@@ -36,6 +36,12 @@ export default function LoyaltyDB() {
               <Tab eventKey="redeem" title="Redeem">
                 <Redeem />
               </Tab>
+              <Tab eventKey="donate" title="Donate">
+                <Redeem />
+              </Tab>
+              {/* <Tab eventKey="vouchers" title="My Vouchers">
+                <Redeem />
+              </Tab> */}
             </Tabs>
           </div>
         </div>

@@ -60,6 +60,15 @@ const Vouchers = () => {
             />
           </Col>
         </Form.Group>
+        
+        <Form.Group as={Row} className="mb-3" controlId="formHorizontalCord">
+          <Form.Label column sm={2}>
+            Voucher Code
+          </Form.Label>
+          <Col sm={10}>
+            <Form.Control type="text" placeholder="Voucher Code" />
+          </Col>
+        </Form.Group>
 
         <Form.Group as={Row} className="mb-3">
           <Form.Label

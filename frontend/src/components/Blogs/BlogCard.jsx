@@ -1,6 +1,8 @@
 import Card from "react-bootstrap/Card";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./styles.css";
+
 export default function BlogCard() {
 
   const [blog, setBlog] = useState([]);
@@ -16,9 +18,10 @@ export default function BlogCard() {
   }, []);
   return (
     <div>
-      <Card>
-        {blog.map((blog) => (
-        <div key={blog._id}>
+      {blog.map((blog) => (
+        <div key={blog._id} style={{marginBottom:"2rem"}}>
+      <Card >
+        
         <Card.Header as="h5">{blog.blogName}</Card.Header>
         <Card.Body>
         <Card.Subtitle className="mb-2 text-muted">{blog.blogPlaces}</Card.Subtitle>
@@ -29,9 +32,11 @@ export default function BlogCard() {
             by {blog.bloggerName} 
           </footer>
         </Card.Body>
-        </div>
-        ))}
+        
+        
       </Card>
+      </div>
+      ))}
     </div>
   );
 }
