@@ -16,14 +16,14 @@ const NavBar = ({ setStatus, status, logOut }) => {
   const navigate = useNavigate();
 
   return (
-    <Navbar bg="light" expand="lg">
-      <Container>
+    <Navbar style={{height: "4rem"}} bg="light" expand="lg">
+      <Container fluid>
         <Navbar.Brand href="#">
           {" "}
           <img className="navlogo" src={Logo} alt="logo" />{" "}
         </Navbar.Brand>
-        <nav
-          style={{ textAlign: "center", marginTop: "20px", display: "flex" }}
+        <nav className="justify-content-end flex-grow-1 pe-3"
+          style={{ textAlign: "right", display: "flex"}}
         >
           <Link
             to="/"
