@@ -82,7 +82,7 @@ export default function TravelPlace() {
                 <div>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                     <Form.Label>Enter number of dates</Form.Label>
-                    <Form.Control type="email" placeholder="Enter Number of dates that you wish to travel" />
+                    <Form.Control type="email" placeholder="Enter number of dates that you wish to travel" />
                 </Form.Group>
                 <Button type = "submit">Submit</Button>
                 </div>
