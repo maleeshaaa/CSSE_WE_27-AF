@@ -6,16 +6,16 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 const Inquaries = () => {
   return (
     <Box m="0.0rem 0.0rem">
-      <Header title="CUSTOMERS" subtitle="List of Customers" />
+      <Header title="INQUARIES" subtitle="Custom Package Inquaries" />
       <div className="container">
         <table className="table">
           <thead className="thead-light">
             <tr>
-              <th>Customer ID</th>
+              <th>Inquire ID</th>
               <th>Name</th>
               <th>Email</th>
               <th>Phone Number</th>
-              <th>Role</th>
+              <th>Message</th>
               <th>Action</th>
             </tr>
           </thead>

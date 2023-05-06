@@ -21,7 +21,7 @@ const Header = ({ title, subtitle }) => {
         style={{
           fontWeight: "100",
           fontFamily: "Lucida Sans",
-          fontSize: "13px",
+          fontSize: "14px",
         }}
       >
         {subtitle}
