@@ -1,6 +1,7 @@
 import React from "react";
+import "./styles.css";
 import Logo from "../../images/LOGO.png";
-import { UilHome, UilPhone, UilEnvelope } from '@iconscout/react-unicons'
+import { UilHome, UilPhone, UilEnvelope } from "@iconscout/react-unicons";
 
 const Footer = () => (
   <footer
@@ -18,48 +19,93 @@ const Footer = () => (
               src={Logo}
               alt="Logo"
               style={{
-                width: "3rem",
+                width: "6rem",
                 marginRight: "0.6rem",
                 marginBottom: "0.2rem",
+                marginLeft: "-0.4rem",
               }}
             />
-            {/* HerbMart */}
+            {/* Plannify */}
           </h5>
           <p className="text-start">
-          Plannify offers a comprehensive guide to the top destinations, tours in Sri Lanka.
-            We provide secure online payment options, expert travel advice, and trusted local partners to ensure your safety and enjoyment. 
-          Whether you're a first-time visitor or a seasoned explorer, we have everything you need to create your dream trip to Sri Lanka.
+            Plannify offers a comprehensive guide to the top destinations, tours
+            in Sri Lanka. We provide secure online payment options, expert
+            travel advice, and trusted local partners to ensure your safety and
+            enjoyment. Whether you're a first-time visitor or a seasoned
+            explorer, we have everything you need to create your dream trip to
+            Sri Lanka.
           </p>
         </div>
 
         <hr className="clearfix w-100 d-md-none pb-0" />
 
         <div className="col-md-3 mb-md-0 mb-3 text-start">
-          <h5 className="text-uppercase ">Services</h5>
+          <h6 className="text-uppercase ">Services</h6>
           <ul className="list-unstyled">
             <li>
-              <a href="/herbal-beauty" style={{textDecoration: "none", color: "black"}}>Customized Packages</a>
+              <a
+                href="/herbal-beauty"
+                style={{ textDecoration: "none", color: "black"}}
+              >
+                Self Guidance
+              </a>
             </li>
             <li>
-              <a href="/herbal-hair" style={{textDecoration: "none", color: "black"}}>Earn Points</a>
+              <a
+                href="/herbal-beauty"
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                Customized Packages
+              </a>
             </li>
             <li>
-              <a href="/other" style={{textDecoration: "none", color: "black"}}>Other</a>
+              <a
+                href="/loyalty-reward"
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                Loyalty Program
+              </a>
+            </li>
+            <li>
+              <a
+                href="/herbal-beauty"
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                Inquire
+              </a>
             </li>
           </ul>
         </div>
 
         <div className="col-md-3 mb-md-0 mb-3 text-start">
-          <h5 className="text-uppercase">Contact</h5>
+          <h6 className="text-uppercase">Contact</h6>
           <ul className="list-unstyled">
             <li>
-              <p><UilHome size="25" style={{marginRight: "0.3rem", marginBottom: "0.1rem"}}/>100/5, Colombo Sri Lanka</p>
+              <p>
+                <UilHome
+                  size="25"
+                  style={{ marginRight: "0.3rem", marginBottom: "0.1rem" }}
+                />
+                100/5, Colombo, Sri Lanka
+              </p>
             </li>
             <li>
-              <p><UilEnvelope size="25" style={{marginRight: "0.3rem", marginBottom: "0.1rem"}} />info@mail.com</p>
+              <p>
+                <UilEnvelope
+                  size="25"
+                  style={{ marginRight: "0.5rem", marginBottom: "0.1rem" }}
+                />
+                info@gmail.com
+              </p>
             </li>
             <li>
-              <p><UilPhone size="25" style={{marginRight: "0.3rem", marginBottom: "0.1rem"}}/>011 2 345 679</p>
+              <p>
+                <UilPhone
+                  size="25"
+                  style={{ marginRight: "0.4rem", marginBottom: "0.1rem" }}
+                />
+                0112 345 679
+              </p>
             </li>
           </ul>
         </div>
@@ -71,7 +117,10 @@ const Footer = () => (
       style={{ backgroundColor: "#c9cfc8" }}
     >
       © 2023 Copyright:
-      <a href="/" style={{textDecoration: "none", color: "black"}}> Plennify</a>
+      <a href="/" style={{ textDecoration: "none", color: "black" }}>
+        {" "}
+        Plannify
+      </a>
     </div>
   </footer>
 );

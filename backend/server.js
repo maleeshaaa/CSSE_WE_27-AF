@@ -1,29 +1,32 @@
-require("dotenv").config();
-const express = require("express");
+import express from "express";
+import {config} from "dotenv";
+import authRoutes from "./routes/auth.js";
+import dbConnect from "./dbConnect.js";
+import refreshTokenRoutes from "./routes/refreshToken.js"
+import transactionRoutes from "./routes/transaction.js"
+import userRoutes from "./routes/users.js";
 
-const connectDB = require("./config/db");
+import cors from "cors";
 
 const app = express();
 
-// const cart = require("./routes/cartRoute"); // added
+//allows us access environment variables like dotenv files
+config();
 
-var cors = require('cors')
+dbConnect();
 
-app.use(cors())
+//allows us get json object in request body
+app.use(express.json());
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({
+  extended: true
+}));
+app.use(cors());
 
-// connect database
-connectDB();
+app.use("/api", authRoutes);
+app.use("/api/refreshToken", refreshTokenRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/transaction", transactionRoutes);
 
-// initialize middleware
-app.use(express.json({ extended: false }));
-app.get("/", (req, res) => res.send("Server up and running"));
-
-
-// app.use("/api/cart", cart); 
-
-// setting up port
-const PORT = process.env.PORT || 8000;
-
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-}); 
+const port = process.env.PORT || 8080;
+app.listen(port, ()=> console.log(`Listening on port ${port}...`));
