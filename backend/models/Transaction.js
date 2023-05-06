@@ -2,12 +2,12 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
-const userTokenSchema = new Schema({
+const transactionSchema = new Schema({
     userId:{
-        type: Schema.Types.ObjectId,
+        type: String,
         required: true
     },
-    token:{
+    packageId:{
         type: String,
         required: true
     },
@@ -19,5 +19,5 @@ const userTokenSchema = new Schema({
     },
 })
 
-const UserToken = mongoose.model("UserToken", userTokenSchema);
-export default UserToken;
+const Transaction = mongoose.model("Transaction", transactionSchema);
+export default Transaction;
