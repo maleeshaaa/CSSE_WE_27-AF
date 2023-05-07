@@ -6,6 +6,7 @@ import refreshTokenRoutes from "./routes/refreshToken.js"
 import transactionRoutes from "./routes/transaction.js"
 import userRoutes from "./routes/users.js";
 import BlogRout from "./routes/blog/blog-route.js"
+import VoucherRout from "./routes/DonateVoucher/voucher-route.js"
 
 import cors from "cors";
 
@@ -30,6 +31,8 @@ app.use("/api/users", userRoutes);
 app.use("/api/transaction", transactionRoutes);
 
 app.use("/blog", BlogRout);
+
+app.use("/vouchers", VoucherRout)
 
 const port = process.env.PORT || 8080;
 app.listen(port, ()=> console.log(`Listening on port ${port}...`));
