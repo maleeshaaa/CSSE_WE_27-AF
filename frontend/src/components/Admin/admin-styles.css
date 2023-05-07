@@ -6,6 +6,14 @@
     padding: 0.5rem 2.8rem;
 }
 
+.places_form_button_div{
+  margin-left: 750px;
+}
+
+.places_form_button{
+    padding: 0.5rem 2rem;
+}
+
 .container {
   margin-left: -10px;
   margin-top: 20px;
@@ -20,6 +28,10 @@
   align-items: center;
 }
 
+.tbody {
+  text-align: center;
+}
+
 .table .thead-light{
   white-space: nowrap;
   background-color: #529ebd;
@@ -30,32 +42,35 @@
 }
 
 .thead-light tr th:nth-child(1){
-  min-width: 70px;
+  min-width: 200px;
 }
 
 .thead-light tr th:nth-child(2){
-  min-width: 100px;
+  min-width: 150px;
 }
 
 .thead-light tr th:nth-child(3){
   min-width: 100px;
 }
 
+.thead-light tr th:nth-child(4){
+  min-width: 150px;
+}
+
+.thead-light tr th:nth-child(5){
+  min-width: 50px;
+}
+
+.thead-light tr th:nth-child(6){
+  min-width: 50px;
+}
+
+.thead-light tr th:nth-child(7){
+  min-width: 50px;
+}
+
 .table tbody tr:hover{
   background: #b4c6ce;
-}
-
-.deleteIcon {
-  margin-left: 12px;
-  transition: 0.21s ease-in-out;
-  cursor: pointer;
-  color: darkgray;
-}
-
-.editIcon {
-  transition: 0.21s ease-in-out;
-  cursor: pointer;
-  color: darkgray;
 }
 
 .package-form {

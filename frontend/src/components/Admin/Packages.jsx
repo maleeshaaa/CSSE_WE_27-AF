@@ -17,24 +17,24 @@ const Packages = () => {
           disabled
           id="outlined-disabled"
           label="Request ID"
-          defaultValue="Hello"
+          defaultValue="643e3322fe649f9b22de19ef"
           // value={}
           variant="outlined"
           style={{
             marginRight: "1rem",
-            width: 460,
+            width: 375,
           }}
         />
         <TextField
           disabled
           id="outlined-disabled"
           label="User ID"
-          defaultValue="Hello World"
+          defaultValue="64569c01d4d5180affb57eb3"
           // value={}
           variant="outlined"
           style={{
             marginRight: "1rem",
-            width: 460,
+            width: 375,
           }}
         />
         <br />
@@ -50,6 +50,7 @@ const Packages = () => {
           variant="outlined"
           style={{
             marginRight: "1rem",
+            width: 345,
           }}
         />
         <TextField
@@ -63,7 +64,20 @@ const Packages = () => {
           variant="outlined"
           style={{
             marginRight: "1rem",
-            width: 343,
+            width: 407,
+          }}
+        />
+        <TextField
+          id="outlined-read-only-input"
+          label="Date"
+          defaultValue="2023-05-15"
+          // value={}
+          InputProps={{
+            readOnly: true,
+          }}
+          variant="outlined"
+          style={{
+            marginRight: "1rem",
           }}
         />
         <TextField
@@ -77,31 +91,8 @@ const Packages = () => {
           variant="outlined"
           style={{
             marginRight: "1rem",
-            width: 100,
+            width: 150,
           }}
-        />
-        <TextField
-          id="outlined-read-only-input"
-          label="From"
-          defaultValue="2023-06-07"
-          // value={}
-          InputProps={{
-            readOnly: true,
-          }}
-          variant="outlined"
-          style={{
-            marginRight: "1rem",
-          }}
-        />
-        <TextField
-          id="outlined-read-only-input"
-          label="To"
-          defaultValue="2023-06-12"
-          // value={}
-          InputProps={{
-            readOnly: true,
-          }}
-          variant="outlined"
         />
         <br />
         <br />
