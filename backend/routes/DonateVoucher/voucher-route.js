@@ -14,8 +14,7 @@ router.route("/add").post((req, res) => {
       voucherName,
       voucherPoints,
       voucherCode,
-      voucherDetails
-      ,
+      voucherDetails,
     });
   
     newVoucher
@@ -28,7 +27,7 @@ router.route("/add").post((req, res) => {
       });
   });
   
-  //get all voucher
+  //get all vouchers
   router.route("/").get((req, res) => {
     const vouchers = Voucher.find()
     .then((vouchers) => {
@@ -37,9 +36,7 @@ router.route("/add").post((req, res) => {
     .catch((err) => {
         console.log(err);
       });
-  }
-  
-  )
+  })
   
   //get specific voucher
   router.route("/:id").get((req, res) => {

@@ -7,7 +7,7 @@ import transactionRoutes from "./routes/transaction.js"
 import userRoutes from "./routes/users.js";
 import BlogRout from "./routes/blog/blog-route.js"
 import VoucherRout from "./routes/DonateVoucher/voucher-route.js"
-
+import DonateRout from "./routes/DonateVoucher/donate-route.js"
 import cors from "cors";
 
 const app = express();
@@ -33,6 +33,8 @@ app.use("/api/transaction", transactionRoutes);
 app.use("/blog", BlogRout);
 
 app.use("/vouchers", VoucherRout)
+
+app.use("/donations", DonateRout)
 
 const port = process.env.PORT || 8080;
 app.listen(port, ()=> console.log(`Listening on port ${port}...`));

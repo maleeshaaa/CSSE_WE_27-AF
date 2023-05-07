@@ -72,13 +72,14 @@ export default function Redeem() {
       {voucher.map((voucher) => (
         <div key={voucher._id}>
           <div className="card_flex">
-            <Card style={{ width: "18rem", height: "20rem"}}>
+            <Card style={{ width: "18rem", height: "20rem" }}>
               {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
               <Card.Body>
-                <div className="card_overflow">
                 <Card.Title>{voucher.voucherName}</Card.Title>
-                <Card.Text>{voucher.voucherDetails}</Card.Text>
+                <div className="card_overflow">
+                  <Card.Text>{voucher.voucherDetails}</Card.Text>
                 </div>
+                <br />
                 <ProgressBar
                   now={progress}
                   max={voucher.voucherPoints}
@@ -106,7 +107,8 @@ export default function Redeem() {
               </Modal.Header>
               <Modal.Body>
                 {voucher.voucherDetails}
-                < br/><br/>
+                <br />
+                <br />
                 <Card.Subtitle className="mb-2 text-muted">
                   Voucher Code: {voucher.voucherCode}
                 </Card.Subtitle>
@@ -132,7 +134,9 @@ export default function Redeem() {
                 <Toast.Header className="toast_header">
                   <strong className="me-auto">Notification</strong>
                 </Toast.Header>
-                <Toast.Body>Woohoo, you claimed {voucher.voucherName} voucher!</Toast.Body>
+                <Toast.Body>
+                  Woohoo, you claimed {voucher.voucherName} voucher!
+                </Toast.Body>
               </Toast>
             </Col>
           </div>

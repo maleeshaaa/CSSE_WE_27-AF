@@ -61,3 +61,53 @@
 .package-form {
   height: 500px;
 }
+
+/* == Vouchers == */
+
+.voucher_heading{
+  width: 100%; 
+  text-align: left; 
+  border-bottom: 1px solid #434840; 
+  line-height: 0.1em;
+  margin: 10px 0 20px; 
+}
+
+.voucher_heading .voucher_text{
+  background-color: rgb(235, 239, 244); 
+  padding:0 10px; 
+}
+
+.update__button{
+  padding: 0.5rem 1.5rem;
+}
+
+.flex_voucherButton{
+  display: flex;
+  justify-content: space-between;
+}
+
+.delete__button{
+  padding: 0.5rem 1.5rem;
+  background: #ff5858;
+  border: 2px solid #ff5858;
+}
+
+.delete_voucher:hover{
+  background-color: #f93d3d;
+  border: 2px solid #ff5858;
+}
+
+/* == Donation == */
+
+.donation_heading{
+  width: 100%; 
+  text-align: left; 
+  border-bottom: 1px solid #434840; 
+  line-height: 0.1em;
+  margin: 10px 0 20px; 
+}
+
+.donation_heading .donation_text{
+  background-color: rgb(235, 239, 244); 
+  padding:0 10px; 
+}
