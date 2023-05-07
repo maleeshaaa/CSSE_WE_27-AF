@@ -3,6 +3,7 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Redeem from "../../components/loyaltydbComp/redeem";
 import Earn from "../../components/loyaltydbComp/earn";
+import Donation from "../../components/loyaltydbComp/donation";
 import Footer from "../../components/Home/footer.jsx";
 import LoyaltyBanner from "../../components/loyaltydbComp/banner.jsx";
 import Reward from "../../images/rewards.gif";
@@ -37,7 +38,7 @@ export default function LoyaltyDB() {
                 <Redeem />
               </Tab>
               <Tab eventKey="donate" title="Donate">
-                <Redeem />
+                <Donation />
               </Tab>
               {/* <Tab eventKey="vouchers" title="My Vouchers">
                 <Redeem />
