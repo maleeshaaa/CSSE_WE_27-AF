@@ -8,7 +8,7 @@ import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import "./styles.css";
 
-export default function Redeem() {
+export default function Donation() {
   const [progress, setProgress] = useState(100); // User's current points
   const [buttonDisabled, setButtonDisabled] = useState(true); // Button is disabled by default
   //toast
@@ -20,26 +20,27 @@ export default function Redeem() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  //get vouchers
-  const [voucher, setVoucher] = useState([]);
+  //get Donations
+
+  const [donate, setDonate] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/vouchers")
+      .get("http://localhost:8080/donations/")
       .then((response) => {
-        setVoucher(response.data);
+        setDonate(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
 
-  const requiredPoints = 100; // Required points to claim the voucher
+  const requiredPoints = 100; // Required points to donate
 
   // Handle button click
   const handleClaimVoucher = () => {
     if (progress >= requiredPoints) {
-      // Claim voucher logic goes here
+      // Donation logic goes here
       console.log("Voucher claimed!");
     }
   };
@@ -69,20 +70,20 @@ export default function Redeem() {
 
   return (
     <div className="cards_styles color_div card_flex">
-      {voucher.map((voucher) => (
-        <div key={voucher._id}>
+      {donate.map((donate) => (
+        <div key={donate._id}>
           <div className="card_flex">
             <Card style={{ width: "18rem", height: "20rem" }}>
               {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
               <Card.Body>
-                <Card.Title>{voucher.voucherName}</Card.Title>
+                <Card.Title>{donate.donateName}</Card.Title>
                 <div className="card_overflow">
-                  <Card.Text>{voucher.voucherDetails}</Card.Text>
+                  <Card.Text>{donate.donateDetails}</Card.Text>
                 </div>
                 <br />
                 <ProgressBar
                   now={progress}
-                  max={voucher.voucherPoints}
+                  max={donate.donatePoints}
                   label={`${progress}`}
                   variant="success"
                 />
@@ -93,7 +94,7 @@ export default function Redeem() {
                   disabled={buttonDisabled}
                   className="button_styles"
                 >
-                  Claim Voucher
+                  Donate
                 </Button>
               </Card.Body>
             </Card>
@@ -103,14 +104,14 @@ export default function Redeem() {
           <div>
             <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title>{voucher.voucherName}</Modal.Title>
+                <Modal.Title>{donate.donateName}</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                {voucher.voucherDetails}
+                {donate.donateDetails}
                 <br />
                 <br />
                 <Card.Subtitle className="mb-2 text-muted">
-                  Voucher Code: {voucher.voucherCode}
+                  Donation Amount: LKR {donate.donateAmount}
                 </Card.Subtitle>
               </Modal.Body>
               <Modal.Footer>
@@ -118,7 +119,7 @@ export default function Redeem() {
                   Close
                 </Button>
                 <Button variant="primary" onClick={handleBothClicksTwo}>
-                  Redeem
+                  Doante
                 </Button>
               </Modal.Footer>
             </Modal>
@@ -135,7 +136,7 @@ export default function Redeem() {
                   <strong className="me-auto">Notification</strong>
                 </Toast.Header>
                 <Toast.Body>
-                  Woohoo, you claimed {voucher.voucherName} voucher!
+                  Thank You for your donation to the{donate.donateName}!
                 </Toast.Body>
               </Toast>
             </Col>
