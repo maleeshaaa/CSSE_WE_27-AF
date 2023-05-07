@@ -16,6 +16,8 @@ import dayjs from 'dayjs';
 import { FormLabel } from '@mui/material';
 import Form from 'react-bootstrap/Form';
 import Button from "react-bootstrap/Button";
+import Checkbox from '@mui/material/Checkbox';
+import ListItemText from '@mui/material/ListItemText';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -56,25 +58,25 @@ const names = [
 
 ];
 
-function getStyles(name, personName, theme) {
-  return {
-    fontWeight:
-      personName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
+// function getStyles(name, personName, theme) {
+//   return {
+//     fontWeight:
+//       personName.indexOf(name) === -1
+//         ? theme.typography.fontWeightRegular
+//         : theme.typography.fontWeightMedium,
+//   };
+// }
 
 
 export default function NewPlaces() {
 
-    const [age, setAge] = React.useState('');
+    const [province, setProvince] = React.useState('');
     const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
+    const [personName, setPersonName] = React.useState([]);
   const [value, setValue] = React.useState(dayjs('2023-05-07T21:11:54'));
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    
     const {
         target: { value },
       } = event;
@@ -83,6 +85,15 @@ export default function NewPlaces() {
         typeof value === 'string' ? value.split(',') : value,
       );
 
+  };
+
+//   const handleDelete = (chipToDelete) => () => {
+//     setPersonName((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
+//   };
+
+
+  const handleProvinceChange = (event) => {
+    setProvince(event.target.value);
   };
   const handleDateChange = (newValue) => {
     setValue(newValue);
@@ -96,16 +107,16 @@ export default function NewPlaces() {
 
     
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-3">
-        <Form.Label>Select a Province</Form.Label>
+        <Form.Label>Select Province</Form.Label>
             <Box sx={{  m: 1,width: 570,marginBottom:4,marginLeft:0 }}>
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Province</InputLabel>
                     <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    value={age}
-                    label="Age"
-                    onChange={handleChange}
+                    value={province}
+                    label="Province"
+                    onChange={handleProvinceChange}
                     >
                     <MenuItem value={10}>Central Province</MenuItem>
                     <MenuItem value={20}>North Western Province</MenuItem>
@@ -122,7 +133,7 @@ export default function NewPlaces() {
             </Box>
         </div>
 
-        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-3">
+        {/* <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-3">
         <Form.Label>Select Districts</Form.Label>
                 <FormControl sx={{ m: 1, width: 570, marginBottom:5,marginLeft:0 }}>
                 <InputLabel id="demo-multiple-chip-label">District</InputLabel>
@@ -132,7 +143,8 @@ export default function NewPlaces() {
                     multiple
                     value={personName}
                     onChange={handleChange}
-                    input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                    onDelete={handleDelete}
+                    input={<OutlinedInput id="select-multiple-chip" label="District" />}
                     renderValue={(selected) => (
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                         {selected.map((value) => (
@@ -146,14 +158,40 @@ export default function NewPlaces() {
                     <MenuItem
                         key={name}
                         value={name}
-                        style={getStyles(name, personName, theme)}
+                        // style={getStyles(name, personName, theme)}
                     >
                         {name}
                     </MenuItem>
                     ))}
                 </Select>
                 </FormControl>
-        </div>
+        </div> */}
+
+<div class="col-md-8 col-lg-6 col-xl-4 offset-xl-3">
+        <Form.Label>Select Districts</Form.Label>
+        <FormControl sx={{ m: 1, width: 570, marginBottom:5,marginLeft:0 }}>
+        <InputLabel id="demo-multiple-checkbox-label">District</InputLabel>
+        <Select
+          labelId="demo-multiple-checkbox-label"
+          id="demo-multiple-checkbox"
+          multiple
+          value={personName}
+          onChange={handleChange}
+          input={<OutlinedInput label="District" />}
+          renderValue={(selected) => selected.join(', ')}
+          MenuProps={MenuProps}
+        >
+          {names.map((name) => (
+            <MenuItem key={name} value={name}>
+              <Checkbox checked={personName.indexOf(name) > -1} />
+              <ListItemText primary={name} />
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </div>
+
+
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-3">
         <Form.Label>Select a start date</Form.Label>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -171,12 +209,13 @@ export default function NewPlaces() {
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-3">
         
         <FormControl sx={{ m: 1, width: 570, marginTop:5,marginLeft:0,MarginBottom:15 }}>
-        <Form.Label>Enter number of dates</Form.Label>
+        <Form.Label>Number of days</Form.Label>
             <TextField 
                 required
                 id="outlined-required"
                 label="Days"
-                defaultValue="No of days"
+                // defaultValue="0"
+                placeholder='Enter number of days'
                 />
             </FormControl>
             <Button type = "submit">Submit</Button>
