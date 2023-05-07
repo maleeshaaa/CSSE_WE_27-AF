@@ -29,7 +29,7 @@ router.route("/add").post((req, res) => {
 
 //get all blogs
 router.route("/").get((req, res) => {
-  Blog.find()
+  const blogs = Blog.find()
     .then((blogs) => {
       res.json(blogs);
     })

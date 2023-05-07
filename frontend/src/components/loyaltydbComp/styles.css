@@ -7,7 +7,12 @@
     margin: 4rem 2rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 5rem;
+    grid-gap: 3rem;
+}
+
+.card_overflow{
+    overflow: auto;
+    height: 13rem;
 }
 
 .centered_text{
