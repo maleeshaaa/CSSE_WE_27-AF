@@ -2,14 +2,6 @@
   margin: 2rem 0;
 }
 
-.reward_div{
-  background-color: rgb(242, 246, 243);
-    width: 90%;
-    margin: auto;
-    border-radius: 15px;
-    padding: 0 0 0.5rem 0;
-}
-
 .person_name {
   padding: 2rem 0 0 4rem;
 }
@@ -38,6 +30,8 @@
 .color_div {
   background-color: rgb(242, 246, 243);
   width: 90%;
+  margin-left: 9rem;
+  border-radius: 20px;
 }
 
 .button_styles {
