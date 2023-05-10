@@ -62,39 +62,12 @@ const Register = () => {
   return (
     <section class="vh-100">
       <div class="container-fluid h-custom h-100">
-        <div class="" style={{display: "flex", justifyContent: "space-between"}}>
-          <div className="d-flex justify-content-center align-items-center" style={{height: "1fr", width: "100%"}}>
+        <div class="" style={{ display: "flex", justifyContent: "space-between" }}>
+          <div className="d-flex justify-content-center align-items-center" style={{ height: "1fr", width: "100%" }}>
             <img src={Welcome} class="img-fluid" alt="Sample image" />
           </div>
-          <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1" style={{margin: "5rem 10rem"}}>
+          <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1" style={{ margin: "5rem 10rem" }}>
             <form>
-              {/* <div class="form-outline mb-4">
-                <div class="form-outline mb-4 d-flex justify-content-between">
-                  <input
-                    type="radio"
-                    id="html"
-                    name="role"
-                    value="HTML"
-                    onChange={() => {
-                      setIsSeller(false);
-                    }}
-                    defaultChecked
-                  />
-                  <label for="html">Customer</label>
-                  <br />
-                  <input
-                    type="radio"
-                    id="css"
-                    name="role"
-                    value="CSS"
-                    onChange={() => {
-                      setIsSeller(true);
-                    }}
-                  />
-                  <label for="css">Seller</label>
-                  <br />
-                </div>
-              </div> */}
 
               <div class="form-outline mb-4">
               <label class="form-label" for="form3Example3">

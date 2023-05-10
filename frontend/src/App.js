@@ -17,6 +17,7 @@ import Payment from './pages/payment/payment'
 import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import Inquiry from './pages/package/Inquiry';
 
 function App() {
 
@@ -121,9 +122,13 @@ function App() {
           <Route path="/blogs" element={<Blog />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+
+          <Route path="/inquiry" element={<Inquiry />} />
+
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/travel-places" element={<TravelPlace />} />
           <Route path="/new-places" element={<NewPlaces />} />
+
         </Routes>
       </div>
         

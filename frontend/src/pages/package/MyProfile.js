@@ -13,6 +13,11 @@ const MyProfile = () => {
             "id": 2,
             "packageName": "Package 2",
             "packagePrice": 14000,
+        },
+        {
+            "id": 3,
+            "packageName": "Package 3",
+            "packagePrice": 34000,
         }
     ])
     return (
