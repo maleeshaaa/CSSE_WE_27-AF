@@ -12,22 +12,10 @@ const SinglePackage = () => {
     {
       "id": 1,
       "userId": 1,
-      "packageId": "p1",
-      "packageName": "Package 1",
-      "destinations": [
-        {
-          "name": "Sigiriya",
-          "days": 4,
-          "perPerson": 5000
-        },
-        {
-          "name": "Dambulla",
-          "days": 2,
-          "perPerson": 3000
-        }
-      ],
-      "days": 5,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean pellentesque lorem quis ipsum consequat, sit amet pharetra augue pretium. Fusce imperdiet, eros sed cursus finibus, nunc massa egestas ligula, eu suscipit turpis orci ut leo. Nunc in leo nec augue porta volutpat. Nam congue vitae nisl ut ullamcorper. In gravida velit at arcu dapibus euismod. In hac habitasse platea dictumst. Etiam eu sagittis ipsum. Proin convallis aliquet velit. Quisque lobortis tincidunt lorem at vulputate. Vestibulum a elit purus. Aenean sed odio neque. Sed mattis pretium lectus, et maximus lectus suscipit eget. Aenean felis ligula, maximus ac elementum euismod, viverra at sem.",
+      "packageId": "p2",
+      "packageName": "Package 2",
+      "description": "We are thrilled to present you with a tailor-made travel package that has been created exclusively for your request. This five-day adventure will take you through the scenic and historic provinces of Central Sri Lanka, specifically Kandy and Matale. These districts are rich with cultural and natural attractions that will leave you in awe. ",
+      "details": "The journey begins on May 15th, 2023, and will take you on a captivating journey through the heart of Sri Lanka. You will visit world-famous destinations like the Temple of the Tooth in Kandy, a UNESCO World Heritage Site, Matale Alu Viharaya and explore the scenic beauty of the Knuckles Mountain Range, Sembuwaththa Lake, Hunnas Falls and Mandaram Nuwara. ",
       "packagePrice": 25000,
     }
   );
@@ -71,40 +59,7 @@ const SinglePackage = () => {
           <div class="package-details">
             <h2>{unlockedPackage.packageName}</h2>
             <p>{unlockedPackage.description}</p>
-
-            {
-              unlockedPackage.destinations.map((destination) => (
-                <div class="package-info">
-                  <div class="package-info-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <p>Destination: {destination.name}</p>
-                  </div>
-
-                  <div class="package-info-item">
-                    <i class="fas fa-calendar-alt"></i>
-                    <p>Duration: {destination.days} days</p>
-                  </div>
-
-                  <div class="package-info-item">
-                    <i class="fas fa-users"></i>
-                    <p>Group size: 4-8 people</p>
-                  </div>
-
-                  <div class="package-info-item">
-                    <i class="fas fa-money-bill"></i>
-                    <p>Price: $1000 per person</p>
-                  </div>
-                </div>
-              ))
-            }
-
-
-            <div class="package-gallery">
-              <img src="package-image-1.jpg" alt="Package Image 1" />
-              <img src="package-image-2.jpg" alt="Package Image 2" />
-              <img src="package-image-3.jpg" alt="Package Image 3" />
-            </div>
-
+            <p>{unlockedPackage.details}</p>
 
           </div>
         </div>

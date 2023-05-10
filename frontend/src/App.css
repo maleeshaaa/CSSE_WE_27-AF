@@ -88,7 +88,7 @@
   .package-booking input[type="text"],
   .package-booking input[type="email"],
   .package-booking input[type="tel"],
-  .package-booking textarea {
+  .package-booking textarea{
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -114,3 +114,20 @@
   .package-booking button[type="submit"]:hover {
     background-color: #0069d9;
   }
+
+  select {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  
+  select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+  }
+  
