@@ -1,32 +1,31 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, {useState, useEffect} from "react";
 import Header from "../Payment/Header";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
-import axios from "axios";
+import axios from "axios"
 
-const Vouchers = () => {
-  //get vouchers
-  const [voucher, setVoucher] = useState([]);
+const Donations = () => {
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:8080/vouchers")
-      .then((response) => {
-        setVoucher(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+    //get Donations
+    const [donate, setDonate] = useState([]);
+
+    useEffect(() => {
+      axios
+        .get("http://localhost:8080/donations")
+        .then((response) => {
+          setDonate(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }, []);
 
   return (
-    <div className="">
-      <Header title="VOUCHERS" subtitle="Add new vouchers" />
-      <br />
+    <div>
+      <Header title="DONATIONS" subtitle="Add Donations" />
       <div>
         <Form>
           <Form.Group as={Row} className="mb-3" controlId="formHorizontalName">
@@ -39,12 +38,12 @@ const Vouchers = () => {
                 fontFamily: "Lucida Sans",
               }}
             >
-              Voucher Name
+              Donation Name
             </Form.Label>
             <Col sm={10}>
               <Form.Control
                 type="text"
-                placeholder="Voucher Name"
+                placeholder="Donation Name"
                 style={{
                   fontSize: "1rem",
                   fontWeight: 100,
@@ -73,7 +72,7 @@ const Vouchers = () => {
             <Col sm={10}>
               <Form.Control
                 type="text"
-                placeholder="Voucher Points"
+                placeholder="Doantaion Points"
                 style={{
                   fontSize: "1rem",
                   fontWeight: 100,
@@ -86,7 +85,7 @@ const Vouchers = () => {
           <Form.Group
             as={Row}
             className="mb-3"
-            controlId="formHorizontalCode"
+            controlId="formHorizontalAmount"
           >
             <Form.Label
               column
@@ -97,12 +96,12 @@ const Vouchers = () => {
                 fontFamily: "Lucida Sans",
               }}
             >
-              Vocher Code
+              Donation Amount
             </Form.Label>
             <Col sm={10}>
               <Form.Control
                 type="text"
-                placeholder="Voucher Code"
+                placeholder="Donation Amount LKR:"
                 style={{
                   fontSize: "1rem",
                   fontWeight: 100,
@@ -122,13 +121,13 @@ const Vouchers = () => {
                 fontFamily: "Lucida Sans",
               }}
             >
-              Voucher Details
+              Donation Details
             </Form.Label>
             <Col sm={10}>
               <Form.Control
                 as="textarea"
                 rows={4}
-                placeholder="Enter your voucher details"
+                placeholder="Enter your Donation details"
                 style={{
                   fontSize: "1rem",
                   fontWeight: 100,
@@ -149,27 +148,31 @@ const Vouchers = () => {
                 fontFamily: "Lucida Sans",
               }}
             >
-              Add Vouchers
+              Add Donation
             </Button>
           </div>
         </Form>
       </div>
-      <div className="display_vouchers">
+      <div className="display_donation">
         <div>
-          <h4 className="voucher_heading">
-            <span className="voucher_text">Vouchers</span>
+          <h4 className="donation_heading">
+            <span className="donation_text">Donations</span>
           </h4>
         </div>
         <div className="card_flex">
-          {voucher.map((voucher) => (
-            <div key={voucher._id}>
+          {donate.map((donate) => (
+            <div key={donate._id}>
               <Card style={{ width: "18rem", height: "20rem" }}>
                 {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
                 <Card.Body>
-                  <Card.Title>{voucher.voucherName}</Card.Title>
+                  <Card.Title>{donate.donateName}</Card.Title>
                   <div className="card_overflow">
-                    <Card.Text>{voucher.voucherDetails}</Card.Text>
+                    <Card.Text>{donate.donateDetails}</Card.Text>
                   </div>
+                  <br />
+                  <Card.Subtitle className="mb-2 text-muted">
+                  Donation Amount: LKR {donate.donateAmount}
+                </Card.Subtitle>
                   <div className="flex_voucherButton">
                     <Button
                       variant="primary"
@@ -196,4 +199,4 @@ const Vouchers = () => {
   );
 };
 
-export default Vouchers;
+export default Donations;

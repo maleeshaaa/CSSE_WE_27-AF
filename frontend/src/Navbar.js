@@ -10,18 +10,21 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import Logo from "./images/LOGO.png";
 const { Link } = require("react-router-dom");
 
-
 const API_BASE = "http://localhost:8080";
 
 const NavBar = ({ setStatus, status, logOut }) => {
   const navigate = useNavigate();
 
-
   return (
-    <Navbar bg="light" expand="lg">
-      <Container>
-        <Navbar.Brand href="#"> <img className='navlogo' src={Logo} alt="logo" /> </Navbar.Brand>
-        <nav style={{ textAlign: "center", marginTop: "20px", display: "flex" }}>
+    <Navbar style={{height: "4rem"}} bg="light" expand="lg">
+      <Container fluid>
+        <Navbar.Brand href="#">
+          {" "}
+          <img className="navlogo" src={Logo} alt="logo" />{" "}
+        </Navbar.Brand>
+        <nav className="justify-content-end flex-grow-1 pe-3"
+          style={{ textAlign: "right", display: "flex"}}
+        >
           <Link
             to="/"
             style={{ padding: "10px", textDecoration: "none", color: "#000" }}
@@ -56,7 +59,7 @@ const NavBar = ({ setStatus, status, logOut }) => {
           ) : null} */}
 
           <Link
-            to="/loyalty-program"
+            to="/loyalty-reward"
             style={{ padding: "10px", textDecoration: "none", color: "#000" }}
           >
             Loyalty Program
@@ -95,15 +98,9 @@ const NavBar = ({ setStatus, status, logOut }) => {
               >
                 Logout
               </Link>
-
-
             </span>
           )}
-
-
         </nav>
-
-
       </Container>
     </Navbar>
   );

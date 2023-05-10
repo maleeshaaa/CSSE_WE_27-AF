@@ -70,6 +70,9 @@ const Register = () => {
             <form>
 
               <div class="form-outline mb-4">
+              <label class="form-label" for="form3Example3">
+                  Username
+                </label>
                 <input
                   type="username"
                   id="form3Example3"
@@ -78,12 +81,13 @@ const Register = () => {
                   onChange={(e) => setUserName(e.target.value)}
                   value={userName}
                 />
-                <label class="form-label" for="form3Example3">
-                  Username
-                </label>
+                
               </div>
 
               <div class="form-outline mb-4">
+              <label class="form-label" for="form3Example3">
+                  Email address
+                </label>
                 <input
                   type="email"
                   id="form3Example3"
@@ -92,12 +96,13 @@ const Register = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
                 />
-                <label class="form-label" for="form3Example3">
-                  Email address
-                </label>
+                
               </div>
 
               <div class="form-outline mb-3">
+              <label class="form-label" for="form3Example4">
+                  Password
+                </label>
                 <input
                   type="password"
                   id="form3Example4"
@@ -106,12 +111,13 @@ const Register = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   value={password}
                 />
-                <label class="form-label" for="form3Example4">
-                  Password
-                </label>
+                
               </div>
 
               <div class="form-outline mb-3">
+              <label class="form-label" for="form3Example4">
+                  Re-Enter Password
+                </label>
                 <input
                   type="password"
                   id="form3Example4"
@@ -120,9 +126,7 @@ const Register = () => {
                   onChange={(e) => setPasswordRe(e.target.value)}
                   value={passwordre}
                 />
-                <label class="form-label" for="form3Example4">
-                  Password
-                </label>
+                
               </div>
 
               <div class="d-flex justify-content-between align-items-center">
