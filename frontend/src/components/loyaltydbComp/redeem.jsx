@@ -9,7 +9,7 @@ import axios from "axios";
 import "./styles.css";
 
 export default function Redeem() {
-  const [progress, setProgress] = useState(100); // User's current points
+  
   const [buttonDisabled, setButtonDisabled] = useState(true); // Button is disabled by default
   //toast
   const [showA, setShowA] = useState(false);
@@ -33,6 +33,32 @@ export default function Redeem() {
         console.log(error);
       });
   }, []);
+
+  //get user details
+  const [userDetails, setUserDetails] = useState({});
+  const uid = localStorage.getItem("username");
+
+  const loadUserData = async () => {
+    axios({
+      method: "post",
+      url: "http://localhost:8080/api/get-user-details",
+      data: {
+        username: uid,
+      },
+    }).then((data) => {
+      console.log(data.data);
+      setUserDetails(data.data);
+    });
+  };
+
+  useEffect(() => {
+    loadUserData();
+  }, []);
+
+  const username = localStorage.getItem("username");
+
+
+  const [progress, setProgress] = useState(userDetails.userPoints); // User's current points
 
   const requiredPoints = 100; // Required points to claim the voucher
 
@@ -81,9 +107,9 @@ export default function Redeem() {
                 </div>
                 <br />
                 <ProgressBar
-                  now={progress}
+                  now={userDetails.userPoints}
                   max={voucher.voucherPoints}
-                  label={`${progress}`}
+                  label={`${userDetails.userPoints}`}
                   variant="success"
                 />
                 <Button
