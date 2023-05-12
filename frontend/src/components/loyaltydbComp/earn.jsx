@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/esm/Button";
+import axios from "axios";
 import "./styles.css";
-export default function earn() {
+
+export default function Earn() {
+
+
+
   return (
     <div>
       <div className="cards_styles color_div card_flex">
