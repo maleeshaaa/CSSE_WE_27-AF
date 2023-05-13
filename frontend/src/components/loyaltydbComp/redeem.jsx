@@ -60,7 +60,7 @@ export default function Redeem() {
 
   const [progress, setProgress] = useState(userDetails.userPoints); // User's current points
 
-  const requiredPoints = 100; // Required points to claim the voucher
+  const requiredPoints = voucher.voucherPoints; // Required points to claim the voucher
 
   // Handle button click
   const handleClaimVoucher = () => {

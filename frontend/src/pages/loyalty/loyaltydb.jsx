@@ -40,7 +40,7 @@ export default function LoyaltyDB() {
       <div className="reward_maindiv">
         <div className="reward_div">
           <div className="banner_down">
-            <h2 className="person_name">Hi Amal</h2>
+            <h2 className="person_name">Hi {userDetails.username}</h2>
             <div>
               <img className="rewardgif" src={Reward} alt="" />
             </div>
