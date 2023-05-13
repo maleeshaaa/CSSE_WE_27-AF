@@ -9,6 +9,40 @@ import Card from "react-bootstrap/Card";
 import axios from "axios";
 
 const Vouchers = () => {
+  //add vouchers
+  const [formData, setFormData] = useState({
+    voucherName: "",
+    voucherPoints: "",
+    voucherCode: "",
+    voucherDetails: "",
+  });
+
+  const { voucherName, voucherPoints, voucherCode, voucherDetails } = formData;
+
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .post("http://localhost:8080/vouchers/add", formData)
+      .then((res) => {
+        setSuccessMessage("Voucher added successfully!");
+      })
+      .catch((err) => console.log(err));
+
+    setFormData({
+      voucherName: "",
+      voucherPoints: "",
+      voucherCode: "",
+      voucherDetails: "",
+    });
+  };
+
   //get vouchers
   const [voucher, setVoucher] = useState([]);
 
@@ -28,7 +62,7 @@ const Vouchers = () => {
       <Header title="VOUCHERS" subtitle="Add new vouchers" />
       <br />
       <div>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Form.Group as={Row} className="mb-3" controlId="formHorizontalName">
             <Form.Label
               column
@@ -45,6 +79,9 @@ const Vouchers = () => {
               <Form.Control
                 type="text"
                 placeholder="Voucher Name"
+                name="voucherName"
+                onChange={handleChange}
+                value={voucherName}
                 style={{
                   fontSize: "1rem",
                   fontWeight: 100,
@@ -74,6 +111,9 @@ const Vouchers = () => {
               <Form.Control
                 type="text"
                 placeholder="Voucher Points"
+                name="voucherPoints"
+                onChange={handleChange}
+                value={voucherPoints}
                 style={{
                   fontSize: "1rem",
                   fontWeight: 100,
@@ -83,11 +123,7 @@ const Vouchers = () => {
             </Col>
           </Form.Group>
 
-          <Form.Group
-            as={Row}
-            className="mb-3"
-            controlId="formHorizontalCode"
-          >
+          <Form.Group as={Row} className="mb-3" controlId="formHorizontalCode">
             <Form.Label
               column
               sm={2}
@@ -103,6 +139,9 @@ const Vouchers = () => {
               <Form.Control
                 type="text"
                 placeholder="Voucher Code"
+                name="voucherCode"
+                onChange={handleChange}
+                value={voucherCode}
                 style={{
                   fontSize: "1rem",
                   fontWeight: 100,
@@ -129,6 +168,9 @@ const Vouchers = () => {
                 as="textarea"
                 rows={4}
                 placeholder="Enter your voucher details"
+                name="voucherDetails"
+                onChange={handleChange}
+                value={voucherDetails}
                 style={{
                   fontSize: "1rem",
                   fontWeight: 100,
@@ -153,6 +195,9 @@ const Vouchers = () => {
             </Button>
           </div>
         </Form>
+        <div className="vd_successmessage">
+          {successMessage && <h5>{successMessage}</h5>}
+        </div>
       </div>
       <div className="display_vouchers">
         <div>

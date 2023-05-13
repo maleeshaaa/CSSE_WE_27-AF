@@ -1,33 +1,75 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../Payment/Header";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
-import axios from "axios"
+import axios from "axios";
 
 const Donations = () => {
+  //add Donations
+  const [formData, setFormData] = useState({
+    donateName: "",
+    donatePoints: "",
+    donateAmount: "",
+    donateDetails: "",
+  });
 
-    //get Donations
-    const [donate, setDonate] = useState([]);
+  const { donateName, donatePoints, donateAmount, donateDetails } = formData;
 
-    useEffect(() => {
-      axios
-        .get("http://localhost:8080/donations")
-        .then((response) => {
-          setDonate(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }, []);
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .post("http://localhost:8080/donations/add", formData)
+      .then((res) => {
+        setSuccessMessage("Donation added successfully!");
+      })
+      .catch((err) => console.log(err));
+
+    setFormData({
+      donateName: "",
+      donatePoints: "",
+      donateAmount: "",
+      donateDetails: "",
+    });
+  };
+
+  //get Donations
+  const [donate, setDonate] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/donations")
+      .then((response) => {
+        setDonate(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  //delete Donations
+  const deleteDonation = (id) => {
+    axios.delete(`http://localhost:8080/donations/${id}`).then((res) => {
+      const del = donate.filter((donate) => id !== donate._id);
+      setDonate(del);
+      setSuccessMessage("Donation deleted successfully!");
+    });
+  };
 
   return (
     <div>
       <Header title="DONATIONS" subtitle="Add Donations" />
       <div>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Form.Group as={Row} className="mb-3" controlId="formHorizontalName">
             <Form.Label
               column
@@ -44,6 +86,9 @@ const Donations = () => {
               <Form.Control
                 type="text"
                 placeholder="Donation Name"
+                name="donateName"
+                value={donateName}
+                onChange={handleChange}
                 style={{
                   fontSize: "1rem",
                   fontWeight: 100,
@@ -73,6 +118,9 @@ const Donations = () => {
               <Form.Control
                 type="text"
                 placeholder="Doantaion Points"
+                name="donatePoints"
+                value={donatePoints}
+                onChange={handleChange}
                 style={{
                   fontSize: "1rem",
                   fontWeight: 100,
@@ -102,6 +150,9 @@ const Donations = () => {
               <Form.Control
                 type="text"
                 placeholder="Donation Amount LKR:"
+                name="donateAmount"
+                value={donateAmount}
+                onChange={handleChange}
                 style={{
                   fontSize: "1rem",
                   fontWeight: 100,
@@ -128,6 +179,9 @@ const Donations = () => {
                 as="textarea"
                 rows={4}
                 placeholder="Enter your Donation details"
+                name="donateDetails"
+                value={donateDetails}
+                onChange={handleChange}
                 style={{
                   fontSize: "1rem",
                   fontWeight: 100,
@@ -152,6 +206,9 @@ const Donations = () => {
             </Button>
           </div>
         </Form>
+        <div className="vd_successmessage">
+          {successMessage && <h5>{successMessage}</h5>}
+        </div>
       </div>
       <div className="display_donation">
         <div>
@@ -171,8 +228,8 @@ const Donations = () => {
                   </div>
                   <br />
                   <Card.Subtitle className="mb-2 text-muted">
-                  Donation Amount: LKR {donate.donateAmount}
-                </Card.Subtitle>
+                    Donation Amount: LKR {donate.donateAmount}
+                  </Card.Subtitle>
                   <div className="flex_voucherButton">
                     <Button
                       variant="primary"
@@ -184,6 +241,7 @@ const Donations = () => {
                     <Button
                       variant="primary"
                       style={{ margin: "1rem 0" }}
+                      onClick={() => deleteDonation(donate._id)}
                       className="delete__button delete_voucher"
                     >
                       Delete

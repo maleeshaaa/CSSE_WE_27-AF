@@ -35,7 +35,29 @@ export default function Donation() {
       });
   }, []);
 
-  const requiredPoints = 100; // Required points to donate
+  //get user details
+  const [userDetails, setUserDetails] = useState({});
+  const uid = localStorage.getItem("username");
+
+  const loadUserData = async () => {
+    axios({
+      method: "post",
+      url: "http://localhost:8080/api/get-user-details",
+      data: {
+        username: uid,
+      },
+    }).then((data) => {
+      console.log(data.data);
+      setUserDetails(data.data);
+    });
+  };
+
+  useEffect(() => {
+    loadUserData();
+  }, []);
+
+
+  const requiredPoints = donate.donatePoints; // Required points to donate
 
   // Handle button click
   const handleClaimVoucher = () => {
@@ -82,9 +104,9 @@ export default function Donation() {
                 </div>
                 <br />
                 <ProgressBar
-                  now={progress}
+                  now={userDetails.userPoints}
                   max={donate.donatePoints}
-                  label={`${progress}`}
+                  label={`${userDetails.userPoints}`}
                   variant="success"
                 />
                 <Button
