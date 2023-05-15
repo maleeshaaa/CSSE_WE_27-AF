@@ -6,13 +6,13 @@ const router = Router();
 //add feedback
 router.route("/add").post((req, res) => {
     const name = req.body.name;
-    // const email = req.body.email;
+    const email = req.body.email;
     const subject = req.body.subject;
     const feedback = req.body.feedback;
     
     const newFeedback = new Feedback({
         name,
-        // email,
+        email,
         subject,
         feedback,
     });
