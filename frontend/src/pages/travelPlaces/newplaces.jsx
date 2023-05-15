@@ -38,6 +38,7 @@ const names = [
   'Puttalam',
   'Colombo',
   'Gampaha',
+  'Kalutara',
   'Galle',
   'Matara',
   'Hambantota',
@@ -45,7 +46,7 @@ const names = [
     'Polonnaruwa',
     'Badulla',
     'Monaragala',
-    'Ratnapura',
+    'Rathnapura',
     'Kegalle',
     'Jaffna',
     'Mannar',
@@ -55,6 +56,47 @@ const names = [
     'Ampara',
     'Trincomalee',
     'Kilinochchi',
+
+];
+
+const provinces = [
+  {
+    name: 'Central Province',
+    districts: ['Kandy', 'Matale', 'Nuwara Eliya'],
+  },
+  {
+    name: 'North Western Province',
+    districts: ['Kurunegala', 'Puttalam'],
+  },
+  {
+    name: 'Western Province',
+    districts: ['Colombo', 'Gampaha', 'Kalutara'],
+  },
+  {
+    name: 'Eastern Province',
+    districts: ['Ampara', 'Batticaloa', 'Trincomalee'],
+  },
+  {
+    name: 'Southern Province',
+    districts: ['Galle', 'Matara', 'Hambantota'],
+  },
+  {
+    name: 'Uva Province',
+    districts: ['Badulla', 'Monaragala'],
+  },
+  {
+    name: 'Sabaragamuwa Province',
+    districts: ['Kegalle', 'Rathnapura'],
+  },
+  {
+    name: 'North Central Province',
+    districts: ['Anuradhapura', 'Polonnaruwa'],
+  },
+  {
+    name: 'Northern Province',
+    districts: ['Jaffna', 'Kilinochchi', 'Mannar', 'Mullaitivu', 'Vavuniya'],
+  },
+
 
 ];
 
@@ -74,6 +116,7 @@ export default function NewPlaces() {
     const theme = useTheme();
     const [personName, setPersonName] = React.useState([]);
   const [value, setValue] = React.useState(dayjs('2023-05-07T21:11:54'));
+  const districts = provinces.find((p) => p.name === province)?.districts || [];
 
   const handleChange = (event) => {
     
@@ -84,6 +127,7 @@ export default function NewPlaces() {
         // On autofill we get a stringified value.
         typeof value === 'string' ? value.split(',') : value,
       );
+      
 
   };
 
@@ -98,6 +142,7 @@ export default function NewPlaces() {
   const handleDateChange = (newValue) => {
     setValue(newValue);
   };
+  
 
 
   
@@ -118,7 +163,7 @@ export default function NewPlaces() {
                     label="Province"
                     onChange={handleProvinceChange}
                     >
-                    <MenuItem value={10}>Central Province</MenuItem>
+                    {/* <MenuItem value={10}>Central Province</MenuItem>
                     <MenuItem value={20}>North Western Province</MenuItem>
                     <MenuItem value={30}>Western Province</MenuItem>
                     <MenuItem value={40}>Eastern Province</MenuItem>
@@ -126,8 +171,15 @@ export default function NewPlaces() {
                     <MenuItem value={60}>Southern Province</MenuItem>
                     <MenuItem value={70}>Sabaragamuwa Province</MenuItem>
                     <MenuItem value={80}>North Central Province</MenuItem>
-                    <MenuItem value={90}>Northern Province</MenuItem>
+                    <MenuItem value={90}>Northern Province</MenuItem> */}
 
+                      <MenuItem value="">Select Province</MenuItem>
+                      {provinces.map((p) => (
+                        <MenuItem key={p.name} value={p.name}>
+                          {p.name}
+                        </MenuItem>
+                      ))}
+                    
                     </Select>
                 </FormControl>
             </Box>
@@ -166,7 +218,7 @@ export default function NewPlaces() {
                 </Select>
                 </FormControl>
         </div> */}
-
+{province && (
 <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-3">
         <Form.Label>Select Districts</Form.Label>
         <FormControl sx={{ m: 1, width: 570, marginBottom:5,marginLeft:0 }}>
@@ -181,15 +233,19 @@ export default function NewPlaces() {
           renderValue={(selected) => selected.join(', ')}
           MenuProps={MenuProps}
         >
-          {names.map((name) => (
-            <MenuItem key={name} value={name}>
-              <Checkbox checked={personName.indexOf(name) > -1} />
-              <ListItemText primary={name} />
-            </MenuItem>
-          ))}
+          {names
+            .filter((name) => districts.includes(name))
+            .map((name) => (
+        <MenuItem key={name} value={name}>
+          <Checkbox checked={personName.indexOf(name) > -1} />
+          <ListItemText primary={name} />
+        </MenuItem>
+      ))}
         </Select>
       </FormControl>
     </div>
+)}
+
 
 
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-3">
