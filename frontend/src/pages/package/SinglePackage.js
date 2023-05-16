@@ -1,76 +1,134 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 const SinglePackage = () => {
-
   const { id } = useParams();
   const [showPackage, setShowPackage] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const userId = "64569c01d4d5180affb57eb3";
+  const [unlockedPackage, setUnlockedPackage] = useState(null);
+  const [inquiryType, setInquiryType] = useState('');
+  const [inquiryTitle, setInquiryTitle] = useState('');
+  const [inquiryDescription, setInquiryDescription] = useState('');
 
-  //added when payment had done
-  const [unlockedPackage, setUnlockedPackage] = useState(
-    {
-      "id": 1,
-      "userId": 1,
-      "packageId": "p2",
-      "packageName": "Package 2",
-      "description": "We are thrilled to present you with a tailor-made travel package that has been created exclusively for your request. This five-day adventure will take you through the scenic and historic provinces of Central Sri Lanka, specifically Kandy and Matale. These districts are rich with cultural and natural attractions that will leave you in awe. ",
-      "details": "The journey begins on May 15th, 2023, and will take you on a captivating journey through the heart of Sri Lanka. You will visit world-famous destinations like the Temple of the Tooth in Kandy, a UNESCO World Heritage Site, Matale Alu Viharaya and explore the scenic beauty of the Knuckles Mountain Range, Sembuwaththa Lake, Hunnas Falls and Mandaram Nuwara. ",
-      "packagePrice": 25000,
-    }
-  );
+
+  
 
   useEffect(() => {
-    // check the whether the user have access to the particular package
-    const fetchData = async () => {
+    const checkPayment = async () => {
       try {
-        const userId = "gssh";
-        const packageId = id;
-        const response = await axios.get(`http://localhost:8080/api/transaction/${userId}/${packageId}`, {
-          params: {
-            userId: userId,
-            packageId: packageId,
-          },
+        const response = await axios.post('http://localhost:8080/api/package/check-fields', {
+          userid: userId,
+          id: id
         });
-        
-        setShowPackage(response.data.success);
+        const { data } = response.data;
+
+        if (data && data.isPurchased) {
+          setUnlockedPackage(data);
+          setShowPackage(true);
+        } else {
+          setShowPackage(false);
+        }
       } catch (error) {
         console.error(error);
       }
     };
-    fetchData();
+
+    checkPayment();
+  }, [id]);
+
+  const handleFormButtonClick = () => {
+    setShowForm(true);
+  };
+
+  const handleInquiryTypeChange = (event) => {
+    setInquiryType(event.target.value);
+  };
+
+  const handleInquiryTitleChange = (event) => {
+    setInquiryTitle(event.target.value);
+  };
+
+  const handleInquiryDescriptionChange = (event) => {
+    setInquiryDescription(event.target.value);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     
-  },);
-
-  const fetchPackage = () => {
-    const userId = 2;
-    const packageId = 2;
-    if (userId == 2 && packageId == 2) {
-      setShowPackage(false);
+    const inquiryData = {
+      userId: "123456",
+      inquiryType: inquiryType,
+      inquiryTitle: inquiryTitle,
+      inquiryDescription: inquiryDescription,
+    };
+    try {
+      const response = await axios.post("http://localhost:8080/api/inquiry/inquiries", inquiryData);
+      // Reset the form fields
+      setInquiryType('');
+      setInquiryTitle('');
+      setInquiryDescription('');
+    
+      // Optionally, hide the form after submission
+      setShowForm(false);
+      return response.data;
+    } catch (error) {
+      throw new Error(error.response.data.error);
     }
-  }
 
+  };
 
   return (
     <div>
-
       {showPackage ? (
-        <div>
-          <div class="package-details">
-            <h2>{unlockedPackage.packageName}</h2>
-            <p>{unlockedPackage.description}</p>
-            <p>{unlockedPackage.details}</p>
+        <div className="package-details">
+          <h2>Package {unlockedPackage.package_no}</h2>
+          <p>{unlockedPackage.description}</p>
+          <p>{unlockedPackage.details}</p>
+          <p>Price: ${unlockedPackage.price}</p>
+          <button type="button" className="btn btn-dark" style={{ width: '200px' }} onClick={handleFormButtonClick}>
+            Not Satisfied (Make Inquiry)
+          </button>
+          {showForm && (
+            <form className="form-control" onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="inquiryType">Inquiry Type:</label>
+                <select className="form-control" id="inquiryType" value={inquiryType} onChange={handleInquiryTypeChange}>
+                  <option value="">Select an inquiry type</option>
+                  <option value="General">General Inquiry</option>
+                  <option value="Technical">Technical Inquiry</option>
+                  <option value="Billing">Billing Inquiry</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="heading">Heading:</label>
+                <input className="form-control" type="text" id="heading" value={inquiryTitle} onChange={handleInquiryTitleChange} />
+              </div>
+              <div className="form-group">
+                <label htmlFor="message">Message:</label>
+                <textarea className="form-control" id="message" value={inquiryDescription} onChange={handleInquiryDescriptionChange} />
+              </div>
 
-          </div>
+              
+              <button className="btn btn-dark" type="submit">Submit Inquiry</button>
+            </form>
+
+          )}
         </div>
-      ) :
+      ) : (
         <div>
           <h1>You don't have access to view this package unless you purchase it</h1>
-          <button type="submit" class="btn btn-dark" style={{ width:'200px' }}>Pay</button>
+          <button type="submit" className="btn btn-dark" style={{ width: '200px' }}>Pay</button>
+          {showForm && (
+            <form>
+              {/* Render your form components here */}
+            </form>
+          )}
         </div>
-      }
+      )}
     </div>
-  )
+  );
 }
 
-export default SinglePackage
+export default SinglePackage;

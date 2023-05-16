@@ -1,40 +1,46 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PackageCard from './PackageCard'
+import axios from 'axios'
 
 const MyProfile = () => {
 
     const [packages, setPackages] = useState([
-        {
-            "id": 1,
-            "packageName": "Package 1",
-            "packagePrice": 25000,
-        },
-        {
-            "id": 2,
-            "packageName": "Package 2",
-            "packagePrice": 14000,
-        },
-        {
-            "id": 3,
-            "packageName": "Package 3",
-            "packagePrice": 34000,
-        }
+        
     ])
+const userId = "64569c01d4d5180affb57eb3";
+    const fetchPackages = ()=>{
+        axios.get(`http://localhost:8080/api/package/${userId}`)
+        .then(response => {
+            // Handle the received data here
+            const packages = response.data;
+            setPackages(packages);
+            console.log(packages);
+        })
+        .catch(error => {
+            // Handle the error here
+            console.error(error);
+        });
+    }
+
+    useEffect(() => {
+        fetchPackages();
+      }, []);
+
+    
     return (
         <div>
             {packages.length > 0 ? (
-                <div className='d-flex flex-column justify-content-center align-items-center'>
+                <div >
                     <h1>Admin has sent you these packages</h1>
                     <div className='d-flex justify-content-center'>
                         {
                             packages.map(((item) => (
                                 <PackageCard item={item} />
+                                
                             )))
-
                         }
-                        
                     </div>
-                    <button type="button" class="btn btn-dark" style={{ width:'200px' }}>Not Satisfied (Make Inquiry)</button>
+                    
                 </div>
             ) :
                 <div>No packages</div>

@@ -4,6 +4,8 @@ import authRoutes from "./routes/auth.js";
 import dbConnect from "./dbConnect.js";
 import refreshTokenRoutes from "./routes/refreshToken.js"
 import transactionRoutes from "./routes/transaction.js"
+import packageRoutes from "./routes/package.js"
+import inquiryRoutes from "./routes/inquiry.js"
 import userRoutes from "./routes/users.js";
 import BlogRout from "./routes/blog/blog-route.js"
 import VoucherRout from "./routes/DonateVoucher/voucher-route.js"
@@ -31,7 +33,8 @@ app.use("/api", authRoutes);
 app.use("/api/refreshToken", refreshTokenRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/transaction", transactionRoutes);
-
+app.use("/api/package", packageRoutes);
+app.use("/api/inquiry", inquiryRoutes);
 app.use("/blog", BlogRout);
 
 app.use("/vouchers", VoucherRout)
