@@ -13,9 +13,7 @@ const transactionSchema = new Schema({
     },
     createdAt:{
         type: Date,
-        default: Date.now,
-        //86400 = 24 hours 
-        expires: 30 * 86400 // 30 days
+        default: Date.now
     },
 })
 

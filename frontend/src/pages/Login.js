@@ -28,7 +28,7 @@ const Login = () => {
             showConfirmButton: false,
             timer: 1500,
           });
-          navigate("/my-account");
+          navigate("/profile");
           return res.json();
         }
       })

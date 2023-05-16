@@ -18,6 +18,8 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Inquiry from './pages/package/Inquiry';
+import UserInquiries from './pages/package/UserInquiries';
+import AdminInquiries from './pages/package/AdminInquiries';
 
 function App() {
 
@@ -123,8 +125,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
 
-          <Route path="/inquiry" element={<Inquiry />} />
-
+          <Route path="/user-inquiry" element={<UserInquiries />} />
+          <Route path="/admin-inquiry" element={<AdminInquiries />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/travel-places" element={<TravelPlace />} />
           <Route path="/new-places" element={<NewPlaces />} />
