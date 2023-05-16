@@ -57,6 +57,18 @@ const Vouchers = () => {
       });
   }, []);
 
+ //delete vouchers
+  const deleteVoucher = (id) => {
+    const voucherToDelete = voucher.filter((voucher) => id !== voucher._id);
+    if (window.confirm("Are you sure you want to delete this voucher?")) {
+    axios.delete(`http://localhost:8080/vouchers/${id}`).then((res) => {
+      const del = voucher.filter((voucher) => id !== voucher._id);
+      setVoucher(del);
+      setSuccessMessage(`${voucherToDelete.voucherName} Voucher deleted successfully!`);
+    });
+  }
+  };
+  
   return (
     <div className="">
       <Header title="VOUCHERS" subtitle="Add new vouchers" />
@@ -226,6 +238,7 @@ const Vouchers = () => {
                     <Button
                       variant="primary"
                       style={{ margin: "1rem 0" }}
+                      onClick={() => deleteVoucher(voucher._id)}
                       className="delete__button delete_voucher"
                     >
                       Delete
