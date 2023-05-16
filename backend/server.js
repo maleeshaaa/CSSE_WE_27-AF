@@ -11,6 +11,8 @@ import DonateRout from "./routes/DonateVoucher/donate-route.js"
 import PointsRout from "./routes/Points/points-route.js"
 import cors from "cors";
 import Feedback from "./routes/Feedback/feedbacks.js";
+import PlaceRequests from "./routes/NewRequest/requests.js";
+
 
 const app = express();
 
@@ -41,6 +43,8 @@ app.use("/donations", DonateRout)
 app.use("/points", PointsRout)
 
 app.use("/feedback", Feedback)
+
+app.use("/requests", PlaceRequests)
 
 const port = process.env.PORT || 8080;
 app.listen(port, ()=> console.log(`Listening on port ${port}...`));
