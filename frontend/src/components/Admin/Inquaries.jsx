@@ -1,120 +1,135 @@
 import React from 'react';
 import { Box, Button } from "@mui/material";
 import Header from "../Payment/Header";
+import axios from "axios";
+import { Component } from "react";
 
-const Inquaries = () => {
-  return (
-    <Box m="0.0rem 0.0rem">
-      <Header title="INQUIRIES" subtitle="Custom Package Inquaries" />
-      <div className="container">
-        <table className="table">
-          <thead className="thead-light">
-            <tr>
-              <th>Inquire ID</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Phone Number</th>
-              <th>Message</th>
-              <th className="tbody">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>63701cc1f03239c72c000181</td>
-              <td>John Doe</td>
-              <td>johndoe97@gmail.com</td>
-              <td>0718989899</td>
-              <td>
-                I really like the package that you created for me. Thank you for
-                the support.
-              </td>
-              <td className="tbody">
-                <Button
-                  variant="contained"
-                  style={{
-                    fontSize: "0.9rem",
-                    fontWeight: 500,
-                    fontFamily: "Lucida Sans",
-                    marginBottom: "0.5rem",
-                    width: "6rem",
-                  }}
-                >
-                  CREATE
-                </Button>
-                <Button
-                  variant="contained"
-                  style={{
-                    fontSize: "0.9rem",
-                    fontWeight: 500,
-                    fontFamily: "Lucida Sans",
-                  }}
-                >
-                  REMOVE
-                </Button>
-              </td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr>
-              <td>63701d74f03239528f000019</td>
-              <td>Olly Fernandez</td>
-              <td>ollyfdo@gmail.com</td>
-              <td>0764547444</td>
-              <td className="message-field">
-                I appriciate the support that you gave for me. Hoping to get
-                your service again. Thank you so much.
-              </td>
-              <td className="tbody">
-                <Button
-                  variant="contained"
-                  style={{
-                    fontSize: "0.9rem",
-                    fontWeight: 500,
-                    fontFamily: "Lucida Sans",
-                    marginBottom: "0.5rem",
-                    width: "6rem",
-                  }}
-                >
-                  CREATE
-                </Button>
-                <Button
-                  variant="contained"
-                  style={{
-                    fontSize: "0.9rem",
-                    fontWeight: 500,
-                    fontFamily: "Lucida Sans",
-                  }}
-                >
-                  REMOVE
-                </Button>
-              </td>
-            </tr>
-          </tbody>
-          {/* <tbody>
-            {this.state.Customers.map((props) => (
+const Inquaries = (props) => (
+  <tr>
+    <td> {props.Inquaries._id}</td>
+    <td> {props.Inquaries.userId}</td>
+    <td> {props.Inquaries.inquiryType}</td>
+    <td> {props.Inquaries.inquiryTitle}</td>
+    <td> {props.Inquaries.inquiryDescription}</td>
+    <td>
+      <a
+        href=" "
+        onClick={() => {
+          props.deleteInquiry(props.exercise._id);
+        }}
+      >
+        REMOVE
+      </a>
+    </td>
+  </tr>
+);
+
+export default class Inquiries_Admin extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      Inquaries: [],
+    };
+  }
+
+  componentDidMount() {
+    axios
+      .get("http://localhost:8080/api/inquiry/inquiries")
+      .then((response) => {
+        this.setState({ Inquaries: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  getPosts() {
+    axios
+      .get("http://localhost:8080/api/inquiry/inquiries")
+      .then((response) => {
+        this.setState({ Inquaries: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  deleteInquiry(id) {
+    if (window.confirm("Are you sure?")) {
+      axios
+        .delete("http://localhost:8080/api/inquiry/inquiries/" + id)
+        .then((response) => {
+          console.log(response.data);
+        });
+
+      this.setState({
+        Inquaries: this.state.Inquaries.filter((el) => el._id !== id),
+      });
+    }
+  }
+
+  InquariesList() {
+    return this.state.Inquaries.map((currentInquaries) => {
+      return (
+        <Inquaries
+          Inquaries={currentInquaries}
+          deleteInquiry={this.deleteInquiry}
+          key={currentInquaries._id}
+        />
+      );
+    });
+  }
+
+  render() {
+    return (
+      <Box m="0.0rem 0.0rem">
+        <Header title="INQUIRIES" subtitle="Custom Package Inquaries" />
+        <div className="container">
+          <table className="table">
+            <thead className="thead-light">
               <tr>
-                <td>{props._id}</td>
-                <td>{props.name}</td>
-                <td>{props.email}</td>
-                <td>{props.phone}</td>
-                <td>{props.role}</td>
-                <td>
-                  <a
-                    href=""
-                    onClick={() => {
-                      this.removeCustomer(props._id);
-                    }}
-                  >
-                    <DeleteOutlineIcon className="deleteIcon" />
-                  </a>
-                </td>
+                <th>Inquire ID</th>
+                <th>User ID</th>
+                <th>Inquiry Type</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th className="tbody">Action</th>
               </tr>
-            ))}
-          </tbody> */}
-        </table>
-      </div>
-    </Box>
-  );
+            </thead>
+            <tbody>
+              {this.state.Inquaries.map((props) => (
+                <tr>
+                  <td>{props._id}</td>
+                  <td>{props.userId}</td>
+                  <td>{props.inquiryType}</td>
+                  <td>{props.inquiryTitle}</td>
+                  <td>{props.inquiryDescription}</td>
+                  <td className="tbody">
+                    <a
+                      href=""
+                      onClick={() => {
+                        this.deleteInquiry(props._id);
+                      }}
+                    >
+                      <Button
+                        variant="contained"
+                        style={{
+                          fontSize: "0.9rem",
+                          fontWeight: 500,
+                          fontFamily: "Lucida Sans",
+                        }}
+                      >
+                        REMOVE
+                      </Button>{" "}
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Box>
+    );
+  }
 }
-
-export default Inquaries

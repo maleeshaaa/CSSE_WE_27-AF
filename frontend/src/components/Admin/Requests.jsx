@@ -19,58 +19,84 @@ const Requests = (props) => (
   </tr>
 );
 
-export default class Requests_Admin extends Component
-{
-  constructor ( props )
-  {
-    super( props );
+export default class Requests_Admin extends Component {
+  constructor(props) {
+    super(props);
 
     this.state = {
-      Requests: []
+      Requests: [],
     };
   }
 
   componentDidMount() {
-    axios.get('http://localhost:8080/requests/')
-      .then(response => {
-          this.setState({ Requests: response.data });
+    axios
+      .get("http://localhost:8080/requests/")
+      .then((response) => {
+        this.setState({ Requests: response.data });
       })
       .catch((error) => {
-          console.log(error);
-      })
+        console.log(error);
+      });
   }
 
   getPosts() {
-    axios.get('http://localhost:8080/requests/')
-      .then(response => {
-          this.setState({ Requests: response.data });
+    axios
+      .get("http://localhost:8080/requests/")
+      .then((response) => {
+        this.setState({ Requests: response.data });
       })
       .catch((error) => {
-          console.log(error);
-      })
+        console.log(error);
+      });
   }
 
   RequestsList() {
-    return this.state.Requests.map(currentRequests => {
-        return <Requests Requests = { currentRequests }
-        key = { currentRequests._id }
-        />;
-    })
+    return this.state.Requests.map((currentRequests) => {
+      return <Requests Requests={currentRequests} key={currentRequests._id} />;
+    });
   }
 
-  render ()
-  {
+  filterData(Requests, searchKey) {
+    this.setState({
+      Requests: this.state.Requests.filter((el) => (el.userid = searchKey)),
+    });
+  }
+
+  handleSearchArea = (e) => {
+    const searchKey = e.currentTarget.value;
+
+    axios.get("http://localhost:8080/requests/").then((response) => {
+      const resultt = response.data;
+      const result = resultt.filter((props) =>
+        props.userid.includes(searchKey)
+      );
+
+      this.setState({ Requests: result });
+    });
+  };
+
+  render() {
     return (
       <Box m="0.0rem 0.0rem">
         <Header title="REQUESTS" subtitle="Travel Package Requests" />
-        <div className="container">
+        <div className="container2">
+          <div className="col-lg-3 mt-2 mb-2">
+            <input
+              className="form-control"
+              type="search"
+              placeholder="Search by UserID"
+              name="searchQuery"
+              onChange={this.handleSearchArea}
+            ></input>
+          </div>
+          <br />
           <table className="table">
             <thead className="thead-light">
               <tr>
                 <th>Request ID</th>
                 <th>User ID</th>
                 <th>Province</th>
-                <th>District</th>
+                <th>Districts</th>
                 <th>Date</th>
                 <th className="tbody">No of Days</th>
                 <th className="tbody">Package</th>
@@ -107,7 +133,5 @@ export default class Requests_Admin extends Component
         </div>
       </Box>
     );
-    
   }
-
 }

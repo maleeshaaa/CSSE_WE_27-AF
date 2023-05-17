@@ -2,23 +2,27 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const requestSchema = new Schema({
-    province: {
-      type: String,
-      required: true,
-    },
-    // districts: {
-    //   type: [String],
-    //   required: true,
-    // },
-    date: {
-      type: Date,
-      required: true,
-    },
-    days: {
-      type: Number,
-      required: true,
-    },
-  });
+  // userid: {
+  //   type: String,
+  //   required: true,
+  // },
+  province: {
+    type: String,
+    required: true,
+  },
+  // districts: {
+  //   type: [String],
+  //   required: true,
+  // },
+  startdate: {
+    type: Date,
+    required: true,
+  },
+  days: {
+    type: Number,
+    required: true,
+  },
+});
   
   const Request = mongoose.model('Request', requestSchema);
   
