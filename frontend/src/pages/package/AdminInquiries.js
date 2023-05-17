@@ -38,7 +38,7 @@ const AdminInquiries = () => {
         <table className="table">
           <thead>
             <tr>
-            
+            <th>Package Id</th>
               <th>Heading</th>
               <th>User</th>
               <th>Type</th>
@@ -51,28 +51,32 @@ const AdminInquiries = () => {
           <tbody>
             {inquiries.map((inquiry) => (
               <tr key={inquiry._id}>
+                <td>{inquiry.packageId}</td>
                 <td>{inquiry.inquiryTitle}</td>
                 <td>{inquiry.userId}</td>
                 <td>{inquiry.inquiryType}</td>
                 <td>{inquiry.inquiryDescription}</td>
                 <td>{inquiry.addedDate}</td>
                 <td>
-  {inquiry.isResolved ? (
-    <span class="text-success" role="img" aria-label="Resolved">
-      &#x2714;
-    </span>
-  ) : (
-    <span class="text-danger" role="img" aria-label="Unresolved">
-      &#x2716;
-    </span>
-  )}
-</td>
-<td>
-  <button class="btn btn-primary" onClick={() => handleToggleResolved(inquiry._id, inquiry.isResolved)}>
-    {inquiry.isResolved ? "Mark Unresolved" : "Mark Resolved"}
-  </button>
-</td>
-
+                  {inquiry.isResolved ? (
+                    <span class="text-success" role="img" aria-label="Resolved">
+                      &#x2714;
+                    </span>
+                  ) : (
+                    <span class="text-danger" role="img" aria-label="Unresolved">
+                      &#x2716;
+                    </span>
+                  )}
+                </td>
+                
+                <td>
+                  <button
+                    class="btn btn-primary"
+                    onClick={() => handleToggleResolved(inquiry._id, inquiry.isResolved)}
+                  >
+                    {inquiry.isResolved ? "Mark Unresolved" : "Mark Resolved"}
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
