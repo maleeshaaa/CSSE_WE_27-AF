@@ -27,4 +27,15 @@ router.route("/add").post((req, res) => {
         });
 });
 
+//get all feedbacks
+router.route("/").get((req, res) => {
+    const feedbacks = Feedback.find()
+      .then((feedbacks) => {
+        res.json(feedbacks);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+
 export default router;

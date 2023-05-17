@@ -49,5 +49,16 @@ router.route("/add").post((req, res) => {
           });
       }
   );
+
+  //delete voucher
+  router.route("/:id").delete((req, res) => {
+    Voucher.findByIdAndDelete(req.params.id)
+      .then(() => {
+        res.json("Voucher Deleted");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
   
   export default router;

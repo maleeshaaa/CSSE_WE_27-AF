@@ -70,6 +70,7 @@ router.post("/get-user-details", async (req, res) => {
             email: user.email,
             userPoints: user.userPoints,
             isAdmin: user.isAdmin,
+            id: user._id,
             messaage: "User is there",
         });
     }
