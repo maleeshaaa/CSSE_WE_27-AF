@@ -12,7 +12,7 @@ const UserInquiries = () => {
 
   const fetchInquiries = async () => {
     try {
-      const userId = "123456"; // Replace with the actual user ID
+      const userId = localStorage.getItem("username"); // Replace with the actual user ID
       const response = await axios.get(`http://localhost:8080/api/inquiry/inquiries/${userId}`);
       const { data } = response;
       setInquiries(data);
@@ -58,13 +58,15 @@ const UserInquiries = () => {
 
   return (
     <div>
-      <h1>Sent Inquiries</h1>
+      <h1 class="display-4 text-center bg-primary text-white p-3">Sent Inquiries</h1>
+
       {inquiries.length === 0 ? (
         <p>No inquiries sent.</p>
       ) : (
         <table className="table">
           <thead>
             <tr>
+              <th>Package Id</th>
               <th>Heading</th>
               <th>Type</th>
               <th>Message</th>
@@ -79,6 +81,17 @@ const UserInquiries = () => {
                   {editingId === inquiry._id ? (
                     <input
                       type="text"
+                      value={editData.packageId}
+                      disabled
+                    />
+                  ) : (
+                    inquiry.packageId
+                  )}
+                </td>
+                <td>
+                  {editingId === inquiry._id ? (
+                    <input
+                      type="text"
                       value={editData.inquiryTitle}
                       onChange={(e) => setEditData({ ...editData, inquiryTitle: e.target.value })}
                     />
@@ -86,6 +99,7 @@ const UserInquiries = () => {
                     inquiry.inquiryTitle
                   )}
                 </td>
+
                 <td>
                   {editingId === inquiry._id ? (
                     <input
@@ -103,40 +117,40 @@ const UserInquiries = () => {
                     <input
                       type="text"
                       value={editData.inquiryDescription}
-                      onChange=                      {(e) => setEditData({ ...editData, inquiryDescription: e.target.value })}
-                      />
-                    ) : (
-                      inquiry.inquiryDescription
-                    )}
-                  </td>
-                  <td>
-                    {inquiry.isResolved ? (
-                      <span>Resolved</span>
-                    ) : (
-                      <span>Not Resolved</span>
-                    )}
-                  </td>
-                  <td>
-                    {editingId === inquiry._id ? (
-                      <div>
-                        <button onClick={() => updateInquiry(inquiry._id)}>Save</button>
-                        <button onClick={cancelEdit}>Cancel</button>
-                      </div>
-                    ) : (
-                      <div>
-                        <button onClick={() => handleEdit(inquiry._id)}>Edit</button>
-                        <button onClick={() => deleteInquiry(inquiry._id)}>Delete</button>
-                      </div>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </div>
-    );
-  };
-  
-  export default UserInquiries;
-  
+                      onChange={(e) => setEditData({ ...editData, inquiryDescription: e.target.value })}
+                    />
+                  ) : (
+                    inquiry.inquiryDescription
+                  )}
+                </td>
+                <td>
+                  {inquiry.isResolved ? (
+                    <span>Resolved</span>
+                  ) : (
+                    <span>Not Resolved</span>
+                  )}
+                </td>
+                <td>
+                  {editingId === inquiry._id ? (
+                    <div class="btn-group">
+                      <button class="btn btn-primary" onClick={() => updateInquiry(inquiry._id)}>Save</button>
+                      <button class="btn btn-secondary" onClick={cancelEdit}>Cancel</button>
+                    </div>
+                  ) : (
+                    <div class="btn-group">
+                      <button class="btn btn-info" onClick={() => handleEdit(inquiry._id)}>Edit</button>
+                      <button class="btn btn-danger" onClick={() => deleteInquiry(inquiry._id)}>Delete</button>
+                    </div>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
+  );
+};
+
+export default UserInquiries;
+
