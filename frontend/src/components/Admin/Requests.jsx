@@ -14,7 +14,7 @@ const Requests = (props) => (
     <td> {props.Requests.startdate.substring(0, 10)}</td>
     <td> {props.Requests.days}</td>
     <td>
-      <Link to={"/packages"}> CREATE </Link>
+      <Link to={"/package"}> CREATE </Link>
     </td>
   </tr>
 );
@@ -112,7 +112,7 @@ export default class Requests_Admin extends Component {
                   <td>{props.startdate.substring(0, 10)}</td>
                   <td className="tbody">{props.days}</td>
                   <td className="tbody">
-                    <Link to="/packages">
+                    <Link to="/package">
                       {" "}
                       <Button
                         variant="contained"
