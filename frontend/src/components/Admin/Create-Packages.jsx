@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../Payment/Header";
 import { TextField } from "@mui/material";
 import Col from "react-bootstrap/Col";
@@ -6,8 +6,24 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import "./admin-styles.css";
+import axios from "axios";
 
-const Packages = () => {
+const Packages = () =>
+{
+  //Get Request
+  const [request, setRequest] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/requests/")
+      .then((response) => {
+        setRequest(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [] );
+  
   return (
     <div>
       <div className="background-pic"></div>
@@ -52,7 +68,7 @@ const Packages = () => {
             variant="outlined"
             style={{
               marginRight: "1rem",
-              width: 345,
+              width: 375,
             }}
           />
           <TextField
@@ -66,7 +82,7 @@ const Packages = () => {
             variant="outlined"
             style={{
               marginRight: "1rem",
-              width: 407,
+              width: 375,
             }}
           />
           <TextField
