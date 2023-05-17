@@ -21,6 +21,7 @@ import { useEffect } from 'react';
 import Inquiry from './pages/package/Inquiry';
 import UserInquiries from './pages/package/UserInquiries';
 import AdminInquiries from './pages/package/AdminInquiries';
+import RoleProtected from './pages/RoleProtected';
 
 function App() {
 
@@ -35,7 +36,7 @@ function App() {
   const [cartTotal, setCartTotal] = useState("");
   const [orderData, setOrderData] = useState([]);
 
-  const [isSeller, setIsSeller] = useState();
+  const [isAdmin, setIsAdmin] = useState();
   const [isCustomer, setIsCustomer] = useState(true);
 
   const checkLogin = async () => {
@@ -71,7 +72,7 @@ function App() {
             "username"
           )}`
         );
-        setIsSeller(response.isSeller);
+        setIsAdmin(response.isAdmin);
         console.log(response);
       } catch (error) {
         console.error(error.message);
@@ -109,27 +110,49 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <div>
-          <Navbar setStatus={setStatus} status={status} logOut={logOut} />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/loyalty-reward" element={<LoyaltyDB />} />
-            <Route path="/travel-plan" element={<TravelPlan />} />
-            <Route path="/payment" element={<Payment />} />
-            <Route path="/profile" element={<MyProfile />} />
-            <Route path="/package/:id" element={<SinglePackage />} />
-            <Route path="/blogs" element={<Blog />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
 
-            <Route path="/user-inquiry" element={<UserInquiries />} />
-            <Route path="/admin-inquiry" element={<AdminInquiries />} />
-            <Route path="/feedback" element={<Feedback />} />
-            <Route path="/travel-places" element={<TravelPlace />} />
-            <Route path="/new-places" element={<NewPlaces />} />
-            <Route path="/packages" element={<Packages />} />
-          </Routes>
-        </div>
+      <div>
+      <Navbar
+      setStatus={setStatus}
+      status={status}
+      logOut={logOut}
+      isAdmin={isAdmin}
+      />
+      <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/loyalty-reward" element={<LoyaltyDB />} />
+          <Route path="/travel-plan" element={<TravelPlan />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/profile" element={<MyProfile />} />
+          <Route path="/package/:id" element={<SinglePackage />} />
+          <Route path="/blogs" element={<Blog />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+
+          <Route path='/user-inquiry'
+              element={
+                <RoleProtected isAdmin={!isAdmin}>
+                  <UserInquiries />
+                </RoleProtected>
+              }
+            />
+
+          <Route path='/admin-inquiry'
+              element={
+                <RoleProtected isAdmin={!isAdmin}>
+                  <AdminInquiries />
+                </RoleProtected>
+              }
+            />
+          
+          
+          <Route path="/feedback" element={<Feedback />} />
+          <Route path="/travel-places" element={<TravelPlace />} />
+          <Route path="/new-places" element={<NewPlaces />} />
+
+        </Routes>
+      </div>
+        
       </BrowserRouter>
     </div>
   );

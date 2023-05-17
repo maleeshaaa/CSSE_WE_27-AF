@@ -16,12 +16,6 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    isCustomer:{
-        type: Boolean
-    },
-    isSeller:{
-        type: Boolean
-    },
     isAdmin:{
         type: Boolean
     },
