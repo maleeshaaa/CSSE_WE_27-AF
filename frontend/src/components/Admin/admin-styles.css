@@ -130,3 +130,28 @@
 .vd_successmessage{
   text-align: center;
 }
+
+/* Package Create */
+.package-create-main-form {
+  margin-top: -660px;
+  margin-left: 30px;
+  width: fit-content;
+}
+
+.package_form_button{
+  padding: 0.5rem 2.8rem;
+}
+
+.package_form_button_div{
+  margin-left: 1025px;
+}
+
+.background-pic{
+  background-image: url("../../images/adams-peak.jpg");
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-position: right;
+  width: 290px;
+  margin-left: 1229px;
+  margin-top: -32px;
+}
