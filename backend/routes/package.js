@@ -1,7 +1,5 @@
 import { Router } from "express";
-
 import Package from "../models/Package.js";
-
 
 const router = Router();
 
@@ -21,7 +19,7 @@ router.post("/", async (req, res) => {
   
       await item.save();
   
-      res.json({ msg: "Package added successfully" });
+      res.json({ msg: "Package added successfully..." });
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server Error");
@@ -48,28 +46,19 @@ router.post("/", async (req, res) => {
     }
   });
 
-  
-
 router.post("/check-fields", async (req, res) => {
   try {
     const { userid, id } = req.body;
-
-    
     const record = await Package.findOne({ userid:userid, _id:id });
 
     if (record) {
-      
       res.json({ message: "Record exists.", status: true, data: record });
     } else {
-      
       res.json({ message: "Record does not exist.", status: false });
     }
   } catch (error) {
     res.status(500).json({ error: "Server error" });
   }
 });
-
-
-
 
 export default router;

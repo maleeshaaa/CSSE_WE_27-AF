@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import Feedback from './pages/travelPlaces/feedback';
 import TravelPlace from './pages/travelPlaces/places';
 import NewPlaces from './pages/travelPlaces/newplaces';
+import Packages from './components/Admin/Create-Packages';
 import { Context } from "./Context";
 import Navbar from "./Navbar";
 import Payment from './pages/payment/payment'
@@ -109,6 +110,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+
       <div>
       <Navbar
       setStatus={setStatus}

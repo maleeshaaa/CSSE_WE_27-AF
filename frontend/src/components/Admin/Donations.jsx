@@ -23,7 +23,7 @@ const Donations = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -58,11 +58,14 @@ const Donations = () => {
 
   //delete Donations
   const deleteDonation = (id) => {
+    const donationToDelete = donate.find((donation) => donation._id === id);
+    if (window.confirm("Are you sure you want to delete this donation?")) {
     axios.delete(`http://localhost:8080/donations/${id}`).then((res) => {
       const del = donate.filter((donate) => id !== donate._id);
       setDonate(del);
-      setSuccessMessage("Donation deleted successfully!");
+      setSuccessMessage(`${donationToDelete.donateName} Donation deleted successfully!`);
     });
+  }
   };
 
   return (
