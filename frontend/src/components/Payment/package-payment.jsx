@@ -1,4 +1,5 @@
-import * as React from "react";
+import React, {useState, useEffect} from "react";
+import axios from "axios";
 import Header from "../Payment/Header";
 import Box from "@mui/material/Box";
 import * as formik from "formik";
@@ -8,7 +9,45 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import "./payment-style.css";
 
-const Settings = () => {
+const Settings = () =>
+{
+  //get user details
+  const [userDetails, setUserDetails] = useState({});
+  const uid = localStorage.getItem("username");
+
+  const loadUserData = async () => {
+    axios({
+      method: "post",
+      url: "http://localhost:8080/api/get-user-details",
+      data: {
+        username: uid,
+      },
+    }).then((data) => {
+      console.log(data.data);
+      setUserDetails(data.data);
+    });
+  };
+
+  useEffect(() => {
+    loadUserData();
+  }, []);
+
+  //get packages
+  const [packages, setPackages] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/api/package")
+      .then((response) => {
+        setPackages( response.data );
+        console.log( response.data );
+      })
+
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   // validation
   const { Formik } = formik;
   const schema = yup.object().shape({
@@ -49,6 +88,7 @@ const Settings = () => {
           <Form noValidate onSubmit={handleSubmit}>
             <Row className="mb-3">
               <Form.Group as={Col} md="4" controlId="validationFormik01">
+                <input type="hidden" name="userId" value={userDetails.id} />
                 <Form.Label className="fromLabel">Name on card</Form.Label>
                 <Form.Control
                   type="text"

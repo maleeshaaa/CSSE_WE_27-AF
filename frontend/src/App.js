@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import Feedback from './pages/travelPlaces/feedback';
 import TravelPlace from './pages/travelPlaces/places';
 import NewPlaces from './pages/travelPlaces/newplaces';
+import Packages from './components/Admin/Create-Packages';
 import { Context } from "./Context";
 import Navbar from "./Navbar";
 import Payment from './pages/payment/payment'
@@ -108,32 +109,27 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <div>
-      <Navbar
-      setStatus={setStatus}
-      status={status}
-      logOut={logOut}
-      />
-      <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/loyalty-reward" element={<LoyaltyDB />} />
-          <Route path="/travel-plan" element={<TravelPlan />} />
-          <Route path="/payment" element={<Payment />} />
-          <Route path="/profile" element={<MyProfile />} />
-          <Route path="/package/:id" element={<SinglePackage />} />
-          <Route path="/blogs" element={<Blog />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+        <div>
+          <Navbar setStatus={setStatus} status={status} logOut={logOut} />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/loyalty-reward" element={<LoyaltyDB />} />
+            <Route path="/travel-plan" element={<TravelPlan />} />
+            <Route path="/payment" element={<Payment />} />
+            <Route path="/profile" element={<MyProfile />} />
+            <Route path="/package/:id" element={<SinglePackage />} />
+            <Route path="/blogs" element={<Blog />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
 
-          <Route path="/user-inquiry" element={<UserInquiries />} />
-          <Route path="/admin-inquiry" element={<AdminInquiries />} />
-          <Route path="/feedback" element={<Feedback />} />
-          <Route path="/travel-places" element={<TravelPlace />} />
-          <Route path="/new-places" element={<NewPlaces />} />
-
-        </Routes>
-      </div>
-        
+            <Route path="/user-inquiry" element={<UserInquiries />} />
+            <Route path="/admin-inquiry" element={<AdminInquiries />} />
+            <Route path="/feedback" element={<Feedback />} />
+            <Route path="/travel-places" element={<TravelPlace />} />
+            <Route path="/new-places" element={<NewPlaces />} />
+            <Route path="/packages" element={<Packages />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     </div>
   );

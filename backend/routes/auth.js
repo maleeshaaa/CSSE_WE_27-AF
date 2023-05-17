@@ -72,6 +72,7 @@ router.post("/get-user-details", async (req, res) => {
             isCustomer: user.isCustomer,
             isSeller: user.isSeller,
             isAdmin: user.isAdmin,
+            id: user._id,
             messaage: "User is there",
         });
     }
