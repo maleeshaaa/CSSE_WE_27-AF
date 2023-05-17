@@ -63,7 +63,7 @@ const SinglePackage = () => {
     event.preventDefault();
     
     const inquiryData = {
-      userId: "123456",
+      userId: localStorage.getItem("username"),
       inquiryType: inquiryType,
       packageId: id,
       inquiryTitle: inquiryTitle,

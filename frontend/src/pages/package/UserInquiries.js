@@ -12,7 +12,7 @@ const UserInquiries = () => {
 
   const fetchInquiries = async () => {
     try {
-      const userId = "123456"; // Replace with the actual user ID
+      const userId = localStorage.getItem("username"); // Replace with the actual user ID
       const response = await axios.get(`http://localhost:8080/api/inquiry/inquiries/${userId}`);
       const { data } = response;
       setInquiries(data);
