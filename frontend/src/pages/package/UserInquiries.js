@@ -66,6 +66,7 @@ const UserInquiries = () => {
         <table className="table">
           <thead>
             <tr>
+              <th>Package Id</th>
               <th>Heading</th>
               <th>Type</th>
               <th>Message</th>
@@ -80,6 +81,17 @@ const UserInquiries = () => {
                   {editingId === inquiry._id ? (
                     <input
                       type="text"
+                      value={editData.packageId}
+                      disabled
+                    />
+                  ) : (
+                    inquiry.packageId
+                  )}
+                </td>
+                <td>
+                  {editingId === inquiry._id ? (
+                    <input
+                      type="text"
                       value={editData.inquiryTitle}
                       onChange={(e) => setEditData({ ...editData, inquiryTitle: e.target.value })}
                     />
@@ -87,6 +99,7 @@ const UserInquiries = () => {
                     inquiry.inquiryTitle
                   )}
                 </td>
+
                 <td>
                   {editingId === inquiry._id ? (
                     <input
@@ -130,7 +143,6 @@ const UserInquiries = () => {
                     </div>
                   )}
                 </td>
-
               </tr>
             ))}
           </tbody>

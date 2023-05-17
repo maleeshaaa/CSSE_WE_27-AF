@@ -13,6 +13,7 @@ const SinglePackage = () => {
   const [inquiryDescription, setInquiryDescription] = useState('');
 
 
+
   
 
   useEffect(() => {
@@ -46,6 +47,10 @@ const SinglePackage = () => {
     setInquiryType(event.target.value);
   };
 
+
+
+  
+
   const handleInquiryTitleChange = (event) => {
     setInquiryTitle(event.target.value);
   };
@@ -60,6 +65,7 @@ const SinglePackage = () => {
     const inquiryData = {
       userId: "123456",
       inquiryType: inquiryType,
+      packageId: id,
       inquiryTitle: inquiryTitle,
       inquiryDescription: inquiryDescription,
     };
@@ -100,6 +106,10 @@ const SinglePackage = () => {
                   <option value="Technical">Technical Inquiry</option>
                   <option value="Billing">Billing Inquiry</option>
                 </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="heading">Package Id:</label>
+                <input className="form-control" type="text" id="heading" value={id} disabled/>
               </div>
               <div className="form-group">
                 <label htmlFor="heading">Heading:</label>

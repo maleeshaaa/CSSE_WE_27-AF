@@ -137,7 +137,7 @@ function App() {
 
           <Route path='/admin-inquiry'
               element={
-                <RoleProtected isAdmin={isAdmin}>
+                <RoleProtected isAdmin={!isAdmin}>
                   <AdminInquiries />
                 </RoleProtected>
               }
