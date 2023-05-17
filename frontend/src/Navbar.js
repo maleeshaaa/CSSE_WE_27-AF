@@ -12,7 +12,7 @@ const { Link } = require("react-router-dom");
 
 const API_BASE = "http://localhost:8080";
 
-const NavBar = ({ setStatus, status, logOut }) => {
+const NavBar = ({ setStatus, status, logOut, isAdmin }) => {
   const navigate = useNavigate();
 
   return (
@@ -42,21 +42,30 @@ const NavBar = ({ setStatus, status, logOut }) => {
           </DropdownButton> */}
           {status ? (
             <Link
-              to="/my-account"
+              to="/profile"
               style={{ padding: "10px", textDecoration: "none", color: "#000" }}
             >
               Profile
             </Link>
           ) : null}
 
-          {/* {isSeller ? (
+          {isAdmin ? (
             <Link
-              to="/add-food"
+              to="/admin-inquiry"
               style={{ padding: "10px", textDecoration: "none", color: "#000" }}
             >
-              Add Food
+              Admin Inquiry
             </Link>
-          ) : null} */}
+          ) : (
+            <Link
+              to="/user-inquiry"
+              style={{ padding: "10px", textDecoration: "none", color: "#000" }}
+            >
+              User Inquiry
+            </Link>
+          )} 
+
+       
 
           <Link
             to="/loyalty-reward"

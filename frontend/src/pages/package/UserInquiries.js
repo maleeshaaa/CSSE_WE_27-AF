@@ -58,7 +58,8 @@ const UserInquiries = () => {
 
   return (
     <div>
-      <h1>Sent Inquiries</h1>
+      <h1 class="display-4 text-center bg-primary text-white p-3">Sent Inquiries</h1>
+
       {inquiries.length === 0 ? (
         <p>No inquiries sent.</p>
       ) : (
@@ -103,40 +104,41 @@ const UserInquiries = () => {
                     <input
                       type="text"
                       value={editData.inquiryDescription}
-                      onChange=                      {(e) => setEditData({ ...editData, inquiryDescription: e.target.value })}
-                      />
-                    ) : (
-                      inquiry.inquiryDescription
-                    )}
-                  </td>
-                  <td>
-                    {inquiry.isResolved ? (
-                      <span>Resolved</span>
-                    ) : (
-                      <span>Not Resolved</span>
-                    )}
-                  </td>
-                  <td>
-                    {editingId === inquiry._id ? (
-                      <div>
-                        <button onClick={() => updateInquiry(inquiry._id)}>Save</button>
-                        <button onClick={cancelEdit}>Cancel</button>
-                      </div>
-                    ) : (
-                      <div>
-                        <button onClick={() => handleEdit(inquiry._id)}>Edit</button>
-                        <button onClick={() => deleteInquiry(inquiry._id)}>Delete</button>
-                      </div>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </div>
-    );
-  };
-  
-  export default UserInquiries;
-  
+                      onChange={(e) => setEditData({ ...editData, inquiryDescription: e.target.value })}
+                    />
+                  ) : (
+                    inquiry.inquiryDescription
+                  )}
+                </td>
+                <td>
+                  {inquiry.isResolved ? (
+                    <span>Resolved</span>
+                  ) : (
+                    <span>Not Resolved</span>
+                  )}
+                </td>
+                <td>
+                  {editingId === inquiry._id ? (
+                    <div class="btn-group">
+                      <button class="btn btn-primary" onClick={() => updateInquiry(inquiry._id)}>Save</button>
+                      <button class="btn btn-secondary" onClick={cancelEdit}>Cancel</button>
+                    </div>
+                  ) : (
+                    <div class="btn-group">
+                      <button class="btn btn-info" onClick={() => handleEdit(inquiry._id)}>Edit</button>
+                      <button class="btn btn-danger" onClick={() => deleteInquiry(inquiry._id)}>Delete</button>
+                    </div>
+                  )}
+                </td>
+
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
+  );
+};
+
+export default UserInquiries;
+

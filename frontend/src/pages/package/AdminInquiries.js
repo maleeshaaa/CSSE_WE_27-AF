@@ -31,7 +31,7 @@ const AdminInquiries = () => {
 
   return (
     <div>
-      <h1>Inquiries</h1>
+      <h1 class="display-4 text-center bg-primary text-white p-3">Inquiries</h1>
       {inquiries.length === 0 ? (
         <p>No inquiries received.</p>
       ) : (
@@ -56,20 +56,23 @@ const AdminInquiries = () => {
                 <td>{inquiry.inquiryType}</td>
                 <td>{inquiry.inquiryDescription}</td>
                 <td>{inquiry.addedDate}</td>
-                <td>{inquiry.isResolved ? (
-                    <span role="img" aria-label="Resolved">
-                      &#x2714;
-                    </span>
-                  ) : (
-                    <span role="img" aria-label="Unresolved">
-                      &#x2716;
-                    </span>
-                  )}</td>
                 <td>
-                  <button onClick={() => handleToggleResolved(inquiry._id, inquiry.isResolved)}>
-                    {inquiry.isResolved ? "Mark Unresolved" : "Mark Resolved"}
-                  </button>
-                </td>
+  {inquiry.isResolved ? (
+    <span class="text-success" role="img" aria-label="Resolved">
+      &#x2714;
+    </span>
+  ) : (
+    <span class="text-danger" role="img" aria-label="Unresolved">
+      &#x2716;
+    </span>
+  )}
+</td>
+<td>
+  <button class="btn btn-primary" onClick={() => handleToggleResolved(inquiry._id, inquiry.isResolved)}>
+    {inquiry.isResolved ? "Mark Unresolved" : "Mark Resolved"}
+  </button>
+</td>
+
               </tr>
             ))}
           </tbody>
