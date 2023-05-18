@@ -90,7 +90,7 @@ export default function Redeem({ points }) {
   };
 
   return (
-    <div className="cards_styles color_div card_flex">
+    <div className="cards_styles color_div card_flex_loyalty">
       {vouchers.map((voucher) => (
         <div key={voucher._id}>
           <div className="card_flex">
