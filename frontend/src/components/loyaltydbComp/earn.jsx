@@ -12,7 +12,7 @@ export default function Earn() {
 
   return (
     <div>
-      <div className="cards_styles color_div card_flex">
+      <div className="cards_styles color_div card_flex_loyalty">
         <div className="card_flex">
           {/* Feedback */}
           <div>
@@ -25,7 +25,11 @@ export default function Earn() {
                   create enchanting adventures that exceed expectations!
                   <br />
                   <br />
-                  <Button className="button_styles">Give Feedback</Button>
+                  <Button className="button_styles">
+                  <Link className="link_path_button" to="/feedback">
+                    Give Feedback
+                  </Link>
+                  </Button>
                 </ListGroup.Item>
               </ListGroup>
             </Card>
@@ -43,7 +47,7 @@ export default function Earn() {
                   <br />
                   <br />
                   <Button className="button_styles">
-                    <Link className="link_path" to="/blogs">
+                    <Link className="link_path_button" to="/blogs">
                       Post a Blog
                     </Link>
                   </Button>

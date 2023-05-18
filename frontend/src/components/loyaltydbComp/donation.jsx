@@ -91,7 +91,7 @@ export default function Donation() {
   };
 
   return (
-    <div className="cards_styles color_div card_flex">
+    <div className="cards_styles color_div card_flex_loyalty">
       {donate.map((donate) => (
         <div key={donate._id}>
           <div className="card_flex">
