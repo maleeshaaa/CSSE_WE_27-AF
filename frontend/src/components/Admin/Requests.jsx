@@ -11,7 +11,7 @@ const Requests = (props) => (
     <td> {props.Requests.userid}</td>
     <td> {props.Requests.province}</td>
     <td> {props.Requests.districts}</td>
-    <td> {props.Requests.startdate}</td>
+    <td> {props.Requests.date}</td>
     <td> {props.Requests.days}</td>
     <td>
       <Link to={"/packages/" + props.Requests._id}> CREATE </Link>
@@ -109,7 +109,7 @@ export default class Requests_Admin extends Component {
                   <td>{props.userid}</td>
                   <td>{props.province}</td>
                   <td>{props.districts}</td>
-                  <td>{props.startdate}</td>
+                  <td>{props.date}</td>
                   <td className="tbody">{props.days}</td>
                   <td className="tbody">
                     <Link to={"/packages/" + props._id}>
