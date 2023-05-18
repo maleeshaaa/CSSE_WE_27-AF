@@ -1,115 +1,137 @@
 import React from "react";
 import { Box, Button } from "@mui/material";
 import Header from "../Payment/Header";
+import axios from "axios";
+import {Component} from "react";
+import { Link } from "react-router-dom";
 
-const Requests = () => {
-  return (
-    <Box m="0.0rem 0.0rem">
-      <Header title="REQUESTS" subtitle="Travel Package Requests" />
-      <div className="container">
-        <table className="table">
-          <thead className="thead-light">
-            <tr>
-              <th>Request ID</th>
-              <th>User ID</th>
-              <th>Province</th>
-              <th>District</th>
-              <th>Date</th>
-              <th className="tbody">No of Days</th>
-              <th className="tbody">Package</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>633e3322fe649f9b22de19ef</td>
-              <td>64569c01d4d5180affb57eb3</td>
-              <td>Central</td>
-              <td>Kandy, Matale</td>
-              <td>2023-05-15</td>
-              <td className="tbody">5</td>
-              <td className="tbody">
-                <Button
-                  variant="contained"
-                  style={{
-                    fontSize: "0.9rem",
-                    fontWeight: 500,
-                    fontFamily: "Lucida Sans",
-                  }}
-                >
-                  CREATE
-                </Button>
-              </td>
-            </tr>
-          </tbody>
-          {/* <tbody>
-            <tr>
-              <td>63701d74f03239bef0000150</td>
-              <td>64788df4bff785240b000075</td>
-              <td>Southern</td>
-              <td>Galle</td>
-              <td>2023-06-07</td>
-              <td className="tbody">3</td>
-              <td className="tbody">
-                <Button
-                  variant="contained"
-                  style={{
-                    fontSize: "0.9rem",
-                    fontWeight: 500,
-                    fontFamily: "Lucida Sans",
-                  }}
-                >
-                  CREATE
-                </Button>
-              </td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr>
-              <td>633e3322fe649f9b22de1912</td>
-              <td>64569c01d4d5180affb57fc7</td>
-              <td>North Central</td>
-              <td>Anuradhapura, Polonnaruwa</td>
-              <td>2023-06-28</td>
-              <td className="tbody">7</td>
-              <td className="tbody">
-                <Button
-                  variant="contained"
-                  style={{
-                    fontSize: "0.9rem",
-                    fontWeight: 500,
-                    fontFamily: "Lucida Sans",
-                  }}
-                >
-                  CREATE
-                </Button>
-              </td>
-            </tr>
-          </tbody> */}
-          {/* <tbody>
-            {this.state.Customers.map((props) => (
+const Requests = (props) => (
+  <tr>
+    <td> {props.Requests._id}</td>
+    <td> {props.Requests.userid}</td>
+    <td> {props.Requests.province}</td>
+    <td> {props.Requests.districts}</td>
+    <td> {props.Requests.startdate.substring(0, 10)}</td>
+    <td> {props.Requests.days}</td>
+    <td>
+      <Link to={"/packages"}> CREATE </Link>
+    </td>
+  </tr>
+);
+
+export default class Requests_Admin extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      Requests: [],
+    };
+  }
+
+  componentDidMount() {
+    axios
+      .get("http://localhost:8080/requests/")
+      .then((response) => {
+        this.setState({ Requests: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  getPosts() {
+    axios
+      .get("http://localhost:8080/requests/")
+      .then((response) => {
+        this.setState({ Requests: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  RequestsList() {
+    return this.state.Requests.map((currentRequests) => {
+      return <Requests Requests={currentRequests} key={currentRequests._id} />;
+    });
+  }
+
+  filterData(Requests, searchKey) {
+    this.setState({
+      Requests: this.state.Requests.filter((el) => (el.userid = searchKey)),
+    });
+  }
+
+  handleSearchArea = (e) => {
+    const searchKey = e.currentTarget.value;
+
+    axios.get("http://localhost:8080/requests/").then((response) => {
+      const resultt = response.data;
+      const result = resultt.filter((props) =>
+        props.userid.includes(searchKey)
+      );
+
+      this.setState({ Requests: result });
+    });
+  };
+
+  render() {
+    return (
+      <Box m="0.0rem 0.0rem">
+        <Header title="REQUESTS" subtitle="Travel Package Requests" />
+        <div className="container2">
+          <div className="col-lg-3 mt-2 mb-2">
+            <input
+              className="form-control"
+              type="search"
+              placeholder="Search by UserID"
+              name="searchQuery"
+              onChange={this.handleSearchArea}
+            ></input>
+          </div>
+          <br />
+          <table className="table">
+            <thead className="thead-light">
               <tr>
-                <td>{props._id}</td>
-                <td>{props.name}</td>
-                <td>{props.email}</td>
-                <td>{props.phone}</td>
-                <td>{props.role}</td>
-                <td>
-                  <a
-                    href=""
-                    onClick={() => {
-                      this.removeCustomer(props._id);
-                    }}
-                  >
-                    <DeleteOutlineIcon className="deleteIcon" />
-                  </a>
-                </td>
+                <th>Request ID</th>
+                <th>User ID</th>
+                <th>Province</th>
+                <th>Districts</th>
+                <th>Date</th>
+                <th className="tbody">No of Days</th>
+                <th className="tbody">Package</th>
               </tr>
-            ))}
-          </tbody> */}
-        </table>
-      </div>
-    </Box>
-  );
-};
-
-export default Requests;
+            </thead>
+            <tbody>
+              {this.state.Requests.map((props) => (
+                <tr>
+                  <td>{props._id}</td>
+                  <td>{props.userid}</td>
+                  <td>{props.province}</td>
+                  <td>{props.districts}</td>
+                  <td>{props.startdate.substring(0, 10)}</td>
+                  <td className="tbody">{props.days}</td>
+                  <td className="tbody">
+                    <Link to="/packages">
+                      {" "}
+                      <Button
+                        variant="contained"
+                        style={{
+                          fontSize: "0.9rem",
+                          fontWeight: 500,
+                          fontFamily: "Lucida Sans",
+                        }}
+                      >
+                        CREATE
+                      </Button>
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Box>
+    );
+  }
+}

@@ -25,6 +25,28 @@ router.route("/add").post((req, res) => {
         .catch((err) => {
         console.log(err);
         });
+} );
+
+//get all requests
+router.route("/").get((req, res) => {
+  Request.find()
+    .then((requests) => {
+      res.json(requests);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+//get specific payment
+router.route("/:id").get((req, res) => {
+  Request.findById(req.params.id)
+    .then((request) => {
+      res.json(request);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 export default router;

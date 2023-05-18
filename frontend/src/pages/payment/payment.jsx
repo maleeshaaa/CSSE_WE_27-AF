@@ -1,11 +1,13 @@
 import React from "react";
+import axios from "axios";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
 import Footer from "../../components/Home/footer.jsx";
-import Payment from "../../components/Payment/package-payment.jsx";
+import PaymentDetails from "../../components/Payment/package-payment.jsx";
 import "./payment.css";
 
-const payment = () => {
+const Payment = () => {
+  
   return (
     <div>
       <div>
@@ -13,7 +15,7 @@ const payment = () => {
           {/* Payment Form */}
           <Row>
             <div className="payment-form">
-              <Payment />
+              <PaymentDetails />
             </div>
             <div className="package-card">
               <Card style={{ width: "35rem", height: "31rem" }}>
@@ -23,7 +25,7 @@ const payment = () => {
                     fontWeight: "700",
                     fontFamily: "monospace",
                   }}
-                >
+                  >
                   TRAVEL PACKAGE
                 </Card.Header>
                 <Card.Body>
@@ -91,4 +93,4 @@ const payment = () => {
   );
 };
 
-export default payment;
+export default Payment;

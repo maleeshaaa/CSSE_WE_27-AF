@@ -11,6 +11,10 @@ const inquirySchema = new Schema({
         type: String,
         required: true
     },
+    packageId: {
+        type: String,
+        required: true
+    },
     inquiryTitle: {
         type: String,
         required: true

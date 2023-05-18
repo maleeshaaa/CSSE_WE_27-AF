@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import Feedback from './pages/travelPlaces/feedback';
 import TravelPlace from './pages/travelPlaces/places';
 import NewPlaces from './pages/travelPlaces/newplaces';
+import Packages from './components/Admin/Create-Packages';
 import { Context } from "./Context";
 import Navbar from "./Navbar";
 import Payment from './pages/payment/payment'
@@ -20,6 +21,7 @@ import { useEffect } from 'react';
 import Inquiry from './pages/package/Inquiry';
 import UserInquiries from './pages/package/UserInquiries';
 import AdminInquiries from './pages/package/AdminInquiries';
+import RoleProtected from './pages/RoleProtected';
 
 function App() {
 
@@ -34,8 +36,10 @@ function App() {
   const [cartTotal, setCartTotal] = useState("");
   const [orderData, setOrderData] = useState([]);
 
-  const [isSeller, setIsSeller] = useState();
+  const [isAdmin, setIsAdmin] = useState();
   const [isCustomer, setIsCustomer] = useState(true);
+
+  const [points, setPoints] = useState(0);
 
   const checkLogin = async () => {
     const user = {
@@ -70,7 +74,8 @@ function App() {
             "username"
           )}`
         );
-        setIsSeller(response.isSeller);
+        setIsAdmin(response.isAdmin);
+        setPoints(response.userPoints);
         console.log(response);
       } catch (error) {
         console.error(error.message);
@@ -108,11 +113,13 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+
       <div>
       <Navbar
       setStatus={setStatus}
       status={status}
       logOut={logOut}
+      isAdmin={isAdmin}
       />
       <Routes>
           <Route path="/" element={<Home />} />
@@ -125,8 +132,23 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
 
-          <Route path="/user-inquiry" element={<UserInquiries />} />
-          <Route path="/admin-inquiry" element={<AdminInquiries />} />
+          <Route path='/user-inquiry'
+              element={
+                <RoleProtected isAdmin={!isAdmin}>
+                  <UserInquiries />
+                </RoleProtected>
+              }
+            />
+
+          <Route path='/admin-inquiry'
+              element={
+                <RoleProtected isAdmin={!isAdmin}>
+                  <AdminInquiries />
+                </RoleProtected>
+              }
+            />
+          
+          
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/travel-places" element={<TravelPlace />} />
           <Route path="/new-places" element={<NewPlaces />} />

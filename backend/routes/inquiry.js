@@ -6,8 +6,8 @@ const router = express.Router();
 // Create a new inquiry
 router.post("/inquiries", async (req, res) => {
   try {
-    const { userId, inquiryType, inquiryTitle, inquiryDescription } = req.body;
-    const inquiry = new Inquiry({ userId, inquiryType, inquiryTitle, inquiryDescription });
+    const { userId, inquiryType, packageId, inquiryTitle, inquiryDescription } = req.body;
+    const inquiry = new Inquiry({ userId, inquiryType, packageId, inquiryTitle, inquiryDescription });
     const savedInquiry = await inquiry.save();
     res.status(201).json(savedInquiry);
   } catch (error) {
@@ -55,10 +55,10 @@ router.get("/inquiries/:id", async (req, res) => {
 // Update an inquiry
 router.put("/inquiries/:id", async (req, res) => {
   try {
-    const { userId, inquiryType, inquiryTitle, inquiryDescription, addedDate } = req.body;
+    const { userId, inquiryType, packageId, inquiryTitle, inquiryDescription, addedDate } = req.body;
     const updatedInquiry = await Inquiry.findByIdAndUpdate(
       req.params.id,
-      { userId, inquiryType, inquiryTitle, inquiryDescription, addedDate },
+      { userId, inquiryType, packageId, inquiryTitle, inquiryDescription, addedDate },
       { new: true }
     );
     if (!updatedInquiry) {
