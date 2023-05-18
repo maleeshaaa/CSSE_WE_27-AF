@@ -149,7 +149,7 @@ function App() {
             <Route path="/feedback" element={<Feedback />} />
             <Route path="/travel-places" element={<TravelPlace />} />
             <Route path="/new-places" element={<NewPlaces />} />
-            <Route path="/package" element={<Packages />} />
+            <Route path="/packages/:id" element={<Packages />} />
           </Routes>
         </div>
       </BrowserRouter>

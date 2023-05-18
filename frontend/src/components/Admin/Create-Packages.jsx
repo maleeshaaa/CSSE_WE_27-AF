@@ -1,29 +1,45 @@
 import React, { useState, useEffect } from "react";
 import Header from "../Payment/Header";
-import { TextField } from "@mui/material";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import Button from "react-bootstrap/Button";
 import "./admin-styles.css";
 import axios from "axios";
+import {useParams} from "react-router-dom";
 
-const Packages = () =>
-{
+const Packages = () => {
+  //Create Packages
+  const [formData, setFormData] = useState({
+    requestid: "",
+    userid: "",
+    package_no: "",
+    price: "",
+    description: "",
+    details: "",
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:8080/api/package/add", formData)
+      .then(res => setFormData(res.data))
+      .catch((err) => console.log(err));
+  };
+
   //Get Request
   const [request, setRequest] = useState([]);
-
+  const { id } = useParams();
   useEffect(() => {
     axios
-      .get("http://localhost:8080/requests/")
+      .get("http://localhost:8080/requests/" + id)
       .then((response) => {
         setRequest(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [] );
-  
+  },);
+
   return (
     <div>
       <div className="background-pic"></div>
@@ -31,91 +47,77 @@ const Packages = () =>
         <Header title="PACKAGES" subtitle="Create new packages for requests" />
         <br />
         <div className="package-form">
-          <TextField
-            disabled
-            id="outlined-disabled"
-            label="Request ID"
-            defaultValue="643e3322fe649f9b22de19ef"
-            // value={}
-            variant="outlined"
-            style={{
-              marginRight: "1rem",
-              width: 375,
-            }}
-          />
-          <TextField
-            disabled
-            id="outlined-disabled"
-            label="User ID"
-            defaultValue="64569c01d4d5180affb57eb3"
-            // value={}
-            variant="outlined"
-            style={{
-              marginRight: "1rem",
-              width: 375,
-            }}
-          />
-          <br />
-          <br />
-          <TextField
-            id="outlined-read-only-input"
-            label="Province"
-            defaultValue="Central"
-            // value={}
-            InputProps={{
-              readOnly: true,
-            }}
-            variant="outlined"
-            style={{
-              marginRight: "1rem",
-              width: 375,
-            }}
-          />
-          <TextField
-            id="outlined-read-only-input"
-            label="District"
-            defaultValue="Kandy, Matale"
-            // value={}
-            InputProps={{
-              readOnly: true,
-            }}
-            variant="outlined"
-            style={{
-              marginRight: "1rem",
-              width: 375,
-            }}
-          />
-          <TextField
-            id="outlined-read-only-input"
-            label="Date"
-            defaultValue="2023-05-15"
-            // value={}
-            InputProps={{
-              readOnly: true,
-            }}
-            variant="outlined"
-            style={{
-              marginRight: "1rem",
-            }}
-          />
-          <TextField
-            id="outlined-read-only-input"
-            label="No of Days"
-            defaultValue="5"
-            // value={}
-            InputProps={{
-              readOnly: true,
-            }}
-            variant="outlined"
-            style={{
-              marginRight: "1rem",
-              width: 150,
-            }}
-          />
-          <br />
+          <Form>
+            <Form.Group
+              as={Row}
+              className="mb-3"
+              controlId="formHorizontalName"
+            >
+              <Form.Label
+                column
+                sm={2}
+                style={{
+                  fontSize: "0.9rem",
+                  fontWeight: 500,
+                  fontFamily: "Lucida Sans",
+                }}
+              >
+                Request ID
+              </Form.Label>
+              <Col sm={10}>
+                <Form.Control
+                  type="text"
+                  value={request._id}
+                  style={{
+                    fontSize: "0.9rem",
+                    fontWeight: 100,
+                    fontFamily: "Lucida Sans",
+                    width: 240,
+                  }}
+                />
+              </Col>
+            </Form.Group>
+            <Form.Group
+              as={Row}
+              className="mb-3"
+              controlId="formHorizontalName"
+            >
+              <Form.Label
+                column
+                sm={2}
+                style={{
+                  fontSize: "0.9rem",
+                  fontWeight: 500,
+                  fontFamily: "Lucida Sans",
+                }}
+              >
+                User ID
+              </Form.Label>
+              <Col sm={10}>
+                <Form.Control
+                  type="text"
+                  value={request.userid}
+                  style={{
+                    fontSize: "0.9rem",
+                    fontWeight: 100,
+                    fontFamily: "Lucida Sans",
+                    width: 240,
+                  }}
+                />
+              </Col>
+            </Form.Group>
+          </Form>
+          <div className="middle-form-div">
+            This traveller has a desire to visit {request.districts}, situated
+            in the {request.province} Province of Sri Lanka, and will be
+            spending {request.days} days there. And from {request.startdate} the
+            journey begins.
+          </div>
           <br />
           <div>
-            <Form>
+            <Form onSubmit={handleSubmit}>
+              <input type="hidden" name="requestid" value={request._id} />
+              <input type="hidden" name="userId" value={request.userid} />
               <Form.Group
                 as={Row}
                 className="mb-3"
@@ -135,6 +137,9 @@ const Packages = () =>
                 <Col sm={10}>
                   <Form.Control
                     type="text"
+                    onChange={(e) =>
+                      setFormData({ ...formData, package_no: e.target.value })
+                    }
                     placeholder="Package Number"
                     style={{
                       fontSize: "0.9rem",
@@ -165,6 +170,9 @@ const Packages = () =>
                 <Col sm={10}>
                   <Form.Control
                     type="text"
+                    onChange={(e) =>
+                      setFormData({ ...formData, price: e.target.value })
+                    }
                     placeholder="Package price in Sri Lankan Rupees (Ex: 3500.00)"
                     style={{
                       fontSize: "0.9rem",
@@ -193,6 +201,9 @@ const Packages = () =>
                     as="textarea"
                     rows={1}
                     placeholder="Enter small description about the package"
+                    onChange={(e) =>
+                      setFormData({ ...formData, description: e.target.value })
+                    }
                     style={{
                       fontSize: "0.9rem",
                       fontWeight: 100,
@@ -219,6 +230,9 @@ const Packages = () =>
                   <Form.Control
                     as="textarea"
                     rows={6}
+                    onChange={(e) =>
+                      setFormData({ ...formData, details: e.target.value })
+                    }
                     placeholder="Enter your package details"
                     style={{
                       fontSize: "0.9rem",
@@ -231,8 +245,7 @@ const Packages = () =>
               </Form.Group>
 
               <div className="package_form_button_div">
-                <Button
-                  variant="primary"
+                <button
                   type="submit"
                   className="package_form_button"
                   style={{
@@ -243,7 +256,7 @@ const Packages = () =>
                   }}
                 >
                   SUBMIT
-                </Button>
+                </button>
               </div>
             </Form>
           </div>
