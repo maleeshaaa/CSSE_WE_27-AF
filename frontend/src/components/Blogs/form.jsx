@@ -12,6 +12,7 @@ export default function Blogform() {
     blogPlaces: "",
     bloggerName: "",
     blogContent: "",
+    username: localStorage.getItem("username")
   });
 
   const { blogName, blogPlaces, bloggerName, blogContent } = formData;
