@@ -18,6 +18,7 @@ import Form from 'react-bootstrap/Form';
 import Button from "react-bootstrap/Button";
 import Checkbox from '@mui/material/Checkbox';
 import ListItemText from '@mui/material/ListItemText';
+import axios from 'axios';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -117,6 +118,18 @@ export default function NewPlaces() {
     const [personName, setPersonName] = React.useState([]);
   const [value, setValue] = React.useState(dayjs('2023-05-07T21:11:54'));
   const districts = provinces.find((p) => p.name === province)?.districts || [];
+  const [days, setDays] = React.useState('');
+
+  //set form data
+  // const [formData, setFormData] = React.useState({
+  //   province: '',
+  //   districts: [],
+  //   date: '',
+  //   days: '',
+  // });
+
+  // const { date, days } = formData;
+
 
   const handleChange = (event) => {
     
@@ -127,8 +140,6 @@ export default function NewPlaces() {
         // On autofill we get a stringified value.
         typeof value === 'string' ? value.split(',') : value,
       );
-      
-
   };
 
 //   const handleDelete = (chipToDelete) => () => {
@@ -143,8 +154,54 @@ export default function NewPlaces() {
     setValue(newValue);
   };
   
+// const handleSubmit = () => {
+//     // Prepare the form data
+//     const formData = {
+//       province,
+//       districts: personName,
+//       date: value.format('YYYY-MM-DD'),
+//       // days: parseInt(days, 10),
+//     };
+
+//     axios
+//       .post("http://localhost:8080/requests/add", formData)
+//       .then((response) => {
+//         // Handle the successful response
+//         console.log(response.data); // You can customize this based on your requirements
+//         alert("Request Added");
+//       })
+//       .catch((error) => {
+//         // Handle the error
+//         console.error('Error:', error);
+//       });
+//   };
 
 
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const response = {
+      province,
+      districts: personName,
+      date: value.format('YYYY-MM-DD'),
+      days: parseInt(days, 10)
+     }
+    // Send a POST request
+    await axios.post("http://localhost:8080/requests/add", response)
+    .then(res => {
+      console.log(response);
+      alert("Request Added");
+  })
+  .catch(err => {
+      console.log(err);
+      alert("Can't add Request");
+  });
+
+  } catch (error) {
+    console.log("Error:", error);
+  }
+};
   
 
   return (
@@ -267,14 +324,14 @@ export default function NewPlaces() {
         <FormControl sx={{ m: 1, width: 570, marginTop:5,marginLeft:0,MarginBottom:15 }}>
         <Form.Label>Number of days</Form.Label>
             <TextField 
-                required
+                // required
                 id="outlined-required"
                 label="Days"
                 // defaultValue="0"
                 placeholder='Enter number of days'
                 />
             </FormControl>
-            <Button type = "submit">Submit</Button>
+            <Button type = "submit" onClick={handleSubmit}>Submit</Button>
         </div>
         
 </div>
