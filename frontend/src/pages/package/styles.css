@@ -1,8 +1,8 @@
 .cards_styles{
-    margin: 4rem 12rem;
+    margin: 4rem 10rem;
 }
 
-.card_flex_loyalty{
+.card_flex{
     display: flex;
     margin: 4rem 2rem;
     display: grid;
@@ -31,14 +31,15 @@
     color: white;
 }
 
-.link_path_button{
+.link_path{
     text-decoration: none;
     color: #fff;
     padding: 0.5rem;
 }
 
-.link_path_button:hover{
+.link_path:hover{
     color: #fff;
+    font-weight: bold;
 }
 
 .redeem_toast{

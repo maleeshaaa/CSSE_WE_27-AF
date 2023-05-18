@@ -14,7 +14,7 @@ const SinglePackage = () => {
 
 
 
-  
+
 
   useEffect(() => {
     const checkPayment = async () => {
@@ -49,7 +49,7 @@ const SinglePackage = () => {
 
 
 
-  
+
 
   const handleInquiryTitleChange = (event) => {
     setInquiryTitle(event.target.value);
@@ -61,7 +61,7 @@ const SinglePackage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+
     const inquiryData = {
       userId: localStorage.getItem("username"),
       inquiryType: inquiryType,
@@ -75,7 +75,7 @@ const SinglePackage = () => {
       setInquiryType('');
       setInquiryTitle('');
       setInquiryDescription('');
-    
+
       // Optionally, hide the form after submission
       setShowForm(false);
       return response.data;
@@ -97,7 +97,7 @@ const SinglePackage = () => {
             Not Satisfied (Make Inquiry)
           </button>
           {showForm && (
-            <form className="form-control" onSubmit={handleSubmit}>
+            <form className="form-control my-4" onSubmit={handleSubmit}>
               <div className="form-group">
                 <label htmlFor="inquiryType">Inquiry Type:</label>
                 <select className="form-control" id="inquiryType" value={inquiryType} onChange={handleInquiryTypeChange}>
@@ -109,7 +109,7 @@ const SinglePackage = () => {
               </div>
               <div className="form-group">
                 <label htmlFor="heading">Package Id:</label>
-                <input className="form-control" type="text" id="heading" value={id} disabled/>
+                <input className="form-control" type="text" id="heading" value={id} disabled />
               </div>
               <div className="form-group">
                 <label htmlFor="heading">Heading:</label>
@@ -120,22 +120,24 @@ const SinglePackage = () => {
                 <textarea className="form-control" id="message" value={inquiryDescription} onChange={handleInquiryDescriptionChange} />
               </div>
 
-              
+
               <button className="btn btn-dark" type="submit">Submit Inquiry</button>
             </form>
 
           )}
         </div>
       ) : (
-        <div>
-          <h1>You don't have access to view this package unless you purchase it</h1>
-          <button type="submit" className="btn btn-dark" style={{ width: '200px' }}>Pay</button>
+        <div className="text-center">
+          <h1 className="mt-5">You don't have access to view this package unless you purchase it</h1>
+          <button type="submit" className="btn btn-dark mt-3" style={{ width: '200px' }}>Pay</button>
           {showForm && (
-            <form>
+            <form className="mt-4">
               {/* Render your form components here */}
             </form>
           )}
         </div>
+
+
       )}
     </div>
   );

@@ -60,5 +60,4 @@ router.route("/add").post((req, res) => {
         console.log(err);
       });
   });
-  
   export default router;

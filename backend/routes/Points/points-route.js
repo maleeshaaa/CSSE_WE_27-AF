@@ -1,5 +1,6 @@
 import { Router } from "express";
 import Points from "../../models/Points/Points.js";
+import User from "../../models/User.js";
 
 const router = Router();
 
@@ -33,5 +34,32 @@ router.route("/").get((req, res) => {
         console.log(err);
       });
   });
+
+
+  router.put('/increment-points/:userId', async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const _id = userId;
+      
+     
+      const user = await User.findOne({ _id });
+  
+      if (!user) {
+        return res.status(404).json({ error: 'Points not found' });
+      }
+  
+      user.userPoints += 100;
+  
+   
+      await user.save();
+  
+      return res.json({ message: 'Points incremented by 100' });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: 'Server error' });
+    }
+  });
+
+  
 
 export default router;

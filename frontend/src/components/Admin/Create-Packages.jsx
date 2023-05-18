@@ -5,40 +5,8 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import "./admin-styles.css";
 import axios from "axios";
-import {useParams} from "react-router-dom";
 
 const Packages = () => {
-  //Create Packages
-  const [formData, setFormData] = useState({
-    requestid: "",
-    userid: "",
-    package_no: "",
-    price: "",
-    description: "",
-    details: "",
-  });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios
-      .post("http://localhost:8080/api/package/add", formData)
-      .then(res => setFormData(res.data))
-      .catch((err) => console.log(err));
-  };
-
-  //Get Request
-  const [request, setRequest] = useState([]);
-  const { id } = useParams();
-  useEffect(() => {
-    axios
-      .get("http://localhost:8080/requests/" + id)
-      .then((response) => {
-        setRequest(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  },);
 
   return (
     <div>
@@ -47,72 +15,90 @@ const Packages = () => {
         <Header title="PACKAGES" subtitle="Create new packages for requests" />
         <br />
         <div className="package-form">
-          <Form>
-            <Form.Group
-              as={Row}
-              className="mb-3"
-              controlId="formHorizontalName"
-            >
-              <Form.Label
-                column
-                sm={2}
-                style={{
-                  fontSize: "0.9rem",
-                  fontWeight: 500,
-                  fontFamily: "Lucida Sans",
-                }}
-              >
-                Request ID
-              </Form.Label>
-              <Col sm={10}>
-                <Form.Control
-                  type="text"
-                  value={request._id}
-                  style={{
-                    fontSize: "0.9rem",
-                    fontWeight: 100,
-                    fontFamily: "Lucida Sans",
-                    width: 240,
-                  }}
-                />
-              </Col>
-            </Form.Group>
-            <Form.Group
-              as={Row}
-              className="mb-3"
-              controlId="formHorizontalName"
-            >
-              <Form.Label
-                column
-                sm={2}
-                style={{
-                  fontSize: "0.9rem",
-                  fontWeight: 500,
-                  fontFamily: "Lucida Sans",
-                }}
-              >
-                User ID
-              </Form.Label>
-              <Col sm={10}>
-                <Form.Control
-                  type="text"
-                  value={request.userid}
-                  style={{
-                    fontSize: "0.9rem",
-                    fontWeight: 100,
-                    fontFamily: "Lucida Sans",
-                    width: 240,
-                  }}
-                />
-              </Col>
-            </Form.Group>
-          </Form>
-          <div className="middle-form-div">
-            This traveller has a desire to visit {request.districts}, situated
-            in the {request.province} Province of Sri Lanka, and will be
-            spending {request.days} days there. And from {request.startdate} the
-            journey begins.
-          </div>
+
+          <TextField
+            disabled
+            id="outlined-disabled"
+            label="Request ID"
+            defaultValue="643e3322fe649f9b22de19ef"
+            // value={}
+            variant="outlined"
+            style={{
+              marginRight: "1rem",
+              width: 375,
+            }}
+          />
+          <TextField
+            disabled
+            id="outlined-disabled"
+            label="User ID"
+            defaultValue="64569c01d4d5180affb57eb3"
+            // value={}
+            variant="outlined"
+            style={{
+              marginRight: "1rem",
+              width: 375,
+            }}
+          />
+          <br />
+          <br />
+          <TextField
+            id="outlined-read-only-input"
+            label="Province"
+            defaultValue="Central"
+            // value={}
+            InputProps={{
+              readOnly: true,
+            }}
+            variant="outlined"
+            style={{
+              marginRight: "1rem",
+              width: 375,
+            }}
+          />
+          <TextField
+            id="outlined-read-only-input"
+            label="District"
+            defaultValue="Kandy, Matale"
+            // value={}
+            InputProps={{
+              readOnly: true,
+            }}
+            variant="outlined"
+            style={{
+              marginRight: "1rem",
+              width: 375,
+            }}
+          />
+          <TextField
+            id="outlined-read-only-input"
+            label="Date"
+            defaultValue="2023-05-15"
+            // value={}
+            InputProps={{
+              readOnly: true,
+            }}
+            variant="outlined"
+            style={{
+              marginRight: "1rem",
+            }}
+          />
+          <TextField
+            id="outlined-read-only-input"
+            label="No of Days"
+            defaultValue="5"
+            // value={}
+            InputProps={{
+              readOnly: true,
+            }}
+            variant="outlined"
+            style={{
+              marginRight: "1rem",
+              width: 150,
+            }}
+          />
+          <br />
+
           <br />
           <div>
             <Form onSubmit={handleSubmit}>

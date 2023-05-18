@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import BannerComponent from "./Banner";
+import InquiryBanner from "../../images/inquiryBanner.jpg";
+import Giphy from "../../images/giphy.gif";
+
 
 const UserInquiries = () => {
   const [inquiries, setInquiries] = useState([]);
@@ -34,6 +38,7 @@ const UserInquiries = () => {
     const inquiry = inquiries.find((inquiry) => inquiry._id === inquiryId);
     setEditingId(inquiryId);
     setEditData({
+      packageId: inquiry.packageId,
       inquiryTitle: inquiry.inquiryTitle,
       inquiryType: inquiry.inquiryType,
       inquiryDescription: inquiry.inquiryDescription,
@@ -58,8 +63,11 @@ const UserInquiries = () => {
 
   return (
     <div>
-      <h1 class="display-4 text-center bg-primary text-white p-3">Sent Inquiries</h1>
-
+      <BannerComponent heading="Sent Inquiries" banner={InquiryBanner}/>
+      <div className="d-flex justify-content-center align-items-center" style={{marginTop:'30px'}}>
+        <img src={Giphy} alt="" style={{ width: '50px' }} />
+      </div>
+      <div className="d-flex justify-content-center m-5">
       {inquiries.length === 0 ? (
         <p>No inquiries sent.</p>
       ) : (
@@ -148,6 +156,7 @@ const UserInquiries = () => {
           </tbody>
         </table>
       )}
+    </div>
     </div>
   );
 };

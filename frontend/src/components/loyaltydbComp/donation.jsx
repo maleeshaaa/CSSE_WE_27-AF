@@ -8,8 +8,8 @@ import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import "./styles.css";
 
-export default function Donation() {
-  const [progress, setProgress] = useState(100); // User's current points
+export default function Donation({ points }) {
+  console.log("Points" + points); 
   const [buttonDisabled, setButtonDisabled] = useState(true); // Button is disabled by default
   //toast
   const [showA, setShowA] = useState(false);
@@ -21,7 +21,6 @@ export default function Donation() {
   const handleShow = () => setShow(true);
 
   //get Donations
-
   const [donate, setDonate] = useState([]);
 
   useEffect(() => {
@@ -33,6 +32,7 @@ export default function Donation() {
       .catch((error) => {
         console.log(error);
       });
+      console.log("Points" + points);
   }, []);
 
   //get user details
@@ -56,42 +56,41 @@ export default function Donation() {
     loadUserData();
   }, []);
 
+  const username = localStorage.getItem("username");
 
-  const requiredPoints = donate.donatePoints; // Required points to donate
+  const [progress, setProgress] = useState(points); // User's current points
+  
+  const requiredPoints = donate.map((donate) => donate.donatePoints); // Required points to donate
 
   // Handle button click
-  const handleClaimVoucher = () => {
-    if (progress >= requiredPoints) {
-      // Donation logic goes here
-      console.log("Voucher claimed!");
+  const handleClaimVoucher = (donate) => {
+    if (progress >= donate.donatePoints) {
+      console.log(`${donate.donatePoints} Donation Succesfull claimed!`);
     }
   };
 
-  // Enable/disable button based on user's points
-  if (progress >= requiredPoints) {
-    if (buttonDisabled) {
+  useEffect(() => {
+    if (requiredPoints.some((points) => progress >= points)) {
       setButtonDisabled(false);
-    }
-  } else {
-    if (!buttonDisabled) {
+    } else {
       setButtonDisabled(true);
     }
-  }
+  }, [progress, requiredPoints]);
 
-  //voucher button - model
-  const handleBothClicksOne = () => {
-    handleClaimVoucher();
+  //donate button - model
+  const handleBothClicksOne = (donate) => {
+    handleClaimVoucher(donate);
     handleShow();
   };
 
   //model - toast
-  const handleBothClicksTwo = () => {
+  const handleBothClicksTwo = (donate) => {
     toggleShowA();
     handleClose();
   };
 
   return (
-    <div className="cards_styles color_div card_flex">
+    <div className="cards_styles color_div card_flex_loyalty">
       {donate.map((donate) => (
         <div key={donate._id}>
           <div className="card_flex">
@@ -112,8 +111,8 @@ export default function Donation() {
                 <Button
                   variant="primary"
                   style={{ margin: "1rem 0" }}
-                  onClick={handleBothClicksOne}
-                  disabled={buttonDisabled}
+                  onClick={() => handleBothClicksOne(donate)}
+                  disabled={buttonDisabled || progress < donate.donatePoints}
                   className="button_styles"
                 >
                   Donate
@@ -140,7 +139,7 @@ export default function Donation() {
                 <Button variant="secondary" onClick={handleClose}>
                   Close
                 </Button>
-                <Button variant="primary" onClick={handleBothClicksTwo}>
+                <Button variant="primary" onClick={() => handleBothClicksTwo(donate)}>
                   Doante
                 </Button>
               </Modal.Footer>
