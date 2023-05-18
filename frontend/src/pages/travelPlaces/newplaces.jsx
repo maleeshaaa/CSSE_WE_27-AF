@@ -153,6 +153,10 @@ export default function NewPlaces() {
   const handleDateChange = (newValue) => {
     setValue(newValue);
   };
+  const handleDaysChange = (event) => {
+    setDays(event.target.value);
+  };
+  
   
 // const handleSubmit = () => {
 //     // Prepare the form data
@@ -185,7 +189,7 @@ const handleSubmit = async (e) => {
       province,
       districts: personName,
       date: value.format('YYYY-MM-DD'),
-      days: parseInt(days, 10)
+      days
      }
     // Send a POST request
     await axios.post("http://localhost:8080/requests/add", response)
@@ -329,6 +333,8 @@ const handleSubmit = async (e) => {
                 label="Days"
                 // defaultValue="0"
                 placeholder='Enter number of days'
+                value={days}
+                onChange={handleDaysChange}
                 />
             </FormControl>
             <Button type = "submit" onClick={handleSubmit}>Submit</Button>
