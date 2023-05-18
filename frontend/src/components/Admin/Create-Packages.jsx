@@ -109,8 +109,8 @@ const Packages = () => {
           </Form>
           <div className="middle-form-div">
             This traveller has a desire to visit {request.districts}, situated
-            in the {request.province} Province of Sri Lanka, and will be
-            spending {request.days} days there. And from {request.startdate} the
+            in the {request.province} of Sri Lanka, and will be
+            spending {request.days} days there. And from {request.date} the
             journey begins.
           </div>
           <br />
