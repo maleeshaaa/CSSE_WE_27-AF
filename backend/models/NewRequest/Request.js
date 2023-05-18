@@ -16,7 +16,7 @@ const requestSchema = new Schema({
     },
     days: {
       type: Number,
-      // required: true,
+      required: true,
     },
   });
   
