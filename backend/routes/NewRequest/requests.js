@@ -6,13 +6,13 @@ const router = Router();
 //add new place
 router.route("/add").post((req, res) => {
     const province = req.body.province
-    // const districts = req.body.districts;
+    const districts = req.body.districts;
     const date = req.body.date;
     const days = req.body.days;
 
     const NewRequest = new Request({
         province,
-        // districts,
+        districts,
         date,
         days,
     });

@@ -6,17 +6,17 @@ const requestSchema = new Schema({
       type: String,
       required: true,
     },
-    // districts: {
-    //   type: [String],
-    //   required: true,
-    // },
+    districts: {
+      type: [String],
+      required: true,
+    },
     date: {
       type: Date,
       required: true,
     },
     days: {
       type: Number,
-      required: true,
+      // required: true,
     },
   });
   
