@@ -8,13 +8,13 @@ router.route("/add").post((req, res) => {
     const name = req.body.name;
     const email = req.body.email;
     const subject = req.body.subject;
-    const feedback = req.body.feedback;
+    const feedbackmsg = req.body.feedbackmsg;
     
     const newFeedback = new Feedback({
         name,
         email,
         subject,
-        feedback,
+        feedbackmsg,
     });
     
     newFeedback
@@ -37,5 +37,29 @@ router.route("/").get((req, res) => {
         console.log(err);
       });
   });
+
+  //get specific feedbacks
+  router.route("/:id").get((req, res) => {
+    const feedbacks = Feedback.findById(req.params.id)
+        .then((feedbacks) => {
+        res.json(feedbacks);
+        })
+        .catch((err) => {
+        console.log(err);
+        });
+    }
+);
+
+//delete feedback
+router.route("/:id").delete((req, res) => {
+    Feedback.findByIdAndDelete(req.params.id)
+      .then(() => {
+        res.json("Feedback Deleted");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+
 
 export default router;
