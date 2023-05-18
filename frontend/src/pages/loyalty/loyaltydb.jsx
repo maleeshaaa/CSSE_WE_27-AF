@@ -57,7 +57,7 @@ export default function LoyaltyDB() {
                 <Redeem points={userDetails.userPoints} />
               </Tab>
               <Tab eventKey="donate" title="Donate">
-                <Donation />
+                <Donation points={userDetails.userPoints}/>
               </Tab>
               {/* <Tab eventKey="vouchers" title="My Vouchers">
                 <Redeem />

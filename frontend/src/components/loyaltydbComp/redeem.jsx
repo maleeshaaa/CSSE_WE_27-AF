@@ -19,6 +19,8 @@ export default function Redeem({ points }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+
+  
   //get vouchers
   const [vouchers, setVouchers] = useState([]);
 
@@ -64,7 +66,6 @@ export default function Redeem({ points }) {
   // Handle button click
   const handleClaimVoucher = (voucher) => {
     if (progress >= voucher.voucherPoints) {
-      // Claim voucher logic goes here
       console.log(`Voucher ${voucher.voucherName} claimed!`);
     }
   };
