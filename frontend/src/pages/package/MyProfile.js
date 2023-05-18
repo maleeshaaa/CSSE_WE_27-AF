@@ -3,6 +3,7 @@ import PackageCard from './PackageCard'
 import axios from 'axios'
 import "./MyProfile.css";
 import BannerComponent from './Banner';
+import ProfileBanner from "../../images/profile.jpg";
 
 const MyProfile = () => {
 
@@ -31,7 +32,7 @@ const MyProfile = () => {
 
     return (
         <div>
-            <BannerComponent heading="Package" />
+            <BannerComponent heading="Profile" banner={ProfileBanner} />
             {packages.length > 0 ? (
                 <div>
                     <h1 className="text-center display-4 my-4">

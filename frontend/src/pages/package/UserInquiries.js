@@ -63,7 +63,7 @@ const UserInquiries = () => {
 
   return (
     <div>
-      <BannerComponent heading="Sent Inquiries" inquiryBanner={InquiryBanner}/>
+      <BannerComponent heading="Sent Inquiries" banner={InquiryBanner}/>
       <div className="d-flex justify-content-center align-items-center" style={{marginTop:'30px'}}>
         <img src={Giphy} alt="" style={{ width: '50px' }} />
       </div>

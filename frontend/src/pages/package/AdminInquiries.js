@@ -34,7 +34,7 @@ const AdminInquiries = () => {
 
   return (
     <div>
-      <BannerComponent heading="Received Inquiries" inquiryBanner={InquiryBanner} />
+      <BannerComponent heading="Received Inquiries" banner={InquiryBanner} />
       <div className="d-flex justify-content-center align-items-center" style={{marginTop:'30px'}}>
         <img src={Giphy} alt="" style={{ width: '50px' }} />
       </div>
