@@ -3,7 +3,7 @@ import Package from "../models/Package.js";
 
 const router = Router();
 
-router.post("/", async (req, res) => {
+router.post("/add", async (req, res) => {
     const { requestid, userid, package_no, price, description, details, isPurchased} = req.body;
     
     try {

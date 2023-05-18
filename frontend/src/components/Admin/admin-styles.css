@@ -148,6 +148,10 @@
 
 .package_form_button{
   padding: 0.5rem 2.8rem;
+  background-color: #434840;
+  border: 3px solid #434840;
+  color: aliceblue;
+  border-radius: 5px;
 }
 
 .package_form_button_div{
@@ -162,4 +166,17 @@
   width: 290px;
   margin-left: 1229px;
   margin-top: -32px;
+}
+
+.middle-form-div{
+  background-color: #91ae7e;
+  height: 130px;
+  width: 700px;
+  border-radius: 5px;
+  padding: 15px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 18px;
+  margin-left: 475px;
+  margin-top: -105px;
+  font-weight: 600;
 }

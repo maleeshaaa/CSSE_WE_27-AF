@@ -1,29 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Header from "../Payment/Header";
-import { TextField } from "@mui/material";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import Button from "react-bootstrap/Button";
 import "./admin-styles.css";
 import axios from "axios";
 
-const Packages = () =>
-{
-  //Get Request
-  const [request, setRequest] = useState([]);
+const Packages = () => {
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:8080/requests/")
-      .then((response) => {
-        setRequest(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [] );
-  
   return (
     <div>
       <div className="background-pic"></div>
@@ -31,6 +15,7 @@ const Packages = () =>
         <Header title="PACKAGES" subtitle="Create new packages for requests" />
         <br />
         <div className="package-form">
+
           <TextField
             disabled
             id="outlined-disabled"
@@ -113,9 +98,12 @@ const Packages = () =>
             }}
           />
           <br />
+
           <br />
           <div>
-            <Form>
+            <Form onSubmit={handleSubmit}>
+              <input type="hidden" name="requestid" value={request._id} />
+              <input type="hidden" name="userId" value={request.userid} />
               <Form.Group
                 as={Row}
                 className="mb-3"
@@ -135,6 +123,9 @@ const Packages = () =>
                 <Col sm={10}>
                   <Form.Control
                     type="text"
+                    onChange={(e) =>
+                      setFormData({ ...formData, package_no: e.target.value })
+                    }
                     placeholder="Package Number"
                     style={{
                       fontSize: "0.9rem",
@@ -165,6 +156,9 @@ const Packages = () =>
                 <Col sm={10}>
                   <Form.Control
                     type="text"
+                    onChange={(e) =>
+                      setFormData({ ...formData, price: e.target.value })
+                    }
                     placeholder="Package price in Sri Lankan Rupees (Ex: 3500.00)"
                     style={{
                       fontSize: "0.9rem",
@@ -193,6 +187,9 @@ const Packages = () =>
                     as="textarea"
                     rows={1}
                     placeholder="Enter small description about the package"
+                    onChange={(e) =>
+                      setFormData({ ...formData, description: e.target.value })
+                    }
                     style={{
                       fontSize: "0.9rem",
                       fontWeight: 100,
@@ -219,6 +216,9 @@ const Packages = () =>
                   <Form.Control
                     as="textarea"
                     rows={6}
+                    onChange={(e) =>
+                      setFormData({ ...formData, details: e.target.value })
+                    }
                     placeholder="Enter your package details"
                     style={{
                       fontSize: "0.9rem",
@@ -231,8 +231,7 @@ const Packages = () =>
               </Form.Group>
 
               <div className="package_form_button_div">
-                <Button
-                  variant="primary"
+                <button
                   type="submit"
                   className="package_form_button"
                   style={{
@@ -243,7 +242,7 @@ const Packages = () =>
                   }}
                 >
                   SUBMIT
-                </Button>
+                </button>
               </div>
             </Form>
           </div>

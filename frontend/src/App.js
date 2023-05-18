@@ -113,26 +113,26 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <div>
+          <Navbar
+            setStatus={setStatus}
+            status={status}
+            logOut={logOut}
+            isAdmin={isAdmin}
+          />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/loyalty-reward" element={<LoyaltyDB />} />
+            <Route path="/travel-plan" element={<TravelPlan />} />
+            <Route path="/payment" element={<Payment />} />
+            <Route path="/profile" element={<MyProfile />} />
+            <Route path="/package/:id" element={<SinglePackage />} />
+            <Route path="/blogs" element={<Blog />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
 
-      <div>
-      <Navbar
-      setStatus={setStatus}
-      status={status}
-      logOut={logOut}
-      isAdmin={isAdmin}
-      />
-      <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/loyalty-reward" element={<LoyaltyDB />} />
-          <Route path="/travel-plan" element={<TravelPlan />} />
-          <Route path="/payment" element={<Payment />} />
-          <Route path="/profile" element={<MyProfile />} />
-          <Route path="/package/:id" element={<SinglePackage />} />
-          <Route path="/blogs" element={<Blog />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-
-          <Route path='/user-inquiry'
+            <Route
+              path="/user-inquiry"
               element={
                 <RoleProtected isAdmin={!isAdmin}>
                   <UserInquiries />
@@ -140,22 +140,21 @@ function App() {
               }
             />
 
-          <Route path='/admin-inquiry'
+            <Route
+              path="/admin-inquiry"
               element={
                 <RoleProtected isAdmin={!isAdmin}>
                   <AdminInquiries />
                 </RoleProtected>
               }
             />
-          
-          
-          <Route path="/feedback" element={<Feedback />} />
-          <Route path="/travel-places" element={<TravelPlace />} />
-          <Route path="/new-places" element={<NewPlaces />} />
 
-        </Routes>
-      </div>
-        
+            <Route path="/feedback" element={<Feedback />} />
+            <Route path="/travel-places" element={<TravelPlace />} />
+            <Route path="/new-places" element={<NewPlaces />} />
+            <Route path="/packages/:id" element={<Packages />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     </div>
   );
