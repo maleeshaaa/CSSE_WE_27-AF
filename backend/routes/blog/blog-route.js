@@ -1,30 +1,40 @@
 import { Router } from "express";
 import Blog from "../../models/blog/Blog.js";
+import User from "../../models/User.js";
 
 const router = Router();
 
-//add blog
-router.route("/add").post((req, res) => {
-  const blogName = req.body.blogName;
-  const blogPlaces = req.body.blogPlaces;
-  const bloggerName = req.body.bloggerName;
-  const blogContent = req.body.blogContent;
+router.post('/add', async (req, res) => {
+  try {
+    const { blogName, blogPlaces, bloggerName, blogContent } = req.body;
 
-  const newBlog = new Blog({
-    blogName,
-    blogPlaces,
-    bloggerName,
-    blogContent,
-  });
-
-  newBlog
-    .save()
-    .then(() => {
-      res.json("Blog Added");
-    })
-    .catch((err) => {
-      console.log(err);
+    // Create a new blog
+    const newBlog = new Blog({
+      blogName,
+      blogPlaces,
+      bloggerName,
+      blogContent,
     });
+
+    // Save the new blog
+    await newBlog.save();
+
+    // Increment the user's points
+    const username = req.body.username;
+    const user = await User.findOne({ userName: username });
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    user.userPoints += 100;
+    await user.save();
+
+    return res.json({ message: 'Blog added and points incremented by 100' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Server error' });
+  }
 });
 
 //get all blogs

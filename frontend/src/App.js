@@ -39,6 +39,8 @@ function App() {
   const [isAdmin, setIsAdmin] = useState();
   const [isCustomer, setIsCustomer] = useState(true);
 
+  const [points, setPoints] = useState(0);
+
   const checkLogin = async () => {
     const user = {
       refreshToken: token,
@@ -73,6 +75,7 @@ function App() {
           )}`
         );
         setIsAdmin(response.isAdmin);
+        setPoints(response.userPoints);
         console.log(response);
       } catch (error) {
         console.error(error.message);

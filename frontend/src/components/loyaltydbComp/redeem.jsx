@@ -8,8 +8,7 @@ import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import "./styles.css";
 
-export default function Redeem() {
-  
+export default function Redeem({ points }) {
   const [buttonDisabled, setButtonDisabled] = useState(true); // Button is disabled by default
   //toast
   const [showA, setShowA] = useState(false);
@@ -21,17 +20,18 @@ export default function Redeem() {
   const handleShow = () => setShow(true);
 
   //get vouchers
-  const [voucher, setVoucher] = useState([]);
+  const [vouchers, setVouchers] = useState([]);
 
   useEffect(() => {
     axios
       .get("http://localhost:8080/vouchers")
       .then((response) => {
-        setVoucher(response.data);
+        setVouchers(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
+    console.log("Points" + points);
   }, []);
 
   //get user details
@@ -57,45 +57,41 @@ export default function Redeem() {
 
   const username = localStorage.getItem("username");
 
+  const [progress, setProgress] = useState(points); // User's current points
 
-  const [progress, setProgress] = useState(userDetails.userPoints); // User's current points
-
-  const requiredPoints = voucher.voucherPoints; // Required points to claim the voucher
+  const requiredPoints = vouchers.map((voucher) => voucher.voucherPoints); // Required points to claim the vouchers
 
   // Handle button click
-  const handleClaimVoucher = () => {
-    if (progress >= requiredPoints) {
+  const handleClaimVoucher = (voucher) => {
+    if (progress >= voucher.voucherPoints) {
       // Claim voucher logic goes here
-      console.log("Voucher claimed!");
+      console.log(`Voucher ${voucher.voucherName} claimed!`);
     }
   };
 
-  // Enable/disable button based on user's points
-  if (progress >= requiredPoints) {
-    if (buttonDisabled) {
+  useEffect(() => {
+    if (requiredPoints.some((points) => progress >= points)) {
       setButtonDisabled(false);
-    }
-  } else {
-    if (!buttonDisabled) {
+    } else {
       setButtonDisabled(true);
     }
-  }
+  }, [progress, requiredPoints]);
 
   //voucher button - model
-  const handleBothClicksOne = () => {
-    handleClaimVoucher();
+  const handleBothClicksOne = (voucher) => {
+    handleClaimVoucher(voucher);
     handleShow();
   };
 
   //model - toast
-  const handleBothClicksTwo = () => {
+  const handleBothClicksTwo = (voucher) => {
     toggleShowA();
     handleClose();
   };
 
   return (
     <div className="cards_styles color_div card_flex">
-      {voucher.map((voucher) => (
+      {vouchers.map((voucher) => (
         <div key={voucher._id}>
           <div className="card_flex">
             <Card style={{ width: "18rem", height: "20rem" }}>
@@ -115,8 +111,8 @@ export default function Redeem() {
                 <Button
                   variant="primary"
                   style={{ margin: "1rem 0" }}
-                  onClick={handleBothClicksOne}
-                  disabled={buttonDisabled}
+                  onClick={() => handleBothClicksOne(voucher)}
+                  disabled={buttonDisabled || progress < voucher.voucherPoints}
                   className="button_styles"
                 >
                   Claim Voucher
@@ -143,7 +139,10 @@ export default function Redeem() {
                 <Button variant="secondary" onClick={handleClose}>
                   Close
                 </Button>
-                <Button variant="primary" onClick={handleBothClicksTwo}>
+                <Button
+                  variant="primary"
+                  onClick={() => handleBothClicksTwo(voucher)}
+                >
                   Redeem
                 </Button>
               </Modal.Footer>
