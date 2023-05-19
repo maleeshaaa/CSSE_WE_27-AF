@@ -19,6 +19,7 @@ import Button from "react-bootstrap/Button";
 import Checkbox from '@mui/material/Checkbox';
 import ListItemText from '@mui/material/ListItemText';
 import axios from 'axios';
+import { useState, useEffect } from 'react';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -112,6 +113,27 @@ const provinces = [
 
 
 export default function NewPlaces() {
+
+  //get user details
+  const [userDetails, setUserDetails] = useState({});
+  const uid = localStorage.getItem("username");
+
+  const loadUserData = async () => {
+    axios({
+      method: "post",
+      url: "http://localhost:8080/api/get-user-details",
+      data: {
+        username: uid,
+      },
+    }).then((data) => {
+      console.log(data.data);
+      setUserDetails(data.data);
+    });
+  };
+
+  useEffect(() => {
+    loadUserData();
+  }, []);
 
     const [province, setProvince] = React.useState('');
     const theme = useTheme();
@@ -213,6 +235,7 @@ const handleSubmit = async (e) => {
 
     
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-3">
+        <input type="hidden" name="userId" value={userDetails.id} />
         <Form.Label>Select Province</Form.Label>
             <Box sx={{  m: 1,width: 570,marginBottom:4,marginLeft:0 }}>
                 <FormControl fullWidth>
