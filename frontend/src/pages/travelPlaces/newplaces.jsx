@@ -19,6 +19,8 @@ import Button from "react-bootstrap/Button";
 import Checkbox from '@mui/material/Checkbox';
 import ListItemText from '@mui/material/ListItemText';
 import axios from 'axios';
+import { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -63,7 +65,7 @@ const names = [
 const provinces = [
   {
     name: 'Central Province',
-    districts: ['Kandy', 'Matale', 'Nuwara Eliya'],
+    districts: ['Kandy ' , 'Matale', 'Nuwara Eliya'],
   },
   {
     name: 'North Western Province',
@@ -113,6 +115,27 @@ const provinces = [
 
 export default function NewPlaces() {
 
+  //get user details
+  const [userDetails, setUserDetails] = useState({});
+  const uid = localStorage.getItem("username");
+
+  const loadUserData = async () => {
+    axios({
+      method: "post",
+      url: "http://localhost:8080/api/get-user-details",
+      data: {
+        username: uid,
+      },
+    }).then((data) => {
+      console.log(data.data);
+      setUserDetails(data.data);
+    });
+  };
+
+  useEffect(() => {
+    loadUserData();
+  }, []);
+
     const [province, setProvince] = React.useState('');
     const theme = useTheme();
     const [personName, setPersonName] = React.useState([]);
@@ -141,10 +164,6 @@ export default function NewPlaces() {
         typeof value === 'string' ? value.split(',') : value,
       );
   };
-
-//   const handleDelete = (chipToDelete) => () => {
-//     setPersonName((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
-//   };
 
 
   const handleProvinceChange = (event) => {
@@ -186,6 +205,7 @@ const handleSubmit = async (e) => {
 
   try {
     const response = {
+      userid: userDetails.id,
       province,
       districts: personName,
       date: value.format('YYYY-MM-DD'),
@@ -195,7 +215,12 @@ const handleSubmit = async (e) => {
     await axios.post("http://localhost:8080/requests/add", response)
     .then(res => {
       console.log(response);
-      alert("Request Added");
+      // alert("Request Added");
+      Swal.fire("Done!", "Request added successfully...", "success").then(
+        () => {
+          window.location.href = "/";
+        }
+      );
   })
   .catch(err => {
       console.log(err);
@@ -211,9 +236,10 @@ const handleSubmit = async (e) => {
   return (
     <div>
 
-    
-        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-3">
+    <Form onSubmit={handleSubmit}>
+    <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-3">
         <Form.Label>Select Province</Form.Label>
+        <input type="hidden" name="userId" value={userDetails.id} />
             <Box sx={{  m: 1,width: 570,marginBottom:4,marginLeft:0 }}>
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Province</InputLabel>
@@ -337,9 +363,14 @@ const handleSubmit = async (e) => {
                 onChange={handleDaysChange}
                 />
             </FormControl>
-            <Button type = "submit" onClick={handleSubmit}>Submit</Button>
+            <Button type = "submit">Submit</Button>
         </div>
+
+    </Form>
+
         
+       
+
 </div>
 
 

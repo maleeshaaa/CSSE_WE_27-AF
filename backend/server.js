@@ -14,7 +14,8 @@ import PointsRout from "./routes/Points/points-route.js"
 import cors from "cors";
 import Feedback from "./routes/Feedback/feedbacks.js";
 import PlaceRequests from "./routes/NewRequest/requests.js";
-
+import PlaceRoutes from "./routes/Places/Place-Route.js";
+import Payment from "./routes/Payment/Payment-route.js";
 
 const app = express();
 
@@ -47,7 +48,11 @@ app.use("/points", PointsRout)
 
 app.use("/feedback", Feedback)
 
-app.use("/requests", PlaceRequests)
+app.use( "/requests", PlaceRequests )
+
+app.use( "/places", PlaceRoutes );
+
+app.use("/api/payment", Payment);
 
 const port = process.env.PORT || 8080;
 app.listen(port, ()=> console.log(`Listening on port ${port}...`));
