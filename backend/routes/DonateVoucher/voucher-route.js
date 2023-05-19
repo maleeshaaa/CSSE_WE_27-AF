@@ -60,4 +60,34 @@ router.route("/add").post((req, res) => {
         console.log(err);
       });
   });
+
+  // Update a voucher by ID
+router.put('/update/:id', (req, res) => {
+  const { voucherName, voucherPoints, voucherCode, voucherDetails } = req.body;
+
+  Voucher.findByIdAndUpdate(
+    req.params.id,
+    {
+      voucherName,
+      voucherPoints,
+      voucherCode,
+      voucherDetails,
+    },
+    { new: true }
+  )
+    .then((updatedVoucher) => {
+      if (!updatedVoucher) {
+        return res.status(404).json({ error: 'Voucher not found' });
+      }
+
+      res.json(updatedVoucher);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: 'Server error' });
+    });
+});
+
+    
+
   export default router;

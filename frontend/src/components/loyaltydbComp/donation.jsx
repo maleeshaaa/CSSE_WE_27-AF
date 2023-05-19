@@ -77,6 +77,18 @@ export default function Donation({ points }) {
     }
   }, [progress, requiredPoints]);
 
+ //decrease points
+ const DecreasePoints = (donate) => {
+  axios
+    .post('http://localhost:8080/blog/decrease-points', {
+      username: localStorage.getItem("username"),
+      points: donate.donatePoints,
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
   //donate button - model
   const handleBothClicksOne = (donate) => {
     handleClaimVoucher(donate);
@@ -87,6 +99,7 @@ export default function Donation({ points }) {
   const handleBothClicksTwo = (donate) => {
     toggleShowA();
     handleClose();
+    DecreasePoints(donate);
   };
 
   return (

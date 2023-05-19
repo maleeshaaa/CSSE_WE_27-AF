@@ -9,6 +9,44 @@ import Card from "react-bootstrap/Card";
 import axios from "axios";
 
 const Vouchers = () => {
+
+//get vouchers
+const [voucher, setVoucher] = useState([]);
+
+useEffect(() => {
+  axios
+    .get("http://localhost:8080/vouchers")
+    .then((response) => {
+      setVoucher(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}, []);
+
+
+  //update vouchers
+  const [selectedVoucher, setSelectedVoucher] = useState(null);
+
+  const handleClaimVoucher = (voucher) => {
+    setSelectedVoucher(voucher);
+    setFormData({
+      voucherName: voucher.voucherName,
+      voucherPoints: voucher.voucherPoints,
+      voucherCode: voucher.voucherCode,
+      voucherDetails: voucher.voucherDetails,
+    });
+  };
+
+  const [updatedFormData, setUpdatedFormData] = useState({
+    voucherName: "",
+    voucherPoints: "",
+    voucherCode: "",
+    voucherDetails: "",
+  });
+  
+  
+
   //add vouchers
   const [formData, setFormData] = useState({
     voucherName: "",
@@ -25,46 +63,46 @@ const Vouchers = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // handling update and add voucher form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if(selectedVoucher) {
+      //update voucher
+      axios
+      .put(`http://localhost:8080/vouchers/update/${selectedVoucher._id}`, formData)
+      .then((res) => {
+        setSuccessMessage("Voucher updated successfully!");
+        setSelectedVoucher(null);
+      })
+      .catch((err) => console.log(err));
+    } else {
+      //add new voucher
     axios
       .post("http://localhost:8080/vouchers/add", formData)
       .then((res) => {
         setSuccessMessage("Voucher added successfully!");
       })
       .catch((err) => console.log(err));
-
+    }
     setFormData({
       voucherName: "",
       voucherPoints: "",
       voucherCode: "",
       voucherDetails: "",
     });
+  
   };
 
-  //get vouchers
-  const [voucher, setVoucher] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:8080/vouchers")
-      .then((response) => {
-        setVoucher(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
 
  //delete vouchers
   const deleteVoucher = (id) => {
-    const voucherToDelete = voucher.filter((voucher) => id !== voucher._id);
+    const voucherToDelete = voucher.filter((voucher) => voucher._id === id);
     if (window.confirm("Are you sure you want to delete this voucher?")) {
     axios.delete(`http://localhost:8080/vouchers/${id}`).then((res) => {
       const del = voucher.filter((voucher) => id !== voucher._id);
       setVoucher(del);
-      setSuccessMessage(`${voucherToDelete.voucherName} Voucher deleted successfully!`);
+      setSuccessMessage(`Voucher deleted successfully!`);
     });
   }
   };
@@ -203,7 +241,7 @@ const Vouchers = () => {
                 fontFamily: "Lucida Sans",
               }}
             >
-              Add Vouchers
+              {selectedVoucher ? "Update Voucher" : "Add Vouchers"}
             </Button>
           </div>
         </Form>
@@ -232,6 +270,7 @@ const Vouchers = () => {
                       variant="primary"
                       style={{ margin: "1rem 0" }}
                       className="update__button"
+                      onClick={() => handleClaimVoucher(voucher)}
                     >
                       Update
                     </Button>
