@@ -60,7 +60,7 @@ const Payment = () => {
         console.log(res);
         Swal.fire("Done!", "Payment done successfully...", "success").then(
           () => {
-            window.location.href = "/";
+            window.location.href = "/profile";
           }
         );
       })
