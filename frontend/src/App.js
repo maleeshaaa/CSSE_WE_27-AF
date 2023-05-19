@@ -124,7 +124,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/loyalty-reward" element={<LoyaltyDB />} />
             <Route path="/travel-plan" element={<TravelPlan />} />
-            <Route path="/payment" element={<Payment />} />
+            <Route path="/payment/:packageId" element={<Payment />} />
             <Route path="/profile" element={<MyProfile />} />
             <Route path="/package/:id" element={<SinglePackage />} />
             <Route path="/blogs" element={<Blog />} />

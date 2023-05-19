@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom';
 import axios from "axios";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
@@ -9,7 +10,7 @@ import "./payment.css";
 const Payment = () => {
   //get packages
   const [packages, setPackages] = useState([]);
-
+  const { packageId } = useParams(); 
   useEffect(() => {
     axios
       .get("http://localhost:8080/api/package")
@@ -30,7 +31,7 @@ const Payment = () => {
           {/* Payment Form */}
           <Row>
             <div className="payment-form">
-              <PaymentDetails />
+              <PaymentDetails packageId={packageId}/>
             </div>
             <div className="package-card">
               <Card style={{ width: "35rem", height: "31rem" }}>

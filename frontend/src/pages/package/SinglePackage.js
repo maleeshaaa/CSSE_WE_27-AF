@@ -158,7 +158,7 @@ const SinglePackage = () => {
           <h1 className="mt-5">
             You don't have access to view this package unless you purchase it
           </h1>
-          <a href="/payment">
+          <a href={`/payment/${id}`}>
             <button
               type="submit"
               className="btn btn-dark mt-3"
