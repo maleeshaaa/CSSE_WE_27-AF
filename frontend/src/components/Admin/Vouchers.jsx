@@ -1,36 +1,36 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import Header from "../Payment/Header";
-import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
-import Card from "react-bootstrap/Card";
-import axios from "axios";
+import React from 'react';
+import { useEffect, useState } from 'react';
+import Header from '../Payment/Header';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Card from 'react-bootstrap/Card';
+import axios from 'axios';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 const Vouchers = () => {
+  // get vouchers
+  const [voucher, setVoucher] = useState([]);
 
-//get vouchers
-const [voucher, setVoucher] = useState([]);
+  useEffect(() => {
+    axios
+      .get('http://localhost:8080/vouchers')
+      .then((response) => {
+        setVoucher(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
-useEffect(() => {
-  axios
-    .get("http://localhost:8080/vouchers")
-    .then((response) => {
-      setVoucher(response.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}, []);
-
-
-  //update vouchers
+  // update vouchers
   const [selectedVoucher, setSelectedVoucher] = useState(null);
 
   const handleClaimVoucher = (voucher) => {
     setSelectedVoucher(voucher);
-    setFormData({
+    formik.setValues({
       voucherName: voucher.voucherName,
       voucherPoints: voucher.voucherPoints,
       voucherCode: voucher.voucherCode,
@@ -38,89 +38,74 @@ useEffect(() => {
     });
   };
 
-  const [updatedFormData, setUpdatedFormData] = useState({
-    voucherName: "",
-    voucherPoints: "",
-    voucherCode: "",
-    voucherDetails: "",
+  // add vouchers
+  const formik = useFormik({
+    initialValues: {
+      voucherName: '',
+      voucherPoints: '',
+      voucherCode: '',
+      voucherDetails: '',
+    },
+    validationSchema: Yup.object().shape({
+      voucherName: Yup.string().required('Voucher Name is required'),
+      voucherPoints: Yup.string().required('Voucher Points is required'),
+      voucherCode: Yup.string().required('Voucher Code is required'),
+      voucherDetails: Yup.string().required('Voucher Details is required'),
+    }),
+    onSubmit: handleSubmit,
   });
-  
-  
 
-  //add vouchers
-  const [formData, setFormData] = useState({
-    voucherName: "",
-    voucherPoints: "",
-    voucherCode: "",
-    voucherDetails: "",
-  });
+  const [successMessage, setSuccessMessage] = useState('');
 
-  const { voucherName, voucherPoints, voucherCode, voucherDetails } = formData;
-
-  const [successMessage, setSuccessMessage] = useState("");
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  // handling update and add voucher form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if(selectedVoucher) {
-      //update voucher
+  function handleSubmit(values) {
+    if (selectedVoucher) {
+      // update voucher
       axios
-      .put(`http://localhost:8080/vouchers/update/${selectedVoucher._id}`, formData)
-      .then((res) => {
-        setSuccessMessage("Voucher updated successfully!");
-        setSelectedVoucher(null);
-      })
-      .catch((err) => console.log(err));
+        .put(`http://localhost:8080/vouchers/update/${selectedVoucher._id}`, values)
+        .then((res) => {
+          setSuccessMessage('Voucher updated successfully!');
+          setSelectedVoucher(null);
+        })
+        .catch((err) => console.log(err));
     } else {
-      //add new voucher
-    axios
-      .post("http://localhost:8080/vouchers/add", formData)
-      .then((res) => {
-        setSuccessMessage("Voucher added successfully!");
-      })
-      .catch((err) => console.log(err));
+      // add new voucher
+      axios
+        .post('http://localhost:8080/vouchers/add', values)
+        .then((res) => {
+          setSuccessMessage('Voucher added successfully!');
+        })
+        .catch((err) => console.log(err));
     }
-    setFormData({
-      voucherName: "",
-      voucherPoints: "",
-      voucherCode: "",
-      voucherDetails: "",
-    });
-  
-  };
 
+    formik.resetForm();
+  }
 
- //delete vouchers
+  // delete vouchers
   const deleteVoucher = (id) => {
     const voucherToDelete = voucher.filter((voucher) => voucher._id === id);
-    if (window.confirm("Are you sure you want to delete this voucher?")) {
-    axios.delete(`http://localhost:8080/vouchers/${id}`).then((res) => {
-      const del = voucher.filter((voucher) => id !== voucher._id);
-      setVoucher(del);
-      setSuccessMessage(`Voucher deleted successfully!`);
-    });
-  }
+    if (window.confirm('Are you sure you want to delete this voucher?')) {
+      axios.delete(`http://localhost:8080/vouchers/${id}`).then((res) => {
+        const del = voucher.filter((voucher) => id !== voucher._id);
+        setVoucher(del);
+        setSuccessMessage('Voucher deleted successfully!');
+      });
+    }
   };
-  
+
   return (
     <div className="">
       <Header title="VOUCHERS" subtitle="Add new vouchers" />
       <br />
       <div>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={formik.handleSubmit}>
           <Form.Group as={Row} className="mb-3" controlId="formHorizontalName">
             <Form.Label
               column
               sm={2}
               style={{
-                fontSize: "0.9rem",
+                fontSize: '0.9rem',
                 fontWeight: 500,
-                fontFamily: "Lucida Sans",
+                fontFamily: 'Lucida Sans',
               }}
             >
               Voucher Name
@@ -130,29 +115,29 @@ useEffect(() => {
                 type="text"
                 placeholder="Voucher Name"
                 name="voucherName"
-                onChange={handleChange}
-                value={voucherName}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.voucherName}
                 style={{
-                  fontSize: "1rem",
+                  fontSize: '1rem',
                   fontWeight: 100,
-                  fontFamily: "Lucida Sans",
+                  fontFamily: 'Lucida Sans',
                 }}
               />
+              {formik.touched.voucherName && formik.errors.voucherName && (
+                <div className="error">{formik.errors.voucherName}</div>
+              )}
             </Col>
           </Form.Group>
 
-          <Form.Group
-            as={Row}
-            className="mb-3"
-            controlId="formHorizontalPoints"
-          >
+          <Form.Group as={Row} className="mb-3" controlId="formHorizontalPoints">
             <Form.Label
               column
               sm={2}
               style={{
-                fontSize: "0.9rem",
+                fontSize: '0.9rem',
                 fontWeight: 500,
-                fontFamily: "Lucida Sans",
+                fontFamily: 'Lucida Sans',
               }}
             >
               Points
@@ -162,14 +147,18 @@ useEffect(() => {
                 type="text"
                 placeholder="Voucher Points"
                 name="voucherPoints"
-                onChange={handleChange}
-                value={voucherPoints}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.voucherPoints}
                 style={{
-                  fontSize: "1rem",
+                  fontSize: '1rem',
                   fontWeight: 100,
-                  fontFamily: "Lucida Sans",
+                  fontFamily: 'Lucida Sans',
                 }}
               />
+              {formik.touched.voucherPoints && formik.errors.voucherPoints && (
+                <div className="error">{formik.errors.voucherPoints}</div>
+              )}
             </Col>
           </Form.Group>
 
@@ -178,26 +167,30 @@ useEffect(() => {
               column
               sm={2}
               style={{
-                fontSize: "0.9rem",
+                fontSize: '0.9rem',
                 fontWeight: 500,
-                fontFamily: "Lucida Sans",
+                fontFamily: 'Lucida Sans',
               }}
             >
-              Vocher Code
+              Voucher Code
             </Form.Label>
             <Col sm={10}>
               <Form.Control
                 type="text"
                 placeholder="Voucher Code"
                 name="voucherCode"
-                onChange={handleChange}
-                value={voucherCode}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.voucherCode}
                 style={{
-                  fontSize: "1rem",
+                  fontSize: '1rem',
                   fontWeight: 100,
-                  fontFamily: "Lucida Sans",
+                  fontFamily: 'Lucida Sans',
                 }}
               />
+              {formik.touched.voucherCode && formik.errors.voucherCode && (
+                <div className="error">{formik.errors.voucherCode}</div>
+              )}
             </Col>
           </Form.Group>
 
@@ -206,9 +199,9 @@ useEffect(() => {
               column
               sm={2}
               style={{
-                fontSize: "0.9rem",
+                fontSize: '0.9rem',
                 fontWeight: 500,
-                fontFamily: "Lucida Sans",
+                fontFamily: 'Lucida Sans',
               }}
             >
               Voucher Details
@@ -219,14 +212,18 @@ useEffect(() => {
                 rows={4}
                 placeholder="Enter your voucher details"
                 name="voucherDetails"
-                onChange={handleChange}
-                value={voucherDetails}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.voucherDetails}
                 style={{
-                  fontSize: "1rem",
+                  fontSize: '1rem',
                   fontWeight: 100,
-                  fontFamily: "Lucida Sans",
+                  fontFamily: 'Lucida Sans',
                 }}
               />
+              {formik.touched.voucherDetails && formik.errors.voucherDetails && (
+                <div className="error">{formik.errors.voucherDetails}</div>
+              )}
             </Col>
           </Form.Group>
 
@@ -236,58 +233,59 @@ useEffect(() => {
               type="submit"
               className="admin_form_button"
               style={{
-                fontSize: "1rem",
+                fontSize: '1rem',
                 fontWeight: 100,
-                fontFamily: "Lucida Sans",
+                fontFamily: 'Lucida Sans',
               }}
             >
-              {selectedVoucher ? "Update Voucher" : "Add Vouchers"}
+              Save
             </Button>
           </div>
         </Form>
-        <div className="vd_successmessage">
-          {successMessage && <h5>{successMessage}</h5>}
-        </div>
       </div>
-      <div className="display_vouchers">
-        <div>
-          <h4 className="voucher_heading">
-            <span className="voucher_text">Vouchers</span>
-          </h4>
-        </div>
-        <div className="card_flex">
-          {voucher.map((voucher) => (
-            <div key={voucher._id}>
-              <Card style={{ width: "18rem", height: "20rem" }}>
-                {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
-                <Card.Body>
-                  <Card.Title>{voucher.voucherName}</Card.Title>
-                  <div className="card_overflow">
-                    <Card.Text>{voucher.voucherDetails}</Card.Text>
-                  </div>
-                  <div className="flex_voucherButton">
-                    <Button
-                      variant="primary"
-                      style={{ margin: "1rem 0" }}
-                      className="update__button"
-                      onClick={() => handleClaimVoucher(voucher)}
-                    >
-                      Update
-                    </Button>
-                    <Button
-                      variant="primary"
-                      style={{ margin: "1rem 0" }}
-                      onClick={() => deleteVoucher(voucher._id)}
-                      className="delete__button delete_voucher"
-                    >
-                      Delete
-                    </Button>
-                  </div>
-                </Card.Body>
-              </Card>
-            </div>
-          ))}
-        </div>
+      <br />
+      <div>
+        <Card>
+          <Card.Header>Voucher List</Card.Header>
+          <Card.Body>
+            <table className="table">
+              <thead>
+                <tr>
+                  <th scope="col">Voucher Name</th>
+                  <th scope="col">Voucher Points</th>
+                  <th scope="col">Voucher Code</th>
+                  <th scope="col">Voucher Details</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {voucher.map((voucher) => (
+                  <tr key={voucher._id}>
+                    <td>{voucher.voucherName}</td>
+                    <td>{voucher.voucherPoints}</td>
+                    <td>{voucher.voucherCode}</td>
+                    <td>{voucher.voucherDetails}</td>
+                    <td>
+                      <Button
+                        variant="warning"
+                        style={{ padding: '5px 20px' }}
+                        onClick={() => handleClaimVoucher(voucher)}
+                      >
+                        Edit
+                      </Button>{' '}
+                      <Button
+                        variant="danger"
+                        onClick={() => deleteVoucher(voucher._id)}
+                      >
+                        Delete
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </Card.Body>
+        </Card>
       </div>
     </div>
   );
