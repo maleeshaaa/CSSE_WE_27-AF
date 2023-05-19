@@ -20,6 +20,7 @@ import Checkbox from '@mui/material/Checkbox';
 import ListItemText from '@mui/material/ListItemText';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -64,7 +65,7 @@ const names = [
 const provinces = [
   {
     name: 'Central Province',
-    districts: ['Kandy', 'Matale', 'Nuwara Eliya'],
+    districts: ['Kandy ' , 'Matale', 'Nuwara Eliya'],
   },
   {
     name: 'North Western Province',
@@ -164,10 +165,6 @@ export default function NewPlaces() {
       );
   };
 
-//   const handleDelete = (chipToDelete) => () => {
-//     setPersonName((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
-//   };
-
 
   const handleProvinceChange = (event) => {
     setProvince(event.target.value);
@@ -208,6 +205,7 @@ const handleSubmit = async (e) => {
 
   try {
     const response = {
+      userid: userDetails.id,
       province,
       districts: personName,
       date: value.format('YYYY-MM-DD'),
@@ -217,7 +215,12 @@ const handleSubmit = async (e) => {
     await axios.post("http://localhost:8080/requests/add", response)
     .then(res => {
       console.log(response);
-      alert("Request Added");
+      // alert("Request Added");
+      Swal.fire("Done!", "Request added successfully...", "success").then(
+        () => {
+          window.location.href = "/";
+        }
+      );
   })
   .catch(err => {
       console.log(err);
@@ -233,10 +236,10 @@ const handleSubmit = async (e) => {
   return (
     <div>
 
-    
-        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-3">
-        <input type="hidden" name="userId" value={userDetails.id} />
+    <Form onSubmit={handleSubmit}>
+    <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-3">
         <Form.Label>Select Province</Form.Label>
+        <input type="hidden" name="userId" value={userDetails.id} />
             <Box sx={{  m: 1,width: 570,marginBottom:4,marginLeft:0 }}>
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Province</InputLabel>
@@ -360,9 +363,14 @@ const handleSubmit = async (e) => {
                 onChange={handleDaysChange}
                 />
             </FormControl>
-            <Button type = "submit" onClick={handleSubmit}>Submit</Button>
+            <Button type = "submit">Submit</Button>
         </div>
+
+    </Form>
+
         
+       
+
 </div>
 
 
