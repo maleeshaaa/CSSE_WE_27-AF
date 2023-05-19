@@ -1,5 +1,4 @@
 import { Router } from "express";
-import Food from "../models/Food.js";
 import multer from "multer";
 import cloudinary from "cloudinary";
 import Place from "../../models/Places/Places.js";
@@ -71,32 +70,6 @@ router.get("/getImage/:id", async (req, res) => {
   const id = req.params.id;
   const place = await Place.findById(id);
   res.json(place.image);
-});
-
-// GET products by category
-router.get("/:category", async (req, res) => {
-  try {
-    const products = await Food.find({ category: req.params.category });
-    res.json(products);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
-
-//Product delete
-router.route("/delete/:id/").delete(async (req, res) => {
-  let productId = req.params.id;
-
-  await Food.findByIdAndDelete(productId)
-    .then(() => {
-      res.status(200).send({ status: "Product deleted" });
-    })
-    .catch((err) => {
-      console.log(err.message);
-      res
-        .status(500)
-        .send({ status: "Error with delete user", error: err.message });
-    });
 });
 
 export default router;

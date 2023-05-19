@@ -5,7 +5,8 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import "./admin-styles.css";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
+import Swal from "sweetalert2"
 
 const Packages = () => {
   //Create Packages
@@ -20,10 +21,27 @@ const Packages = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const data = {
+      ...formData,
+      requestid: request._id,
+      userid: request.userid,
+    };
+
     axios
-      .post("http://localhost:8080/api/package/add", formData)
-      .then((res) => setFormData(res.data))
-      .catch((err) => console.log(err));
+      .post("http://localhost:8080/api/package/add", data)
+      .then((res) => {
+        console.log(res);
+        Swal.fire("Done!", "Package added successfully...", "success").then(
+          () => {
+            window.location.href = "/travel-plan";
+          }
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Can't add a new package");
+      });
   };
 
   //Get Request
@@ -38,7 +56,7 @@ const Packages = () => {
       .catch((error) => {
         console.log(error);
       });
-  });
+  }, [id]);
 
   return (
     <div>
@@ -109,9 +127,9 @@ const Packages = () => {
           </Form>
           <div className="middle-form-div">
             This traveller has a desire to visit {request.districts}, situated
-            in the {request.province} of Sri Lanka, and will be
-            spending {request.days} days there. And from {request.date} the
-            journey begins.
+            in the {request.province} of Sri Lanka, and will be spending{" "}
+            {request.days} days there. And from {request.date} the journey
+            begins.
           </div>
           <br />
           <div>
@@ -199,7 +217,7 @@ const Packages = () => {
                 <Col sm={10}>
                   <Form.Control
                     as="textarea"
-                    rows={1}
+                    rows={2}
                     placeholder="Enter small description about the package"
                     onChange={(e) =>
                       setFormData({ ...formData, description: e.target.value })
@@ -229,7 +247,7 @@ const Packages = () => {
                 <Col sm={10}>
                   <Form.Control
                     as="textarea"
-                    rows={6}
+                    rows={5}
                     onChange={(e) =>
                       setFormData({ ...formData, details: e.target.value })
                     }

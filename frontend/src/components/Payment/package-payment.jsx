@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "../Payment/Header";
 import Box from "@mui/material/Box";
@@ -8,9 +8,10 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import "./payment-style.css";
+import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
-const Settings = () =>
-{
+const Payment = () => {
   //get user details
   const [userDetails, setUserDetails] = useState({});
   const uid = localStorage.getItem("username");
@@ -32,21 +33,58 @@ const Settings = () =>
     loadUserData();
   }, []);
 
-  //get packages
-  const [packages, setPackages] = useState([]);
+  //Create Packages
+  const [formData, setFormData] = useState({
+    userID: userDetails.id || "",
+    // packageID: packages[0]._id || "",
+    cardName: "",
+    cardNumber: "",
+    expDate: "",
+    cvv: "",
+  });
 
+  const handleSubmit = (values) => {
+    const data = {
+      ...formData,
+      userID: userDetails.id,
+      // packageID: packages[0]._id,
+      cardName: values.CardName,
+      cardNumber: values.CardNumber,
+      expDate: values.ExpiryDate,
+      cvv: values.CVV,
+    };
+
+    axios
+      .post("http://localhost:8080/api/payment/add", data)
+      .then((res) => {
+        console.log(res);
+        Swal.fire("Done!", "Payment done successfully...", "success").then(
+          () => {
+            window.location.href = "/";
+          }
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+        Swal.fire("Oops!", "Payment Unsuccessful...", "error");
+      });
+  };
+
+  //Get Package
+  const [packages, setPackages] = useState([]);
+  const { id } = useParams();
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/package")
+      .get("http://localhost:8080/api/package/" + id)
       .then((response) => {
-        setPackages( response.data );
-        console.log( response.data );
+        setPackages(response.data);
+        console.log(response.data);
       })
 
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [id]);
 
   // validation
   const { Formik } = formik;
@@ -76,8 +114,10 @@ const Settings = () =>
       <br />
       <Formik
         validationSchema={schema}
-        onSubmit={console.log}
+        onSubmit={handleSubmit}
         initialValues={{
+          userID: userDetails.id,
+          packageID: packages._id,
           CardName: "",
           CardNumber: "",
           ExpiryDate: "",
@@ -89,14 +129,15 @@ const Settings = () =>
             <Row className="mb-3">
               <Form.Group as={Col} md="4" controlId="validationFormik01">
                 <input type="hidden" name="userId" value={userDetails.id} />
-                <Form.Label className="fromLabel">Name on card</Form.Label>
+                {/* <input type="text" name="packageId" value={packages[0]._id} /> */}
+                <Form.Label className="formLabel">Name on card</Form.Label>
                 <Form.Control
                   type="text"
                   name="CardName"
                   placeholder="Ex: A.B.C.Perera"
-                  value={values.CardName}
                   onChange={handleChange}
-                  isInvalid={!!errors.CardName}
+                  isInvalid={touched.CardName && !!errors.CardName}
+                  value={values.CardName}
                   required
                   style={{
                     fontSize: "1rem",
@@ -115,9 +156,9 @@ const Settings = () =>
                   type="text"
                   placeholder="Ex: 4215896300000000"
                   name="CardNumber"
-                  value={values.CardNumber}
                   onChange={handleChange}
-                  isInvalid={!!errors.CardNumber}
+                  isInvalid={touched.CardNumber && !!errors.CardNumber}
+                  value={values.CardNumber}
                   required
                   style={{
                     fontSize: "1rem",
@@ -136,9 +177,9 @@ const Settings = () =>
                   type="text"
                   name="ExpiryDate"
                   placeholder="MM/YYYY"
-                  value={values.ExpiryDate}
                   onChange={handleChange}
-                  isInvalid={!!errors.ExpiryDate}
+                  isInvalid={touched.ExpiryDate && !!errors.ExpiryDate}
+                  value={values.ExpiryDate}
                   required
                   style={{
                     fontSize: "1rem",
@@ -157,9 +198,9 @@ const Settings = () =>
                   type="text"
                   placeholder="Last three digits on signature strip"
                   name="CVV"
-                  value={values.CVV}
                   onChange={handleChange}
-                  isInvalid={!!errors.CVV}
+                  isInvalid={touched.CVV && !!errors.CVV}
+                  value={values.CVV}
                   required
                   style={{
                     fontSize: "1rem",
@@ -174,7 +215,7 @@ const Settings = () =>
             </Row>
             <button
               type="submit"
-              class="btn2 btn-light"
+              className="btn2 btn-light"
               style={{
                 fontSize: "1rem",
                 fontFamily: "Lucida Sans",
@@ -189,4 +230,4 @@ const Settings = () =>
   );
 };
 
-export default Settings;
+export default Payment;

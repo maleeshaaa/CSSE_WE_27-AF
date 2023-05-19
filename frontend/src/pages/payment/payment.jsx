@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
@@ -7,7 +7,22 @@ import PaymentDetails from "../../components/Payment/package-payment.jsx";
 import "./payment.css";
 
 const Payment = () => {
-  
+  //get packages
+  const [packages, setPackages] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/api/package")
+      .then((response) => {
+        setPackages(response.data);
+        console.log(response.data);
+      })
+
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <div>
       <div>
@@ -25,7 +40,7 @@ const Payment = () => {
                     fontWeight: "700",
                     fontFamily: "monospace",
                   }}
-                  >
+                >
                   TRAVEL PACKAGE
                 </Card.Header>
                 <Card.Body>

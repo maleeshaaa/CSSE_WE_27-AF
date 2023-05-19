@@ -4,13 +4,18 @@ import Payment from "../../models/Payment/Payment.js";
 const router = Router();
 
 //add payment
-router.route("/add").post((req, res) => {
+router.route( "/add" ).post( ( req, res ) =>
+{
+  const userID = req.body.userID;
+  // const packageID = req.body.packageID;
   const cardName = req.body.cardName;
   const cardNumber = req.body.cardNumber;
   const expDate = req.body.expDate;
   const cvv = req.body.cvv;
 
-  const newPayment = new Payment({
+  const newPayment = new Payment( {
+    userID,
+    // packageID,
     cardName,
     cardNumber,
     expDate,
