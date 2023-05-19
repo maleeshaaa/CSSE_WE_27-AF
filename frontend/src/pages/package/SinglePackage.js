@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
+
 
 const SinglePackage = () => {
   const { id } = useParams();
@@ -61,7 +63,7 @@ const SinglePackage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     const inquiryData = {
       userId: localStorage.getItem("username"),
       inquiryType: inquiryType,
@@ -69,21 +71,34 @@ const SinglePackage = () => {
       inquiryTitle: inquiryTitle,
       inquiryDescription: inquiryDescription,
     };
+  
     try {
-      const response = await axios.post("http://localhost:8080/api/inquiry/inquiries", inquiryData);
+      const response = await axios.post(
+        "http://localhost:8080/api/inquiry/inquiries",
+        inquiryData
+      );
+  
+      // Show SweetAlert success notification
+      Swal.fire({
+        icon: 'success',
+        title: 'Inquiry Submitted',
+        text: 'Your inquiry has been submitted successfully!',
+        confirmButtonText: 'OK',
+      });
+  
       // Reset the form fields
       setInquiryType('');
       setInquiryTitle('');
       setInquiryDescription('');
-
+  
       // Optionally, hide the form after submission
       setShowForm(false);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.error);
     }
-
   };
+  
 
   return (
     <div>
