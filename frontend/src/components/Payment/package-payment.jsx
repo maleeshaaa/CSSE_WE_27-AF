@@ -11,7 +11,7 @@ import "./payment-style.css";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const Payment = () => {
+const Payment = ({packageId}) => {
   //get user details
   const [userDetails, setUserDetails] = useState({});
   const uid = localStorage.getItem("username");
@@ -35,7 +35,7 @@ const Payment = () => {
 
   //Create Packages
   const [formData, setFormData] = useState({
-    userID: userDetails.id || "",
+    userID: localStorage.getItem("username") || "",
     // packageID: packages[0]._id || "",
     cardName: "",
     cardNumber: "",
@@ -46,7 +46,7 @@ const Payment = () => {
   const handleSubmit = (values) => {
     const data = {
       ...formData,
-      userID: userDetails.id,
+      userID: "64569c01d4d5180affb57eb3",
       // packageID: packages[0]._id,
       cardName: values.CardName,
       cardNumber: values.CardNumber,
@@ -55,7 +55,7 @@ const Payment = () => {
     };
 
     axios
-      .post("http://localhost:8080/api/payment/add", data)
+      .post(`http://localhost:8080/api/payment/add/${packageId}`, data)
       .then((res) => {
         console.log(res);
         Swal.fire("Done!", "Payment done successfully...", "success").then(
