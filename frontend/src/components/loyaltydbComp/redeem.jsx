@@ -81,9 +81,9 @@ export default function Redeem({ points }) {
   //decrease points
   const DecreasePoints = (voucher) => {
     axios
-      .post('http://localhost:8080/api/decrease-points', {
+      .post('http://localhost:8080/blog/decrease-points', {
         username: localStorage.getItem("username"),
-        points: requiredPoints,
+        points: voucher.voucherPoints,
       })
       .catch((error) => {
         console.log(error);
@@ -100,7 +100,7 @@ export default function Redeem({ points }) {
   const handleBothClicksTwo = (voucher) => {
     toggleShowA();
     handleClose();
-    DecreasePoints();
+    DecreasePoints(voucher);
   };
 
   return (

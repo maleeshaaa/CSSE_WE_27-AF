@@ -8,6 +8,42 @@ import Card from "react-bootstrap/Card";
 import axios from "axios";
 
 const Donations = () => {
+
+    //get Donations
+  const [donate, setDonate] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/donations")
+      .then((response) => {
+        setDonate(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  //update Donations
+  const [selectedDonation, setSelectedDonation] = useState(null);
+
+  const handleClaimDonation = (donate) => {
+    setSelectedDonation(donate);
+    setFormData({
+      donateName: donate.donateName,
+      donateAmount: donate.donateAmount,
+      donatePoints: donate.donatePoints,
+      donateDetails: donate.donateDetails,
+    });
+  };
+
+  const [updatedFormData, setUpdatedFormData] = useState({
+    donateName: "",
+    donatePoints: "",
+    donateAmount: "",
+    donateDetails: "",
+  });
+
+
   //add Donations
   const [formData, setFormData] = useState({
     donateName: "",
@@ -24,16 +60,27 @@ const Donations = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   
+  // handling update and add donations form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    if(selectedDonation) {
+      //update donation
+      axios
+      .put(`http://localhost:8080/donations/update/${selectedDonation._id}`, formData)
+      .then((res) => {
+        setSuccessMessage(`Donation updated successfully!`);
+        setSelectedDonation(null);
+      })
+      .catch((err) => console.log(err));
+    } else {
+      //add donation
     axios
       .post("http://localhost:8080/donations/add", formData)
       .then((res) => {
         setSuccessMessage("Donation added successfully!");
       })
       .catch((err) => console.log(err));
-
+    }
     setFormData({
       donateName: "",
       donatePoints: "",
@@ -41,20 +88,6 @@ const Donations = () => {
       donateDetails: "",
     });
   };
-
-  //get Donations
-  const [donate, setDonate] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:8080/donations")
-      .then((response) => {
-        setDonate(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
 
   //delete Donations
   const deleteDonation = (id) => {
@@ -205,7 +238,7 @@ const Donations = () => {
                 fontFamily: "Lucida Sans",
               }}
             >
-              Add Donation
+              {selectedDonation ? "Update Donation" : "Add Donation"}
             </Button>
           </div>
         </Form>
@@ -238,6 +271,7 @@ const Donations = () => {
                       variant="primary"
                       style={{ margin: "1rem 0" }}
                       className="update__button"
+                      onClick={() => handleClaimDonation(donate)}
                     >
                       Update
                     </Button>

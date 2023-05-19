@@ -60,4 +60,32 @@ router.route("/:id").delete((req, res) => {
     });
 });
 
+//update donation
+router.put("/update/:id", (req, res) => {
+  const { donateName, donatePoints, donateAmount, donateDetails } = req.body;
+
+  Donate.findByIdAndUpdate(
+    req.params.id,
+    {
+      donateName,
+      donateAmount,
+      donatePoints,
+      donateDetails,
+    },
+    { new: true }
+  )
+    .then((updatedDonates) => {
+      if(!updatedDonates) {
+        return res.status(404).json({error: 'Donation not found'})
+      }
+
+      res.json(updatedDonates);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({error: 'Server Error'})
+    });
+});
+
+
 export default router;
