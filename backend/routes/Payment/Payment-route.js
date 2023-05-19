@@ -1,11 +1,13 @@
 import { Router } from "express";
 import Payment from "../../models/Payment/Payment.js";
+import axios from "axios";
 
 const router = Router();
 
 //add payment
-router.route( "/add" ).post( ( req, res ) =>
-{
+
+
+router.route("/add/:packageId").post((req, res) => {
   const userID = req.body.userID;
   // const packageID = req.body.packageID;
   const cardName = req.body.cardName;
@@ -13,7 +15,7 @@ router.route( "/add" ).post( ( req, res ) =>
   const expDate = req.body.expDate;
   const cvv = req.body.cvv;
 
-  const newPayment = new Payment( {
+  const newPayment = new Payment({
     userID,
     // packageID,
     cardName,
@@ -25,12 +27,21 @@ router.route( "/add" ).post( ( req, res ) =>
   newPayment
     .save()
     .then(() => {
-      res.json("Payment added successfully...");
+      // Call the PUT route to update isPurchased
+      const packageId = req.params.packageId; // Make sure to get the packageId from somewhere
+      axios.put(`http://localhost:8080/api/package/packages/${packageId}`)
+        .then(() => {
+          res.json("Payment added successfully...");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     })
     .catch((err) => {
       console.log(err);
     });
 });
+
 
 //get all payment
 router.route("/").get((req, res) => {

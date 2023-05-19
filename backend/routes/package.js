@@ -61,4 +61,27 @@ router.post("/check-fields", async (req, res) => {
   }
 });
 
+router.put("/packages/:packageId", async (req, res) => {
+  const packageId = req.params.packageId;
+
+  try {
+    // Find the package by its ID
+    const singlePackage = await Package.findById(packageId);
+
+    if (!singlePackage) {
+      return res.status(404).json({ error: "Package not found" });
+    }
+
+    // Update the isPurchased field to true
+    singlePackage.isPurchased = true;
+
+    // Save the updated package
+    await singlePackage.save();
+
+    return res.json(singlePackage);
+  } catch (error) {
+    return res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 export default router;
