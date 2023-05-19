@@ -6,10 +6,10 @@ const paymentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    packageID: {
-      type: String,
-      required: true,
-    },
+    // packageID: {
+    //   type: String,
+    //   required: true,
+    // },
     cardName: {
       type: String,
       required: true,
