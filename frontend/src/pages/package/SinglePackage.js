@@ -93,14 +93,24 @@ const SinglePackage = () => {
           <p>{unlockedPackage.description}</p>
           <p>{unlockedPackage.details}</p>
           <p>Price: ${unlockedPackage.price}</p>
-          <button type="button" className="btn btn-dark" style={{ width: '200px' }} onClick={handleFormButtonClick}>
+          <button
+            type="button"
+            className="btn btn-dark"
+            style={{ width: "200px" }}
+            onClick={handleFormButtonClick}
+          >
             Not Satisfied (Make Inquiry)
           </button>
           {showForm && (
             <form className="form-control my-4" onSubmit={handleSubmit}>
               <div className="form-group">
                 <label htmlFor="inquiryType">Inquiry Type:</label>
-                <select className="form-control" id="inquiryType" value={inquiryType} onChange={handleInquiryTypeChange}>
+                <select
+                  className="form-control"
+                  id="inquiryType"
+                  value={inquiryType}
+                  onChange={handleInquiryTypeChange}
+                >
                   <option value="">Select an inquiry type</option>
                   <option value="General">General Inquiry</option>
                   <option value="Technical">Technical Inquiry</option>
@@ -109,35 +119,60 @@ const SinglePackage = () => {
               </div>
               <div className="form-group">
                 <label htmlFor="heading">Package Id:</label>
-                <input className="form-control" type="text" id="heading" value={id} disabled />
+                <input
+                  className="form-control"
+                  type="text"
+                  id="heading"
+                  value={id}
+                  disabled
+                />
               </div>
               <div className="form-group">
                 <label htmlFor="heading">Heading:</label>
-                <input className="form-control" type="text" id="heading" value={inquiryTitle} onChange={handleInquiryTitleChange} />
+                <input
+                  className="form-control"
+                  type="text"
+                  id="heading"
+                  value={inquiryTitle}
+                  onChange={handleInquiryTitleChange}
+                />
               </div>
               <div className="form-group">
                 <label htmlFor="message">Message:</label>
-                <textarea className="form-control" id="message" value={inquiryDescription} onChange={handleInquiryDescriptionChange} />
+                <textarea
+                  className="form-control"
+                  id="message"
+                  value={inquiryDescription}
+                  onChange={handleInquiryDescriptionChange}
+                />
               </div>
 
-
-              <button className="btn btn-dark" type="submit">Submit Inquiry</button>
+              <button className="btn btn-dark" type="submit">
+                Submit Inquiry
+              </button>
             </form>
-
           )}
         </div>
       ) : (
         <div className="text-center">
-          <h1 className="mt-5">You don't have access to view this package unless you purchase it</h1>
-          <button type="submit" className="btn btn-dark mt-3" style={{ width: '200px' }}>Pay</button>
+          <h1 className="mt-5">
+            You don't have access to view this package unless you purchase it
+          </h1>
+          <a href="/payment">
+            <button
+              type="submit"
+              className="btn btn-dark mt-3"
+              style={{ width: "200px" }}
+            >
+              Pay
+            </button>
+          </a>
           {showForm && (
             <form className="mt-4">
               {/* Render your form components here */}
             </form>
           )}
         </div>
-
-
       )}
     </div>
   );
