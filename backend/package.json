@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "start": "nodemon server.js",
     "test": "jest"
@@ -27,9 +27,8 @@
     "mongoose": "^6.10.5",
     "multer": "^1.4.5-lts.1",
     "multer-storage-cloudinary": "^4.0.0",
-    "ts-jest": "^29.1.0",
-    "storage": "^0.2.0"
-
+    "storage": "^0.2.0",
+    "ts-jest": "^29.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.21.8",
