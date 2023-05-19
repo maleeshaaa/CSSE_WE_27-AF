@@ -267,7 +267,7 @@ const Vouchers = () => {
                     <td>{voucher.voucherDetails}</td>
                     <td>
                       <Button
-                        variant="warning"
+                        variant="primary"
                         style={{ padding: '5px 20px' }}
                         onClick={() => handleClaimVoucher(voucher)}
                       >
