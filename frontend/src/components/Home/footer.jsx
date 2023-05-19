@@ -74,6 +74,14 @@ const Footer = () => (
                 Inquire
               </a>
             </li>
+            <li>
+              <a
+                href="/feedback"
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                Feedbacks
+              </a>
+            </li>
           </ul>
         </div>
 

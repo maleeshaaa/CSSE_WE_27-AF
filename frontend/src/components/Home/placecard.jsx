@@ -12,7 +12,7 @@ import Jaffna from "../../images/jaffna.jpeg";
 
 export default function PlaceCard() {
   return (
-    <div>
+    <div style={{marginLeft: "5rem"}}>
         <div class="row">
           <div class="column">
           <Card style={{ width: "18rem" }}>
@@ -27,7 +27,7 @@ export default function PlaceCard() {
               surrounded by mountains, which are home to tea plantations and biodiverse rainforest.
 
               </Card.Text>
-              <Button variant="primary">Go somewhere</Button>
+              <Button variant="primary">View</Button>
             </Card.Body>
           </Card>
           </div>
@@ -44,7 +44,7 @@ export default function PlaceCard() {
                 Kurunegala is a major city in Sri Lanka. It is the capital city of the North Western Province and the Kurunegala District. 
                 Kurunegala was an ancient royal capital for 50 years.
                 </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
+                <Button variant="primary">View</Button>
               </Card.Body>
             </Card>
           </div>
@@ -62,7 +62,7 @@ export default function PlaceCard() {
                 the fortified old city founded by Portuguese colonists in the 16th century. 
                 Stone sea walls.
                 </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
+                <Button variant="primary">View</Button>
               </Card.Body>
             </Card>
           </div>
@@ -78,7 +78,7 @@ export default function PlaceCard() {
                 Anuradhapura is a major city located in north central plain of Sri Lanka. 
                 It is the capital city of North Central Province, Sri Lanka and the capital of Anuradhapura District.
                 </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
+                <Button variant="primary">View</Button>
               </Card.Body>
             </Card>
           </div>
@@ -97,7 +97,7 @@ export default function PlaceCard() {
               is the main town of Polonnaruwa District in North Central Province, Sri Lanka. 
               The modern town of Polonnaruwa is also known as New Town.
               </Card.Text>
-              <Button variant="primary">Go somewhere</Button>
+              <Button variant="primary">View</Button>
             </Card.Body>
           </Card>
           </div>
@@ -114,7 +114,7 @@ export default function PlaceCard() {
                 Nuwara Eliya is a city in the tea country hills of central Sri Lanka. 
                 The naturally landscaped Hakgala Botanical Gardens displays roses and tree ferns, and shelters monkeys and blue magpies.
                 </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
+                <Button variant="primary">View</Button>
               </Card.Body>
             </Card>
           </div>
@@ -132,7 +132,7 @@ export default function PlaceCard() {
                 Sri LankaThe prominent Malays most part of the population is to be partly descended 
                 from seafarers from the Malay Archipelago who travelled through the Magampura port
                 </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
+                <Button variant="primary">View</Button>
               </Card.Body>
             </Card>
           </div>
@@ -148,7 +148,7 @@ export default function PlaceCard() {
                 Jaffna is a city on the northern tip of Sri Lanka. Nallur Kandaswamy is a huge Hindu temple with golden arches and an ornate gopuram tower. 
                 By the coast, star-shaped Jaffna Fort was built by the Portuguese in the 17th century and later occupied by the Dutch and British.
                 </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
+                <Button variant="primary">View</Button>
               </Card.Body>
             </Card>
           </div>
