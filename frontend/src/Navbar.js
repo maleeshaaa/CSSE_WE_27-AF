@@ -31,6 +31,13 @@ const NavBar = ({ setStatus, status, logOut, isAdmin }) => {
           >
             Home
           </Link>
+
+          <Link
+            to="/new-places"
+            style={{ padding: "10px", textDecoration: "none", color: "#000" }}
+          >
+            Requests
+          </Link>
           {/* <DropdownButton id="dropdown-basic-button" title="Catagories">
             <Dropdown.Item href="/herbal-beauty">
               Herbal Beauty Products

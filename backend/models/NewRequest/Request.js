@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const requestSchema = new Schema({
+    userid: {
+      type: String,
+      required: true,
+    },
     province: {
       type: String,
       required: true,
