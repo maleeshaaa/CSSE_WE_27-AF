@@ -189,21 +189,21 @@ const Feedback =()=> {
                     </Card.Text>
                   </div>
                   <div className="flex_voucherButton">
-                    <Button
+                    {/* <Button
                       variant="primary"
                       style={{ margin: "1rem 0" }}
                       className="update__button"
                     >
                       Update
-                    </Button>
-                    <Button
+                    </Button> */}
+                    {/* <Button
                       variant="primary"
                       style={{ margin: "1rem 0" }}
                       onClick={() => deleteFeedback(feedback._id)}
                       className="delete__button delete_voucher"
                     >
                       Delete
-                    </Button>
+                    </Button> */}
                   </div>
                 </Card.Body>
               </Card>

@@ -10,12 +10,12 @@ import Row from "react-bootstrap/Row";
 import "./payment-style.css";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-
+ 
 const Payment = () => {
   //get user details
   const [userDetails, setUserDetails] = useState({});
   const uid = localStorage.getItem("username");
-
+ 
   const loadUserData = async () => {
     axios({
       method: "post",
@@ -28,11 +28,11 @@ const Payment = () => {
       setUserDetails(data.data);
     });
   };
-
+ 
   useEffect(() => {
     loadUserData();
   }, []);
-
+ 
   //Create Packages
   const [formData, setFormData] = useState({
     userID: userDetails.id || "",
@@ -42,7 +42,7 @@ const Payment = () => {
     expDate: "",
     cvv: "",
   });
-
+ 
   const handleSubmit = (values) => {
     const data = {
       ...formData,
@@ -53,7 +53,7 @@ const Payment = () => {
       expDate: values.ExpiryDate,
       cvv: values.CVV,
     };
-
+ 
     axios
       .post("http://localhost:8080/api/payment/add", data)
       .then((res) => {
@@ -69,7 +69,7 @@ const Payment = () => {
         Swal.fire("Oops!", "Payment Unsuccessful...", "error");
       });
   };
-
+ 
   //Get Package
   const [packages, setPackages] = useState([]);
   const { id } = useParams();
@@ -80,12 +80,12 @@ const Payment = () => {
         setPackages(response.data);
         console.log(response.data);
       })
-
+ 
       .catch((error) => {
         console.log(error);
       });
   }, [id]);
-
+ 
   // validation
   const { Formik } = formik;
   const schema = yup.object().shape({
@@ -104,7 +104,7 @@ const Payment = () => {
       .matches(/[0-9]/, "CVV code requires numbers")
       .required(),
   });
-
+ 
   return (
     <Box m="0.0rem 0.0rem">
       <Header
@@ -207,7 +207,7 @@ const Payment = () => {
                     fontFamily: "Lucida Sans",
                   }}
                 />
-
+ 
                 <Form.Control.Feedback type="invalid">
                   {errors.CVV}
                 </Form.Control.Feedback>
@@ -229,5 +229,5 @@ const Payment = () => {
     </Box>
   );
 };
-
+ 
 export default Payment;
