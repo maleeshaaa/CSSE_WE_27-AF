@@ -36,7 +36,7 @@ app.use("/api", authRoutes);
 app.use("/api/refreshToken", refreshTokenRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/transaction", transactionRoutes);
-app.use("/api/package", packageRoutes);
+app.use("/package", packageRoutes);
 app.use("/api/inquiry", inquiryRoutes);
 app.use("/blog", BlogRout);
 
@@ -52,7 +52,7 @@ app.use( "/requests", PlaceRequests )
 
 app.use( "/places", PlaceRoutes );
 
-app.use("/api/payment", Payment);
+app.use("/payment", Payment);
 
 const port = process.env.PORT || 8080;
 app.listen(port, ()=> console.log(`Listening on port ${port}...`));
