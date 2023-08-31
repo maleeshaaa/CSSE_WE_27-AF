@@ -1,3 +1,4 @@
 # CSSE_WE_27-AF
 
-# Loyalty Program for Foreigners
+# A web application developed to provide a solution to Sri Lanka's tourism problem
+# PLANNIFY
